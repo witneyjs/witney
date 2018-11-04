@@ -88,6 +88,7 @@
   },
   "common": {
     "licenseUrl": "https://opensource.org/licenses/MIT",
+    "repoStaticUrl": "https://raw.github.com/witneyjs/witney/${branch}/",
     "bannerCopyright": "Copyright(c) {year} {name} {surname}"
   },
   "dependencies": {

@@ -1,6 +1,5 @@
-<% var badge = {
+<%- input.renderBadge({
     title: 'npm', 
     body: input.pkg.version, 
     url: `https://www.npmjs.com/package/${input.pkg.name}`
-}; -%>
-<%- include('/tpl-lib/badge', badge) -%>
+}); -%>

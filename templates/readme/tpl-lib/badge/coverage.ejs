@@ -1,5 +1,4 @@
-<% var badge = {
+<%- input.renderBadge({
     title: 'coverage', 
     body: `${input.coverage}%`, 
-}; -%>
-<%- include('/tpl-lib/badge', badge) -%>
+}); -%>

@@ -1,7 +1,17 @@
+const path = require('path');
 const shell = require('shelljs');
 const fs = require('fs');
 const { paths } = require("common");
 const micromatch = require('micromatch')
+const package = require(paths.project('package.json'));
+
+let branch;
+let staticUrl;
+const staticDir = paths.static('readme');
+if (package.common.repoStaticUrl) {
+    branch = shell.exec('git rev-parse --abbrev-ref HEAD', { silent: true }).stdout.trim();
+    staticUrl = `${package.common.repoStaticUrl.replace('${branch}', branch)}static/readme/`
+}
 
 const getTestsSummary = function() {
     const testScript = paths.scripts('test.js')
@@ -65,7 +75,16 @@ const getFailedTestsCount = function(nameSpaceId) {
     return Number.parseInt(failedTestsCount);
 }
 
-const renderBadge = function({ title, titleColor, titleTextColor, body, bodyColor, bodyTextColor }) {
+let renderedSvgs = 0;
+const renderBadge = function({
+        url, 
+        title, 
+        titleColor = '#545454', 
+        titleTextColor = 'white', 
+        body, 
+        bodyColor = '#007EB1', 
+        bodyTextColor = 'white' 
+    }) {
     const charWidth = 8;
     const columnSpacing = 7;
 
@@ -100,7 +119,25 @@ const renderBadge = function({ title, titleColor, titleTextColor, body, bodyColo
         <text x="${bodyX}" y="14">${body}</text>
     </g>
 </svg>`
-    return badge.trim().replace(/\n/g,'');
+
+    const trimmedBadge = badge.trim().replace(/\n/g,'');;
+
+    let result = trimmedBadge;
+
+    if (staticUrl) {
+        const svgFileName = `badge.${renderedSvgs}.svg`;
+        const svgFilePath = path.join(staticDir, svgFileName);
+        fs.writeFileSync(svgFilePath, result);
+        result = `<img src="${staticUrl}${svgFileName}" alt="${title}">` 
+    }
+
+    if (url) {
+        result = `<a href="${url}">${result}</a>`;
+    }
+
+    renderedSvgs++;
+    
+    return result + ' ';
 }
 
 const prepare = function(hoppla) {
