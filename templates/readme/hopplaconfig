@@ -1,0 +1,4 @@
+{
+    excludeGlobs: tpl-lib
+    prepare: return hoppla.require('tpl-lib/prepare.js')(hoppla)
+}

@@ -1,0 +1,4 @@
+{
+  fileName: '<%= input.nameSpaceId %>',
+  exclude: <%= JSON.stringify(!!input.isNode) %>
+}

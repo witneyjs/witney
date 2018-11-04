@@ -1,0 +1,10 @@
+<% 
+    if (typeof(url) === 'undefined') var url;
+-%>
+<% if (url) { -%>
+    <%_ %><a href="<%= url %>"><% -%>
+        <%_ %><%- include('badgeContent') -%>
+    <%_ %></a> -%>
+<% } else { -%>
+    <%_ %><%- include('badgeContent') -%>
+<% } -%>  
