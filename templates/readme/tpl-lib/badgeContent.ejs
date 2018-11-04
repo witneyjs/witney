@@ -2,7 +2,7 @@
     if (typeof(titleColor) === 'undefined') var titleColor;
     titleColor = titleColor || '#545454';
 
-    if (typeof(titleColor) === 'undefined') var titleTextColor;
+    if (typeof(titleTextColor) === 'undefined') var titleTextColor;
     titleTextColor = titleTextColor || 'white';
 
     if (typeof(bodyColor) === 'undefined') var bodyColor;
@@ -11,11 +11,4 @@
     if (typeof(bodyTextColor) === 'undefined') var bodyTextColor;
     bodyTextColor = bodyTextColor || 'white'; 
 -%>
-<span style="overflow: hidden; font-size: 11px; display: inline-block; border-radius: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.6);"><% -%>
-    <%_ %><span style="display: inline-block; padding: 4px; margin: 0px; color: <%= titleTextColor %>; background-color: <%= titleColor %>;"><% -%>
-        <%_ %><%= title -%>
-    <%_ %></span><% -%>
-    <%_ %><span style="display: inline-block; padding: 4px; margin: 0px; color: <%= bodyTextColor %>; background-color: <%= bodyColor %>;"><% -%>
-        <%_ %><%= body -%>
-    <%_ %></span><% -%>
-</span>
+<%- input.renderBadge({ title, titleColor, titleTextColor, body, bodyColor, bodyTextColor }) %>
