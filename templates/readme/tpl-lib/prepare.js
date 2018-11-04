@@ -127,8 +127,12 @@ const renderBadge = function({
     if (staticUrl) {
         const svgFileName = `badge.${renderedSvgs}.svg`;
         const svgFilePath = path.join(staticDir, svgFileName);
+        let svgFileUrl = `${staticUrl}${svgFileName}`;
+        if (package.common.readmeSvgUrlSuffix) {
+            svgFileUrl += package.common.readmeSvgUrlSuffix;
+        }
         fs.writeFileSync(svgFilePath, result);
-        result = `<img src="${staticUrl}${svgFileName}" alt="${title}">` 
+        result = `<img src="${svgFileUrl}" alt="${title}">` 
     }
 
     if (url) {
