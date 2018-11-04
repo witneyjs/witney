@@ -3,4 +3,5 @@
 const shell = require("shelljs");
 const { paths } = require("common");
 
-shell.exec(`node ${paths.scripts("test-salami-front.js")}`);
+// TODO: Automate this
+// shell.exec(`node ${paths.scripts("test-something")}`);

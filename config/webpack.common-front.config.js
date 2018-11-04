@@ -74,13 +74,15 @@ module.exports = function({
     devServer: {
       hot: useHot,
       contentBase: serverContentBase,
-      // TODO: move to salami
+      // TODO: Move this to the hoppla namespace template
+      // Example websocket proxy
+      /*
       proxy: {
         "/faye": {
           target: "ws://localhost:20000/faye",
           ws: true
         }
-      },
+      },*/
       overlay: true
     }
   };
