@@ -1,3 +1,8 @@
 {
-    rawGlobs: [ 'templates/**/*' ]
+    rawGlobs: [ 'templates/**/*' ],
+    excludeGlobs: [
+        '.git',
+        'node_modules',
+        '.vscode'
+    ]
 }
