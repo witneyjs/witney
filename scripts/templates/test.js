@@ -34,7 +34,7 @@ const test = function({ nameSpaceId }) {
   command += " --exclude **/*.spec.*";
   command += " --exclude **/main/test.*";
   command += " --cache";
-  command += ` --temp-directory ${paths.tmp(`.nyc_output_${nameSpaceId}`)}`;
+  command += ` --temp-dir ${paths.tmp(`.nyc_output_${nameSpaceId}`)}`;
 
   command += " mocha";
   command += argv.watch ? " --watch" : "";
