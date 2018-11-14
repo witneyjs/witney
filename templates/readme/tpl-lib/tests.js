@@ -4,9 +4,6 @@ const { paths } = require("common");
 const micromatch = require('micromatch')
 
 const getSummary = function() {
-    const testScript = paths.scripts('test.js')
-    shell.exec(`node ${testScript}`);
-    
     const scriptsDir = paths.scripts();
     const scripts = fs.readdirSync(scriptsDir);
     const coverageScripts = micromatch.match(scripts, 'coverage-*');

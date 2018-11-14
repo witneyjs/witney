@@ -1,4 +1,8 @@
 {
     excludeGlobs: tpl-lib
+    input: {
+        // Enable to skip js build and tests
+        runQuick: false
+    }
     prepare: return hoppla.require('tpl-lib/prepare.js')(hoppla)
 }

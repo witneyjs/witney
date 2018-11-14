@@ -22,6 +22,11 @@ const getRepoStaticUrl = function(branch) {
 }
 
 const prepare = function(hoppla) {
+    if (!hoppla.input.runQuick) {
+        const testScript = paths.scripts('test.js')
+        shell.exec(`node ${testScript}`);
+    }
+
     hoppla.input.pkg = package
 
     hoppla.input.branch = hoppla.input.branch || getBranch();
