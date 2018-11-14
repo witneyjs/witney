@@ -11,3 +11,19 @@ Witney is a template for javascript/typescript front- and backend projects with 
 <% } %>
 
 <%= input.pkg.description %>
+
+-------
+
+## Getting started with Witney
+
+### Create a frontend namespace
+
+Run: `npx hoppla -t templates/namespace/ -i "{ id: 'front' }"`
+
+### Create a backend namespace
+
+Run: `npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"`
+
+### Clone Witney for a new project
+
+Run: `yarn global add hoppla && hoppla -t witney -d newProj && cd newProj && yarn install`
