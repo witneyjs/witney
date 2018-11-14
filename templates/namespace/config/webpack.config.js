@@ -1,5 +1,5 @@
 ###hopplaconfig {
-  fileName: 'webpack.<%= input.nameSpaceId %>.config.js'
+  fileName: 'webpack.<%= input.id %>.config.js'
 } hopplaconfig###
 
 const common = require("common");
@@ -9,7 +9,7 @@ const _ = require("lodash");
 
 module.exports = function(env, argv) {
   const isNode = <%= input.isNode ? 'true': 'false' %>;
-  const nameSpaceId = "<%= input.nameSpaceId %>";
+  const nameSpaceId = "<%= input.id %>";
   const libraryName = null;
   const useWorkBox = true;
   let useHot = true;

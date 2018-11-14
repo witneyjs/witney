@@ -1,5 +1,5 @@
 ###hopplaconfig {
-  fileName: 'svg-<%= input.nameSpaceId %>.js',
+  fileName: 'svg-<%= input.id %>.js',
   exclude: <%= JSON.stringify(!!input.isNode) %>
 } hopplaconfig###
 #!/usr/bin/env node
@@ -11,7 +11,7 @@ console.log(materialDir);
 
 require("./templates/svg")({
   name: "cool",
-  nameSpaceId: "<%= input.nameSpaceId %>",
+  nameSpaceId: "<%= input.id %>",
   svgs: {
     unicorn: path.join(
       materialDir,

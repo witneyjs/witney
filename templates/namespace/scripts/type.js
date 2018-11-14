@@ -1,8 +1,8 @@
 ###hopplaconfig {
-  fileName: 'type-<%= input.nameSpaceId %>.js'
+  fileName: 'type-<%= input.id %>.js'
 } hopplaconfig###
 #!/usr/bin/env node
 
 require("./templates/type")({
-  nameSpaceId: "<%= input.nameSpaceId %>"
+  nameSpaceId: "<%= input.id %>"
 });

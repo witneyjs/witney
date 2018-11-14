@@ -1,1 +1,1 @@
-console.log('<%= input.nameSpaceId %>');
+console.log('<%= input.id %>');
