@@ -43,6 +43,7 @@ module.exports = function(env, argv) {
         useCodeSplitting,
         useHot,
         outputDir,
+        indexHtmlTemplatePath: paths.static(`${nameSpaceId}/index.html`),
         serverContentBase: [outputDir, paths.static(nameSpaceId)]
       });
 

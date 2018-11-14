@@ -5,6 +5,6 @@
 
 require("./templates/build")({
   nameSpaceId: "<%= input.nameSpaceId %>",
-  useDevServer: <%= input.isNode ? 'true': 'false' %>,
-  useBundleAnalyzer: <%= input.isNode ? 'true': 'false' %>
+  useDevServer: <%= !input.isNode ? 'true': 'false' %>,
+  useBundleAnalyzer: <%= !input.isNode ? 'true': 'false' %>
 });
