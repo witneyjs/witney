@@ -4024,10 +4024,10 @@ hoopy@^0.1.2:
   resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d661100033a9a9402ad3dea677381c1b1d"
   integrity sha512-HRcs+2mr52W0K+x8RzcLzuPPmVIKMSv97RGHy0Ea9y/mpcaK+xTrjICA04KAHi4GRzxliNqNJEFYWHghy3rSfQ==
 
-hoppla@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/hoppla/-/hoppla-0.5.0.tgz#923ce2636d98491035d88b357c0e37b3cc2443e3"
-  integrity sha512-OpAtguQv5y3/4JHupxCXxE+BMgRo2yiHdNknDMpG7JRsX9cjINR9PLjLgBeq8Euuyy7VS5auWcpcSra95AE4Ew==
+hoppla@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/hoppla/-/hoppla-0.6.0.tgz#7296b6793166849a05917a5cdefc94d11b1d238a"
+  integrity sha512-+ZZPh3GxkWNPbOQZUwpxiy8agzV2knHQ2FoRUila6nkqvmcIFhhcbSOfCu1DQh/zPLYA4yeRrXxZJdN+CE2cwQ==
   dependencies:
     ejs "^2.6.1"
     hjson "^3.1.1"

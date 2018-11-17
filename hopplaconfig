@@ -1,8 +1,13 @@
 {
+    input: {
+        type: false
+    },
     rawGlobs: [ 'templates/**/*' ],
     excludeGlobs: [
         '.git',
         'node_modules',
-        '.vscode'
-    ]
+        '.vscode',
+        'tpl-lib'
+    ],
+    finalize: return hoppla.require('tpl-lib/finalize.js')(hoppla)
 }
