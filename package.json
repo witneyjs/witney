@@ -59,8 +59,9 @@
     "param.macro": "^2.1.0",
     "pino": "^5.4.0",
     "pino-pretty": "^2.0.1",
-    "postcss-cssnext": "^3.0.2",
+    "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.4.0",
     "prettier": "^1.13.7",
     "preval.macro": "^3.0.0",
     "raw-loader": "^0.5.1",
@@ -104,8 +105,8 @@
     }
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/witneyjs/witney.git"
+    "type": "git",
+    "url": "https://github.com/witneyjs/witney.git"
   },
   "dependencies": {
     "common": "file:./packages/common",

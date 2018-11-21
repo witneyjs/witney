@@ -84,6 +84,14 @@ module.exports = function({
         }
       },*/
       overlay: true
+    },
+    // Adds mocks for some common node modules to the browser env
+    node: {
+      dgram: 'empty',
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      child_process: 'empty',
     }
   };
 
@@ -120,9 +128,24 @@ module.exports = function({
   }
 
   if (!envIsTesting) {
-    config.plugins.html = new HtmlWebpackPlugin({
+    let htmlWebpackPluginOptions = {
       template: indexHtmlTemplatePath
-    });
+    };
+    if (!devMode) {
+      htmlWebpackPluginOptions.minify = {
+        removeComments: false,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      }
+    }
+    config.plugins.html = new HtmlWebpackPlugin(htmlWebpackPluginOptions);
   }
 
   if (process.env.BUNDLE_ANALYZER) {

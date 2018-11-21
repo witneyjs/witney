@@ -43,9 +43,17 @@ const createCssRule = ({
       loader: "postcss-loader",
       options: {
         sourceMap: useSourceMap,
+        // Necessary for external CSS imports to work
+        // https://github.com/facebook/create-react-app/issues/2677
         ident: "postcss",
         plugins: [
-          require("postcss-cssnext")(),
+          require('postcss-flexbugs-fixes'),
+          require('postcss-preset-env')({
+            autoprefixer: {
+              flexbox: 'no-2009',
+            },
+            stage: 3,
+          }),
           require("rucksack-css")({
             fallbacks: true,
             // cssnext includes an autoprefixer
@@ -237,7 +245,9 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
                 presets: [babelPresetEnv],
                 // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
                 compact: false,
-                plugins: commonBabelPlugins
+                plugins: commonBabelPlugins,
+                cacheDirectory: true,
+                cacheCompression: envIsProd
               }
             }
           ]
@@ -252,7 +262,9 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
                 presets: [babelPresetEnv],
                 // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
                 compact: false,
-                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins)
+                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins),
+                cacheDirectory: true,
+                cacheCompression: envIsProd
               }
             }
           ]
@@ -265,7 +277,9 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
               loader: "babel-loader",
               options: {
                 presets: [babelPresetEnv, babelPresetTypeScript],
-                plugins: commonBabelPlugins
+                plugins: commonBabelPlugins,
+                cacheDirectory: true,
+                cacheCompression: envIsProd
               }
             }
           ]
@@ -278,7 +292,9 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
               loader: "babel-loader",
               options: {
                 presets: [babelPresetEnv, babelPresetTypeScript],
-                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins)
+                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins),
+                cacheDirectory: true,
+                cacheCompression: envIsProd
               }
             }
           ]
