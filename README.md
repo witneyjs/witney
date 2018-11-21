@@ -1,4 +1,4 @@
-<img src="/static/readme/logo.png" alt="logo"/>
+<img src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
 
 -------
 

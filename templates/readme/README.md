@@ -1,4 +1,4 @@
-<img src="<%= input.pkg.repoStaticUrl %>/static/readme/logo.png" alt="logo"/>
+<img src="<%= input.repoStaticUrl %>static/readme/logo.png" alt="logo"/>
 
 -------
 
@@ -27,3 +27,7 @@ Run: `npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"`
 ### Clone Witney for a new project
 
 Run: `yarn global add hoppla && hoppla -t witney -d newProj && cd newProj && yarn install`
+
+#### Clone and setup demo
+
+Run: `yarn global add hoppla && hoppla -t witney -d newProj -i "{ type: 'demo' }" && cd newProj`

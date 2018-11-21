@@ -103,6 +103,10 @@
       }
     }
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/witneyjs/witney.git"
+  },
   "dependencies": {
     "common": "file:./packages/common",
     "express": "^4.16.2",
