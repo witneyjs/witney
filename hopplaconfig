@@ -7,7 +7,7 @@
         '.git',
         'node_modules',
         '.vscode',
-        'tpl-lib'
+        'lib/tpl-lib'
     ],
-    finalize: return hoppla.require('tpl-lib/finalize.js')(hoppla)
+    finalize: return hoppla.require('lib/tpl-lib/finalize.js')(hoppla)
 }
