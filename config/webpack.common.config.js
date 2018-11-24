@@ -10,7 +10,8 @@ const createCssRule = ({
   useModules = true,
   envIsTesting,
   envIsProd,
-  usePostCss = true,
+  useSass = false,
+  usePostCss = false,
   isNode
 }) => {
   const useSourceMap = true;
@@ -39,39 +40,60 @@ const createCssRule = ({
       }
     }
 
-    let postCssLoader = {
-      loader: "postcss-loader",
-      options: {
-        sourceMap: useSourceMap,
-        // Necessary for external CSS imports to work
-        // https://github.com/facebook/create-react-app/issues/2677
-        ident: "postcss",
-        plugins: [
-          require('postcss-flexbugs-fixes'),
-          require('postcss-preset-env')({
-            autoprefixer: {
-              flexbox: 'no-2009',
-            },
-            stage: 3,
-          }),
-          require("rucksack-css")({
-            fallbacks: true,
-            // cssnext includes an autoprefixer
-            autoprefixer: false
-          }),
-          require("lost")
-        ]
-      }
-    };
-
     if (!isNode) {
       cssRule.use.push(styleLoader);
     }
     cssRule.use.push(cssLoader);
 
-    if (usePostCss && !isNode) {
+    if ((useSass || usePostCss) && !isNode) {
       cssLoader.options.importLoaders = 1;
-      cssRule.use.push(postCssLoader);
+
+      if (usePostCss) {
+        let postCssLoader = {
+          loader: "postcss-loader",
+          options: {
+            sourceMap: useSourceMap,
+            // Necessary for external CSS imports to work
+            // https://github.com/facebook/create-react-app/issues/2677
+            ident: "postcss",
+            plugins: [
+              require('postcss-flexbugs-fixes'),
+              require('postcss-preset-env')({
+                autoprefixer: {
+                  flexbox: 'no-2009',
+                },
+                stage: 0,
+              }),
+              require("rucksack-css")({
+                fallbacks: true,
+                // cssnext includes an autoprefixer
+                autoprefixer: false
+              }),
+              require("lost")
+            ]
+          }
+        };
+        cssRule.use.push(postCssLoader);
+      }
+
+      if (useSass) {
+        cssRule.use.push({
+          loader: "resolve-url-loader"
+        })
+
+        const Fiber = require('fibers');
+        let sassLoader = {
+          loader: "sass-loader",
+          options: {
+            implementation: require("sass"),
+            fiber: Fiber,
+            // Always has to be enabled for resolve-url-loader
+            sourceMap: true,
+            sourceMapContents: false
+          }
+        }
+        cssRule.use.push(sassLoader);
+      }
     }
   } else {
     // https://github.com/zinserjan/mocha-webpack/blob/master/docs/installation/webpack-configuration.md#without-css-modules
@@ -203,12 +225,29 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
           envIsProd,
           envIsTesting,
           test: /\.module\.pcss$/,
+          usePostCss: true,
           isNode
         }),
         pcss: createCssRule({
           envIsProd,
           envIsTesting,
           test: /^(?!.*\.module).*\.pcss$/,
+          usePostCss: true,
+          useModules: false,
+          isNode
+        }),
+        sassModule: createCssRule({
+          envIsProd,
+          envIsTesting,
+          test: /\.module\.scss$/,
+          useSass: true,
+          isNode
+        }),
+        sass: createCssRule({
+          envIsProd,
+          envIsTesting,
+          test: /^(?!.*\.module).*\.scss$/,
+          useSass: true,
           useModules: false,
           isNode
         }),
@@ -216,14 +255,12 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
           envIsProd,
           envIsTesting,
           test: /\.module\.css$/,
-          usePostCss: false,
           isNode
         }),
         css: createCssRule({
           envIsProd,
           envIsTesting,
           test: /^(?!.*\.module).*\.css$/,
-          usePostCss: false,
           useModules: false,
           isNode
         }),
