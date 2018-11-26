@@ -1,7 +1,7 @@
 const common = require("common");
 const util = common.webpack;
 const paths = common.paths;
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -182,7 +182,7 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
     },
     optimization: {
       minimizer: {
-        uglifyJS: new UglifyJSPlugin({
+        terser: new TerserPlugin({
           cache: true,
           parallel: true,
           sourceMap: true
