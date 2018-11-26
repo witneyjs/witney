@@ -5,7 +5,7 @@ module.exports = {
     title: pkg.name,
     paths: {
       src: '../docs',
-      output: '../site',
+      output: '../static/docs',
       public: '../docs/public'
     },
     colors: {
