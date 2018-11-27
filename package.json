@@ -31,7 +31,7 @@
     "chalk": "^2.4.1",
     "clean-webpack-plugin": "^1.0.0",
     "codegen.macro": "^3.0.0",
-    "concat-with-sourcemaps": "^1.1.0",
+    "concat-with-sourcemaps": "file:./packages/concat-with-sourcemaps",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "emotion": "^9.2.8",

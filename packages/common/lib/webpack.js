@@ -58,24 +58,32 @@ const getJsFileTestRegex = function() {
   return /\.(js|jsx|ts|tsx)$/;
 };
 
+const getJsLicenseBanner = () => {
+  const pkg = require(paths.project("package.json"));
+
+  let bannerText = '';
+  bannerText += `\n/*!`;
+  bannerText += `\n * ${pkg.name}`;
+  if (pkg.common && pkg.common.bannerCopyright) {
+    bannerText += `\n * ${pkg.common.bannerCopyright}`;
+  }
+  bannerText += `\n * ${pkg.license} Licensed`;
+  if (pkg.common && pkg.common.licenseUrl) {
+    bannerText += "\n * " + pkg.common.licenseUrl;
+  }
+  bannerText += "\n*/\n";
+
+  return bannerText;
+}
+
 const getBannerPlugin = ({ isNode = false, env }) => {
   const webpack = require("webpack");
   const isTesting = envIsTesting(env);
-  const pkg = require(paths.project("package.json"));
 
   let bannerText = "";
 
   if (!isTesting) {
-    bannerText += `\n/*!`;
-    bannerText += `\n * ${pkg.name}`;
-    if (pkg.common && pkg.common.bannerCopyright) {
-      bannerText += `\n * ${pkg.common.bannerCopyright}`;
-    }
-    bannerText += `\n * ${pkg.license} Licensed`;
-    if (pkg.common && pkg.common.licenseUrl) {
-      bannerText += "\n * " + pkg.common.licenseUrl;
-    }
-    bannerText += "\n*/\n";
+    bannerText = getJsLicenseBanner();
   }
 
   if (isNode) {
@@ -128,6 +136,7 @@ module.exports = {
   getEntriesFromDir,
   envIsTesting,
   getJsFileTestRegex,
+  getJsLicenseBanner,
   getDefinePlugin,
   getBannerPlugin,
   normalizeConfig
