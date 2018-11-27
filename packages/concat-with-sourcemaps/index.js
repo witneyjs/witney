@@ -95,7 +95,7 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
         }
         if (sourceMap && sourceMap.sourcesContent)
           this._sourceMap.setSourceContent(filePath, sourceMap.sourcesContent[0]);
-// XXX> BUGFIX: for files without a previous use content string as sourceContent
+// XXX> BUGFIX: for files without a previous sourcemap use content string as sourceContent
         if (!sourceMap || !sourceMap.sourcesContent) 
           this._sourceMap.setSourceContent(filePath, contentString);
 // <XXX
