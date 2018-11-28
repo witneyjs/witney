@@ -17,7 +17,8 @@ module.exports = function({ nameSpaceId }) {
         extends: path.relative(paths.tmp(), paths.project("tsconfig.json")),
         include: [
           paths.lib(`${nameSpaceId}/main/*`),
-          paths.lib("./custom.d.ts")
+          paths.lib("./custom.d.ts"),
+          paths.lib(`${nameSpaceId}/custom.d.ts`),
         ]
       },
       null,
@@ -36,5 +37,5 @@ module.exports = function({ nameSpaceId }) {
   command += ` --declarationMap`;
 
   pino.info(command);
-  shell.exec(command);
+  return shell.exec(command);
 };

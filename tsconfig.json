@@ -18,7 +18,6 @@
         "strictNullChecks": true
     },
     "include": [
-        "**/*",
-        "./custom.d.ts"
+        "**/*"
     ],
 }
