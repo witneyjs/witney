@@ -1,12 +1,43 @@
 const shell = require("shelljs");
-const { paths } = require("common");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
+
+const { paths } = require("common");
+const concat = require('./concatJs');
+
+const checkStaticTypes = function({
+  nameSpaceId
+}) {
+  const result = require("./type")({
+    nameSpaceId: nameSpaceId
+  });
+
+  return result.code === 0;
+}
+
+const buildRawJsBundles = function({
+  minify = true,
+  nameSpaceId,
+  rawJsBundles
+}) {
+  Object.entries(rawJsBundles).forEach(([fileName, bundle]) => {
+    const outputPath = paths.dist(`${nameSpaceId}/${fileName}`);
+
+    const concatOptions = Object.assign({
+      destination: outputPath,
+      minify: minify,
+    }, bundle)
+
+    concat(concatOptions);
+  })
+}
 
 const build = function({
   nameSpaceId,
   useDevServer = false,
   useBundleAnalyzer = false,
+  // Creates extra bundles with files which will be concatinated without webpack
+  rawJsBundles = false,
   testing = false
 }) {
   let yargsOptions = {
@@ -26,6 +57,25 @@ const build = function({
 
   testing = testing || argv.test;
 
+  if (!testing && !argv.watch) {
+    if (!checkStaticTypes({ nameSpaceId })) {
+      pino.error('Error while checking the static types, please check previous logs');
+      return;
+    }
+  }
+
+  const outputPath = paths.dist(nameSpaceId);
+  // Custom version of clean-webpack-plugin =)
+  shell.rm('-rf', outputPath);
+  shell.mkdir(outputPath);
+
+  // Create raw js file bundles
+  if (!testing && rawJsBundles) {
+    pino.info('Building raw js bundles');
+    buildRawJsBundles({ nameSpaceId, rawJsBundles, minify: !argv.development })
+  }
+
+  // Create webpack command
   let command = "";
 
   command += "npx cross-env";
@@ -65,10 +115,6 @@ const build = function({
 
   pino.info(command);
   shell.exec(command);
-
-  require("./type")({
-    nameSpaceId: nameSpaceId
-  });
 };
 
 module.exports = build;

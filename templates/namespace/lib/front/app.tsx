@@ -1,7 +1,3 @@
-###hopplaconfig {
-    exclude: <%= JSON.stringify(!!input.isNode) %>
-  } hopplaconfig###
-
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -19,4 +15,11 @@ const App = function() {
     </>
 }
 
-render(<App />, document.querySelector('#app'))
+render(<App />, document.querySelector('#app'));
+
+// TODO: Finish this and use env variables
+var client = new Faye.Client('http://localhost:8000/');
+
+client.subscribe('/messages', function(message) {
+    alert('Got a message: ' + message.text);
+});

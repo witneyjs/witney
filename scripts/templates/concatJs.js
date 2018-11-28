@@ -57,6 +57,10 @@ const concatJs = function({ bannerText = true, files, destination, minify = fals
 
     const minified = Terser.minify(minifyFiles, {
         mangle: false,
+        output: {
+            // Based on: https://github.com/webpack-contrib/terser-webpack-plugin/blob/fd9b8b4de1340a691c5a27b679b62d63f5524d4f/src/minify.js#L59
+            comments: /^\**!|@preserve|@license|@cc_on/i
+        },
         sourceMap: {
             content: fs.readFileSync(sourceMapPath, 'utf8'),
             url: sourceMapFileName

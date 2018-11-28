@@ -11,6 +11,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const webpack = require("webpack");
 
+// TODO: Readd CopyWebpackPlugin for static assets or copy in build process
 // config.plugins.push(
 //   new CopyWebpackPlugin([
 //     {

@@ -3,8 +3,22 @@
 } hopplaconfig###
 #!/usr/bin/env node
 
+<% if (!input.isNode) { -%>
+const { paths } = require("common");
+<% } -%>
+
 require("./templates/build")({
-  nameSpaceId: "<%= input.id %>",
-  useDevServer: <%= !input.isNode ? 'true': 'false' %>,
-  useBundleAnalyzer: <%= !input.isNode ? 'true': 'false' %>
+  nameSpaceId: "<%= input.id %>"<% if (!input.isNode) { -%>,
+  useDevServer: true,
+  useBundleAnalyzer: true,
+  rawJsBundles: {
+    "externals.js": {
+      files: [
+        {
+          jsPath: paths.project('node_modules/faye/client/faye-browser.js')
+        }
+      ]
+    }
+  }
+<% } -%>
 });
