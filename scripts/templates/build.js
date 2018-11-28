@@ -3,17 +3,15 @@ const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 
 const { paths } = require("common");
-const concat = require('./concatJs');
+const concat = require("./concatJs");
 
-const checkStaticTypes = function({
-  nameSpaceId
-}) {
+const checkStaticTypes = function({ nameSpaceId }) {
   const result = require("./type")({
     nameSpaceId: nameSpaceId
   });
 
   return result.code === 0;
-}
+};
 
 const buildRawJsBundles = function({
   minify = true,
@@ -23,14 +21,17 @@ const buildRawJsBundles = function({
   Object.entries(rawJsBundles).forEach(([fileName, bundle]) => {
     const outputPath = paths.dist(`${nameSpaceId}/${fileName}`);
 
-    const concatOptions = Object.assign({
-      destination: outputPath,
-      minify: minify,
-    }, bundle)
+    const concatOptions = Object.assign(
+      {
+        destination: outputPath,
+        minify: minify
+      },
+      bundle
+    );
 
     concat(concatOptions);
-  })
-}
+  });
+};
 
 const build = function({
   nameSpaceId,
@@ -59,20 +60,22 @@ const build = function({
 
   if (!testing && !argv.watch) {
     if (!checkStaticTypes({ nameSpaceId })) {
-      pino.error('Error while checking the static types, please check previous logs');
+      pino.error(
+        "Error while checking the static types, please check previous logs"
+      );
       return;
     }
   }
 
   const outputPath = paths.dist(nameSpaceId);
   // Custom version of clean-webpack-plugin =)
-  shell.rm('-rf', outputPath);
+  shell.rm("-rf", outputPath);
   shell.mkdir(outputPath);
 
   // Create raw js file bundles
   if (!testing && rawJsBundles) {
-    pino.info('Building raw js bundles');
-    buildRawJsBundles({ nameSpaceId, rawJsBundles, minify: !argv.development })
+    pino.info("Building raw js bundles");
+    buildRawJsBundles({ nameSpaceId, rawJsBundles, minify: !argv.development });
   }
 
   // Create webpack command

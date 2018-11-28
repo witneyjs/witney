@@ -18,7 +18,7 @@ module.exports = function({ nameSpaceId }) {
         include: [
           paths.lib(`${nameSpaceId}/main/*`),
           paths.lib("./custom.d.ts"),
-          paths.lib(`${nameSpaceId}/custom.d.ts`),
+          paths.lib(`${nameSpaceId}/custom.d.ts`)
         ]
       },
       null,

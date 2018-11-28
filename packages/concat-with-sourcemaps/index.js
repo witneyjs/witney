@@ -1,9 +1,9 @@
-'use strict';
-var SourceMapGenerator = require('source-map').SourceMapGenerator;
-var SourceMapConsumer = require('source-map').SourceMapConsumer;
+"use strict";
+var SourceMapGenerator = require("source-map").SourceMapGenerator;
+var SourceMapConsumer = require("source-map").SourceMapConsumer;
 
 function unixStylePath(filePath) {
-  return filePath.replace(/\\/g, '/');
+  return filePath.replace(/\\/g, "/");
 }
 
 function Concat(generateSourceMap, fileName, separator) {
@@ -13,19 +13,19 @@ function Concat(generateSourceMap, fileName, separator) {
   this.contentParts = [];
 
   if (separator === undefined) {
-    this.separator = bufferFrom('');
+    this.separator = bufferFrom("");
   } else {
     this.separator = bufferFrom(separator);
   }
 
   if (this.sourceMapping) {
-    this._sourceMap = new SourceMapGenerator({file: unixStylePath(fileName)});
+    this._sourceMap = new SourceMapGenerator({ file: unixStylePath(fileName) });
     this.separatorLineOffset = 0;
     this.separatorColumnOffset = 0;
     var separatorString = this.separator.toString();
     for (var i = 0; i < separatorString.length; i++) {
       this.separatorColumnOffset++;
-      if (separatorString[i] === '\n') {
+      if (separatorString[i] === "\n") {
         this.separatorLineOffset++;
         this.separatorColumnOffset = 0;
       }
@@ -47,9 +47,9 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
 
   if (this.sourceMapping) {
     var contentString = content.toString();
-    var lines = contentString.split('\n').length;
+    var lines = contentString.split("\n").length;
 
-    if (Object.prototype.toString.call(sourceMap) === '[object String]')
+    if (Object.prototype.toString.call(sourceMap) === "[object String]")
       sourceMap = JSON.parse(sourceMap);
 
     if (sourceMap && sourceMap.mappings && sourceMap.mappings.length > 0) {
@@ -60,12 +60,17 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
           _this._sourceMap.addMapping({
             generated: {
               line: _this.lineOffset + mapping.generatedLine,
-              column: (mapping.generatedLine === 1 ? _this.columnOffset : 0) + mapping.generatedColumn
+              column:
+                (mapping.generatedLine === 1 ? _this.columnOffset : 0) +
+                mapping.generatedColumn
             },
-            original: mapping.originalLine == null ? null : {
-              line: mapping.originalLine,
-              column: mapping.originalColumn
-            },
+            original:
+              mapping.originalLine == null
+                ? null
+                : {
+                    line: mapping.originalLine,
+                    column: mapping.originalColumn
+                  },
             source: mapping.originalLine != null ? mapping.source : null,
             name: mapping.name
           });
@@ -73,7 +78,10 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
       });
       if (upstreamSM.sourcesContent) {
         upstreamSM.sourcesContent.forEach(function(sourceContent, i) {
-          _this._sourceMap.setSourceContent(upstreamSM.sources[i], sourceContent);
+          _this._sourceMap.setSourceContent(
+            upstreamSM.sources[i],
+            sourceContent
+          );
         });
       }
     } else {
@@ -84,7 +92,7 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
           this._sourceMap.addMapping({
             generated: {
               line: this.lineOffset + i,
-              column: (i === 1 ? this.columnOffset : 0)
+              column: i === 1 ? this.columnOffset : 0
             },
             original: {
               line: i,
@@ -94,29 +102,32 @@ Concat.prototype.add = function(filePath, content, sourceMap) {
           });
         }
         if (sourceMap && sourceMap.sourcesContent)
-          this._sourceMap.setSourceContent(filePath, sourceMap.sourcesContent[0]);
-// XXX> BUGFIX: for files without a previous sourcemap use content string as sourceContent
-        if (!sourceMap || !sourceMap.sourcesContent) 
+          this._sourceMap.setSourceContent(
+            filePath,
+            sourceMap.sourcesContent[0]
+          );
+        // XXX> BUGFIX: for files without a previous sourcemap use content string as sourceContent
+        if (!sourceMap || !sourceMap.sourcesContent)
           this._sourceMap.setSourceContent(filePath, contentString);
-// <XXX
+        // <XXX
       }
     }
-    if (lines > 1)
-      this.columnOffset = 0;
+    if (lines > 1) this.columnOffset = 0;
     if (this.separatorLineOffset === 0)
-      this.columnOffset += contentString.length - Math.max(0, contentString.lastIndexOf('\n')+1);
+      this.columnOffset +=
+        contentString.length - Math.max(0, contentString.lastIndexOf("\n") + 1);
     this.columnOffset += this.separatorColumnOffset;
     this.lineOffset += lines - 1 + this.separatorLineOffset;
   }
 };
 
-Object.defineProperty(Concat.prototype, 'content', {
+Object.defineProperty(Concat.prototype, "content", {
   get: function content() {
     return Buffer.concat(this.contentParts);
   }
 });
 
-Object.defineProperty(Concat.prototype, 'sourceMap', {
+Object.defineProperty(Concat.prototype, "sourceMap", {
   get: function sourceMap() {
     return this._sourceMap ? this._sourceMap.toString() : undefined;
   }
@@ -125,8 +136,8 @@ Object.defineProperty(Concat.prototype, 'sourceMap', {
 function bufferFrom(content) {
   try {
     return Buffer.from(content);
-  } catch(e) {
-    if (Object.prototype.toString.call(content) !== '[object String]') {
+  } catch (e) {
+    if (Object.prototype.toString.call(content) !== "[object String]") {
       throw new TypeError("separator must be a string");
     }
     return new Buffer(content);

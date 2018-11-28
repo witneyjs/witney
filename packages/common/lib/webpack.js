@@ -61,7 +61,7 @@ const getJsFileTestRegex = function() {
 const getJsLicenseBanner = () => {
   const pkg = require(paths.project("package.json"));
 
-  let bannerText = '';
+  let bannerText = "";
   bannerText += `\n/*!`;
   bannerText += `\n * ${pkg.name}`;
   if (pkg.common && pkg.common.bannerCopyright) {
@@ -74,7 +74,7 @@ const getJsLicenseBanner = () => {
   bannerText += "\n*/\n";
 
   return bannerText;
-}
+};
 
 const getBannerPlugin = ({ isNode = false, env }) => {
   const webpack = require("webpack");

@@ -88,11 +88,11 @@ module.exports = function({
     },
     // Adds mocks for some common node modules to the browser env
     node: {
-      dgram: 'empty',
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      child_process: 'empty',
+      dgram: "empty",
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      child_process: "empty"
     }
   };
 
@@ -143,8 +143,8 @@ module.exports = function({
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true,
-      }
+        minifyURLs: true
+      };
     }
     config.plugins.html = new HtmlWebpackPlugin(htmlWebpackPluginOptions);
   }
