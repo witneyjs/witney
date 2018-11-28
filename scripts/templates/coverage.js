@@ -17,7 +17,7 @@ const coverage = function({ nameSpaceId }) {
   let command = `npx nyc report`;
   command += ` --reporter ${argv.reporter}`;
   command += ` --report-dir ${reportDir}`;
-  command += ` --temp-directory ${paths.tmp(`.nyc_output_${nameSpaceId}`)}`;
+  command += ` --temp-dir ${paths.tmp(`.nyc_output_${nameSpaceId}`)}`;
   command += ` ${endOfOptions}`;
 
   pino.info(command);
