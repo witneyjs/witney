@@ -2,7 +2,6 @@ const common = require("common");
 const util = common.webpack;
 const paths = common.paths;
 const TerserPlugin = require("terser-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const createCssRule = ({
@@ -81,17 +80,23 @@ const createCssRule = ({
           loader: "resolve-url-loader"
         })
 
-        const Fiber = require('fibers');
         let sassLoader = {
           loader: "sass-loader",
           options: {
             implementation: require("sass"),
-            fiber: Fiber,
             // Always has to be enabled for resolve-url-loader
             sourceMap: true,
             sourceMapContents: false
           }
         }
+
+        // Add Fiber if it is installed
+        try {
+          const Fiber = require('fibers');
+          sassLoader.options.fiber = Fiber;
+        } catch (err) {
+        }
+
         cssRule.use.push(sassLoader);
       }
     }
@@ -175,10 +180,7 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
     },
     plugins: {
       banner: util.getBannerPlugin({ isNode, env }),
-      define: util.getDefinePlugin({ isNode, env }),
-      cleanWebpack: new CleanWebpackPlugin([outputDir], {
-        root: paths.project()
-      })
+      define: util.getDefinePlugin({ isNode, env })
     },
     optimization: {
       minimizer: {

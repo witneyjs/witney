@@ -23,8 +23,8 @@ Run: `npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"`
 
 ### Clone Witney for a new project
 
-Run: `yarn global add hoppla && hoppla -t witney -d newProj && cd newProj && yarn install`
+Run: `npm install -g hoppla && hoppla -t witney -d newProj && cd newProj && npm install`
 
 #### Clone and setup demo
 
-Run: `yarn global add hoppla && hoppla -t witney -d newProj -i "{ type: 'demo' }" && cd newProj`
+Run: `npm install -g hoppla && hoppla -t witney -d newProj -i "{ type: 'demo' }" && cd newProj`

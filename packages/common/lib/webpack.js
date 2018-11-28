@@ -12,7 +12,7 @@ const normalizeConfig = function(webpackConfig) {
   webpackConfig.module.rules = _.compact(_.values(webpackConfig.module.rules));
 
   // Apply custom plugin order and convert to array
-  const pluginOrder = ["cleanWebpack", "html", "workBox"];
+  const pluginOrder = ["html", "workBox"];
   const pluginOrderObj = pluginOrder.reduce((acc, key) => {
     acc[key] = null;
     return acc;
