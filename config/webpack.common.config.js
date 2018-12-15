@@ -35,7 +35,7 @@ const createCssRule = ({
         ? "[path]_[name]_[local]"
         : "[hash:base64:3]";
       if (isNode) {
-        cssLoader.loader = "css-loader/locals";
+        cssLoader.options.exportOnlyLocals = true;
       }
     }
 
