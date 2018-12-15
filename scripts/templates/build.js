@@ -33,6 +33,55 @@ const buildRawJsBundles = function({
   });
 };
 
+const runWebpack = function({
+  testing,
+  argv,
+  useDevServer,
+  nameSpaceId,
+  endOfOptions
+}) {
+  // Create webpack command
+  let command = "";
+
+  command += "npx cross-env";
+
+  if (testing) {
+    command += " TEST=1";
+  }
+
+  if (argv.development) {
+    command += " NODE_ENV=development";
+  } else {
+    command += " NODE_ENV=production";
+  }
+
+  if (argv.bundleAnalyzer) {
+    command += " BUNDLE_ANALYZER=1";
+  }
+
+  if (argv.watch) {
+    if (!testing && useDevServer) {
+      command += " npx webpack-dev-server";
+      // To access the server from other devices
+      command += " --host 0.0.0.0";
+      command += " --color";
+    } else {
+      command += " npx webpack";
+      command += " --watch";
+      command += " --colors";
+    }
+  } else {
+    command += " npx webpack";
+    command += " --colors";
+  }
+
+  command += ` --config ${paths.config(`webpack.${nameSpaceId}.config.js`)}`;
+  command += ` ${endOfOptions}`;
+
+  pino.info(command);
+  shell.exec(command);
+}
+
 const build = function({
   nameSpaceId,
   useDevServer = false,
@@ -78,46 +127,13 @@ const build = function({
     buildRawJsBundles({ nameSpaceId, rawJsBundles, minify: !argv.development });
   }
 
-  // Create webpack command
-  let command = "";
-
-  command += "npx cross-env";
-
-  if (testing) {
-    command += " TEST=1";
-  }
-
-  if (argv.development) {
-    command += " NODE_ENV=development";
-  } else {
-    command += " NODE_ENV=production";
-  }
-
-  if (argv.bundleAnalyzer) {
-    command += " BUNDLE_ANALYZER=1";
-  }
-
-  if (argv.watch) {
-    if (!testing && useDevServer) {
-      command += " npx webpack-dev-server";
-      // To access the server from other devices
-      command += " --host 0.0.0.0";
-      command += " --color";
-    } else {
-      command += " npx webpack";
-      command += " --watch";
-      command += " --colors";
-    }
-  } else {
-    command += " npx webpack";
-    command += " --colors";
-  }
-
-  command += ` --config ${paths.config(`webpack.${nameSpaceId}.config.js`)}`;
-  command += ` ${endOfOptions}`;
-
-  pino.info(command);
-  shell.exec(command);
+  runWebpack({
+    testing,
+    argv,
+    nameSpaceId,
+    useDevServer,
+    endOfOptions
+  });
 };
 
 module.exports = build;
