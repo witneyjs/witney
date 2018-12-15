@@ -80,7 +80,7 @@ const runWebpack = function({
 
   pino.info(command);
   shell.exec(command);
-}
+};
 
 const build = function({
   nameSpaceId,
