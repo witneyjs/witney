@@ -1,4 +1,6 @@
 {
-    excludeGlobs: tpl-lib
+    excludeGlobs: [
+        tpl-lib
+    ]
     finalize: return hoppla.require('tpl-lib/finalize.js')(hoppla)
 }
