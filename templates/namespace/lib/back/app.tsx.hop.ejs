@@ -1,0 +1,56 @@
+const frontNameSpaceId = "<%= input.frontId %>";
+const FrontApp = require(`../${frontNameSpaceId}/components/app.tsx`).App;
+
+const express = require("express");
+const faye = require("faye");
+const path = require("path");
+const http = require("http");
+const { paths } = require("common");
+const fs = require("fs");
+const renderToString = require("react-dom/server").renderToString;
+import { renderStylesToString } from "emotion-server";
+import React from "react";
+
+const app = express();
+const server = http.createServer(app);
+
+
+const staticDir = paths.static(frontNameSpaceId);
+const distFrontDir = paths.dist(frontNameSpaceId);
+
+const bayeux = new faye.NodeAdapter({ mount: "/faye" });
+bayeux.attach(server);
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.send(500);
+});
+
+if (ENV.IS_PROD) {
+  let indexHtmlTemplate = fs.readFileSync(
+    paths.dist(`${frontNameSpaceId}/index.html`),
+    { encoding: "utf8" }
+  );
+  indexHtmlTemplate = indexHtmlTemplate.replace(
+    "<!-- SSR_YIELD_APP -->",
+    renderStylesToString(renderToString(<FrontApp />))
+  );
+
+  app.get("/", (req, res) => {
+    console.log("hello");
+    res.send(indexHtmlTemplate);
+  });
+}
+
+app.use(express.static(distFrontDir));
+app.use(express.static(staticDir));
+
+server.listen(20000);
+
+const client = bayeux.getClient();
+
+let count = 0;
+setInterval(() => {
+  client.publish("/count", count);
+  count++;
+}, 1000)

@@ -1,3 +1,51 @@
+.header {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    overflow: hidden;
+    position: relative;
+}
+
+.header__title {
+    padding-left: 50px;
+    padding-bottom: 50px;
+
+    & h1 {
+        text-align: right;
+        opacity: 0.8;
+        text-shadow: 0px 0px 70px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        color: white;
+        font-size: 5rem;
+        & small {
+            font-weight: 300;
+            opacity: 0.8;
+            text-transform: capitalize;
+            font-size: 0.4em;
+            &::before {
+                content: "\A";
+                white-space: pre;
+            }
+        }
+    }
+}
+
+.header__namespace-text {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.header__background {
+    background-image: url('/peter-osmenda-1224249-unsplash.jpg');
+    background-size: cover;
+    filter: blur(3px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    transform: scale(1.1);
+}
+
 p {
     color: red;
 }

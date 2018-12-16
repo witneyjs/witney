@@ -33,6 +33,12 @@ const buildRawJsBundles = function({
   });
 };
 
+const addFilesToDist = function({ outputPath, nameSpaceId }) {
+  // TODO: Add check if there actually are static files
+  const staticDirFiles = paths.static(`${nameSpaceId}/*`);
+  shell.cp('-r', staticDirFiles, outputPath);
+}
+
 const runWebpack = function({
   testing,
   argv,
@@ -134,6 +140,13 @@ const build = function({
     useDevServer,
     endOfOptions
   });
+
+  if (!testing && !argv.watch) {
+    addFilesToDist({
+      outputPath,
+      nameSpaceId
+    });
+  }
 };
 
 module.exports = build;

@@ -7,7 +7,8 @@
         '.git',
         'node_modules',
         '.vscode',
-        'lib/tpl-lib'
+        'lib/tpl-lib',
+        '**/.DS_Store'
     ],
     finalize: return hoppla.require('lib/tpl-lib/finalize.js')(hoppla)
 }

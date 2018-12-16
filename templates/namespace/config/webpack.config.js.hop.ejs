@@ -43,7 +43,7 @@ module.exports = function(env, argv) {
         useCodeSplitting,
         useHot,
         outputDir,
-        indexHtmlTemplatePath: paths.static(`${nameSpaceId}/index.html`),
+        indexHtmlTemplatePath: paths.lib(`${nameSpaceId}/assets/index.html`),
         serverContentBase: [outputDir, paths.static(nameSpaceId)]
       });
 
@@ -61,6 +61,23 @@ module.exports = function(env, argv) {
 
   if (libraryName) {
     config.output.library = libraryName;
+  }
+
+  if (!isNode) {
+    // TODO: Add port config by backId
+    <% if (input.isNode && !input.backId) { %>
+    // Example websocket proxy
+    /*
+    <% } -%>
+    config.devServer.proxy = {
+      "/faye": {
+        target: "ws://localhost:20000/faye",
+        ws: true
+      }
+    }
+    <% if (input.isNode && !input.backId) { %>
+    */
+    <% } -%>
   }
 
   config = webpackUtil.normalizeConfig(config);

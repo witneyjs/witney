@@ -11,17 +11,6 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const webpack = require("webpack");
 
-// TODO: Readd CopyWebpackPlugin for static assets or copy in build process
-// config.plugins.push(
-//   new CopyWebpackPlugin([
-//     {
-//       context: "static",
-//       from: "**/*",
-//       to: "./"
-//     }
-//   ])
-// );
-
 module.exports = function({
   env,
   argv,
@@ -75,15 +64,6 @@ module.exports = function({
     devServer: {
       hot: useHot,
       contentBase: serverContentBase,
-      // TODO: Move this to the hoppla namespace template
-      // Example websocket proxy
-      /*
-      proxy: {
-        "/faye": {
-          target: "ws://localhost:20000/faye",
-          ws: true
-        }
-      },*/
       overlay: true
     },
     // Adds mocks for some common node modules to the browser env

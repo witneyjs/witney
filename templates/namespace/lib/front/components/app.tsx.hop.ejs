@@ -1,0 +1,23 @@
+import React from 'react';
+require("sanitize.css");
+
+import '../styles/app.pcss';
+import '../styles/app.scss';
+
+export const App = function() {
+    return <>
+        <header className="header">
+            <div className="header__background"></div>
+            <div className="header__title">
+                <h1>
+                    Welcome to Witney
+                    <small>
+                        <span className="header__namespace-text">
+                            <%= input.id %>
+                        </span> namespace
+                    </small>
+                </h1>
+            </div>
+        </header>
+    </>
+}

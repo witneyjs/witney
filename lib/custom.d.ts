@@ -27,3 +27,9 @@ declare module "*.worker.ts" {
   const content: any;
   export default content;
 }
+
+declare const ENV: {
+  TEST: boolean;
+  IS_NODE: boolean;
+  IS_PROD: boolean;
+};
