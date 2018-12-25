@@ -1,8 +1,9 @@
 const shell = require("shelljs");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
+const fs = require("fs");
 
-const { paths } = require("common");
+const { paths, mergeDirectories } = require("common");
 const concat = require("./concatJs");
 
 const checkStaticTypes = function({ nameSpaceId }) {
@@ -32,12 +33,6 @@ const buildRawJsBundles = function({
     concat(concatOptions);
   });
 };
-
-const addFilesToDist = function({ outputPath, nameSpaceId }) {
-  // TODO: Add check if there actually are static files
-  const staticDirFiles = paths.static(`${nameSpaceId}/*`);
-  shell.cp('-r', staticDirFiles, outputPath);
-}
 
 const runWebpack = function({
   testing,
@@ -142,10 +137,13 @@ const build = function({
   });
 
   if (!testing && !argv.watch) {
-    addFilesToDist({
-      outputPath,
-      nameSpaceId
-    });
+    const staticDir = paths.static(nameSpaceId);
+    if (fs.existsSync(staticDir)) {
+      mergeDirectories({
+        sourceDir: staticDir,
+        destinationDir: outputPath
+      });
+    }
   }
 };
 
