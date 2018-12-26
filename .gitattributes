@@ -1,0 +1,7 @@
+packages/concat-with-sourcemaps/* linguist-vendored
+
+docs/* linguist-documentation
+
+dist/* linguist-generated=true
+static/docs/* linguist-generated=true
+typings/* linguist-generated=true
