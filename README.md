@@ -13,18 +13,37 @@ Some project description
 
 ## Getting started with Witney
 
-### Create a frontend namespace
+### Clone the witney repository
 
-Run: `npx hoppla -t templates/namespace/ -i "{ id: 'front' }"`
+Witney is the raw project template. You can remove the original git origin and add changes to the template. Afterwards create new projects with `cp` or with `hoppla`.
 
-### Create a backend namespace
+```bash
+git clone git@github.com:witneyjs/witney.git;
+npm install -g hoppla;
+```
 
-Run: `npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"`
+### Start a new project from your local witney copy
 
-### Clone Witney for a new project
+#### Empty project
+```bash
+hoppla -t witney -d newProj;
+cd newProj;
+npm install;
+```
 
-Run: `npm install -g hoppla && hoppla -t witney -d newProj && cd newProj && npm install`
+#### Demo project
+```
+hoppla -t witney -d newProj -i "{ type: 'demo' }";
+cd newProj;
+```
 
-#### Clone and setup demo
+### Create a new namespace in the project
+#### Frontend
+```bash
+npx hoppla -t templates/namespace/ -i "{ id: 'front' }"
+```
 
-Run: `npm install -g hoppla && hoppla -t witney -d newProj -i "{ type: 'demo' }" && cd newProj`
+#### Backend
+```bash
+npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"
+```

@@ -22,14 +22,24 @@
 <p>Some project description</p>
 <hr>
 <h2 id="getting-started-with-witney"><a href="#getting-started-with-witney" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Getting started with Witney</h2>
-<h3 id="create-a-frontend-namespace"><a href="#create-a-frontend-namespace" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Create a frontend namespace</h3>
-<p>Run: <code>npx hoppla -t templates/namespace/ -i "{ id: 'front' }"</code></p>
-<h3 id="create-a-backend-namespace"><a href="#create-a-backend-namespace" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Create a backend namespace</h3>
-<p>Run: <code>npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"</code></p>
-<h3 id="clone-witney-for-a-new-project"><a href="#clone-witney-for-a-new-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Clone Witney for a new project</h3>
-<p>Run: <code>npm install -g hoppla &#x26;&#x26; hoppla -t witney -d newProj &#x26;&#x26; cd newProj &#x26;&#x26; npm install</code></p>
-<h4 id="clone-and-setup-demo"><a href="#clone-and-setup-demo" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Clone and setup demo</h4>
-<p>Run: <code>npm install -g hoppla &#x26;&#x26; hoppla -t witney -d newProj -i "{ type: 'demo' }" &#x26;&#x26; cd newProj</code></p>
+<h3 id="clone-the-witney-repository"><a href="#clone-the-witney-repository" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Clone the witney repository</h3>
+<p>Witney is the raw project template. You can remove the original git origin and add changes to the template. Afterwards create new projects with <code>cp</code> or with <code>hoppla</code>.</p>
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> git@github.com:witneyjs/witney.git;
+npm install -g hoppla;</code></pre>
+<h3 id="start-a-new-project-from-your-local-witney-copy"><a href="#start-a-new-project-from-your-local-witney-copy" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Start a new project from your local witney copy</h3>
+<h4 id="empty-project"><a href="#empty-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Empty project</h4>
+<pre><code class="hljs language-bash">hoppla -t witney -d newProj;
+<span class="hljs-built_in">cd</span> newProj;
+npm install;</code></pre>
+<h4 id="demo-project"><a href="#demo-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Demo project</h4>
+<pre><code>hoppla -t witney -d newProj -i "{ type: 'demo' }";
+cd newProj;
+</code></pre>
+<h3 id="create-a-new-namespace-in-the-project"><a href="#create-a-new-namespace-in-the-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Create a new namespace in the project</h3>
+<h4 id="frontend"><a href="#frontend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Frontend</h4>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front' }"</span></code></pre>
+<h4 id="backend"><a href="#backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Backend</h4>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', isNode: true }"</span></code></pre>
 
       </main>
     </div>
@@ -82,39 +92,64 @@
        "children": [
         2,
         3,
-        4
+        6
        ],
        "id": 1
       },
       {
        "level": "3",
-       "heading": "Create a frontend namespace",
-       "hash": "create-a-frontend-namespace",
+       "heading": "Clone the witney repository",
+       "hash": "clone-the-witney-repository",
        "children": [],
        "id": 2
       },
       {
        "level": "3",
-       "heading": "Create a backend namespace",
-       "hash": "create-a-backend-namespace",
-       "children": [],
+       "heading": "Start a new project from your local witney copy",
+       "hash": "start-a-new-project-from-your-local-witney-copy",
+       "children": [
+        4,
+        5
+       ],
        "id": 3
       },
       {
-       "level": "3",
-       "heading": "Clone Witney for a new project",
-       "hash": "clone-witney-for-a-new-project",
-       "children": [
-        5
-       ],
+       "level": "4",
+       "heading": "Empty project",
+       "hash": "empty-project",
+       "children": [],
        "id": 4
       },
       {
        "level": "4",
-       "heading": "Clone and setup demo",
-       "hash": "clone-and-setup-demo",
+       "heading": "Demo project",
+       "hash": "demo-project",
        "children": [],
        "id": 5
+      },
+      {
+       "level": "3",
+       "heading": "Create a new namespace in the project",
+       "hash": "create-a-new-namespace-in-the-project",
+       "children": [
+        7,
+        8
+       ],
+       "id": 6
+      },
+      {
+       "level": "4",
+       "heading": "Frontend",
+       "hash": "frontend",
+       "children": [],
+       "id": 7
+      },
+      {
+       "level": "4",
+       "heading": "Backend",
+       "hash": "backend",
+       "children": [],
+       "id": 8
       }
      ]
     },
