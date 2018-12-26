@@ -6,26 +6,25 @@
 
 const paths = require("common").paths;
 const path = require("path");
-const materialDir = paths.project("vendor/material-design-icons-3.0.1");
-console.log(materialDir);
+
+const nameSpaceId = "<%= input.id %>";
+const featherDir = paths.project("node_modules/feathericon/build/svg");
 
 require("./templates/svg")({
-  name: "cool",
-  nameSpaceId: "<%= input.id %>",
+  name: "svgs",
+  nameSpaceId,
   svgs: {
-    unicorn: path.join(
-      materialDir,
-      "action",
-      "svg",
-      "production",
-      "ic_work_48px.svg"
+    home: path.join(
+      featherDir,
+      "home.svg"
     ),
-    unicorn2: path.join(
-      materialDir,
-      "editor",
-      "svg",
-      "production",
-      "ic_insert_emoticon_48px.svg"
+    rocket: path.join(
+      featherDir,
+      "rocket.svg"
+    ),
+    smile: path.join(
+      featherDir,
+      "smile.svg"
     )
   }
 });

@@ -33,7 +33,7 @@ if (ENV.IS_PROD) {
   );
   indexHtmlTemplate = indexHtmlTemplate.replace(
     "<!-- SSR_YIELD_APP -->",
-    renderStylesToString(renderToString(<FrontApp />))
+    renderStylesToString(renderToString(<FrontApp ssr={true} />))
   );
 
   app.get("/", (req, res) => {

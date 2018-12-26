@@ -18,6 +18,7 @@
         color: white;
         font-size: 5rem;
         & small {
+            text-shadow: 0px 0px 37px rgba(0,0,0,1);
             font-weight: 300;
             opacity: 0.8;
             text-transform: capitalize;
@@ -44,6 +45,35 @@
     position: absolute;
     z-index: -1;
     transform: scale(1.1);
+}
+
+.header__icons {
+    float: right;
+    opacity: 0.7;
+    height: 70px;
+    filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.7) );
+
+    & svg {
+        width: auto;
+        color: white;
+        height: 100%;
+    }
+}
+
+.header__count {
+    opacity: 0.1;
+    word-break: keep-all;
+    text-align: right;
+    z-index: -1;
+    position: absolute;
+    overflow: visible;
+    top: 50%;
+    right: 5vw;
+    font-size: 15vw;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0px 0px 70px rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%);
+    font-weight: bold;
 }
 
 p {

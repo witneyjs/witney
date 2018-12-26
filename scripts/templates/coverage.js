@@ -12,7 +12,7 @@ const coverage = function({ nameSpaceId }) {
 
   let reportDir = paths.project(`coverage/${nameSpaceId}`);
 
-  shell.rm("-r", reportDir);
+  shell.rm("-rf", reportDir);
 
   let command = `npx nyc report`;
   command += ` --reporter ${argv.reporter}`;

@@ -36,6 +36,7 @@
     "css-loader": "^2.0.1",
     "emotion": "^10.0.5",
     "emotion-server": "^10.0.5",
+    "feathericon": "^1.0.2",
     "file-loader": "^2.0.0",
     "hack-font": "^3.3.0",
     "hoppla": "^0.9.0",

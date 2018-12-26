@@ -4,7 +4,7 @@ const yargs = require("yargs");
 const fs = require("fs");
 
 const { paths, mergeDirectories } = require("common");
-const concat = require("./concatJs");
+const concat = require("common/lib/concatJs");
 
 const checkStaticTypes = function({ nameSpaceId }) {
   const result = require("./type")({
@@ -117,15 +117,29 @@ const build = function({
     }
   }
 
-  const outputPath = paths.dist(nameSpaceId);
+  const outputPath = !testing
+    ? paths.dist(nameSpaceId)
+    : paths.testDist(nameSpaceId);
   // Custom version of clean-webpack-plugin =)
   shell.rm("-rf", outputPath);
   shell.mkdir(outputPath);
 
   // Create raw js file bundles
-  if (!testing && rawJsBundles) {
-    pino.info("Building raw js bundles");
-    buildRawJsBundles({ nameSpaceId, rawJsBundles, minify: !argv.development });
+  if (!testing) {
+    if (rawJsBundles) {
+      pino.info("Building raw js bundles");
+      buildRawJsBundles({
+        nameSpaceId,
+        rawJsBundles,
+        minify: !argv.development
+      });
+    }
+
+    const svgScript = paths.scripts(`svg-${nameSpaceId}.js`);
+    if (fs.existsSync(svgScript)) {
+      pino.info("Building svg sprites");
+      shell.exec(`node ${svgScript}`);
+    }
   }
 
   runWebpack({

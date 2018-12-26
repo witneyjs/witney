@@ -6,11 +6,12 @@ const shell = require("shelljs");
 const yargs = require("yargs");
 
 const joinSvg = function(files) {
-  var sprites = svgstore();
+  var sprites = svgstore({
+    cleanSymbols: ["fill"]
+  });
 
   Object.keys(files).forEach(function(svgName) {
     var filePath = files[svgName];
-    console.log(filePath);
     var svgContent = fs.readFileSync(filePath, "utf8");
     sprites.add(svgName, svgContent);
   });
@@ -28,13 +29,13 @@ const svg = ({ svgs, nameSpaceId, minify = true, name }) => {
     "no-minify": { type: "boolean" }
   }).argv;
 
-  const destFile = paths.static(`${nameSpaceId}/${name}.svg`);
+  const destFile = paths.lib(`${nameSpaceId}/assets/${name}.svg`);
 
   fs.writeFileSync(destFile, joinSvg(svgs));
 
   if (argv.minify) {
     const command = `npx svgo ${destFile} --disable=removeUselessDefs --disable=cleanupIDs`;
-    shell.exec(command);
+    shell.exec(command, { silent: true });
   }
 
   shell.cp(destFile, `${destFile}.txt`);
