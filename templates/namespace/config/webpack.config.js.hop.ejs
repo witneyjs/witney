@@ -39,12 +39,11 @@ module.exports = function(env, argv) {
     : require("./webpack.common-front.config.js")({
         env,
         argv,
+        nameSpaceId,
         useWorkBox,
         useCodeSplitting,
         useHot,
-        outputDir,
-        indexHtmlTemplatePath: paths.lib(`${nameSpaceId}/assets/index.html`),
-        serverContentBase: [outputDir, paths.static(nameSpaceId)]
+        outputDir
       });
 
   let config = commonConfig;

@@ -142,14 +142,6 @@ const build = function({
     }
   }
 
-  runWebpack({
-    testing,
-    argv,
-    nameSpaceId,
-    useDevServer,
-    endOfOptions
-  });
-
   if (!testing && !argv.watch) {
     const staticDir = paths.static(nameSpaceId);
     if (fs.existsSync(staticDir)) {
@@ -159,6 +151,14 @@ const build = function({
       });
     }
   }
+
+  runWebpack({
+    testing,
+    argv,
+    nameSpaceId,
+    useDevServer,
+    endOfOptions
+  });
 };
 
 module.exports = build;

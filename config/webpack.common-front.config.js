@@ -10,15 +10,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const webpack = require("webpack");
+const micromatch = require('micromatch');
+const path = require('path');
+const shell = require('shelljs');
 
 module.exports = function({
   env,
   argv,
+  nameSpaceId,
+  outputDir,
   useWorkBox,
   useHot,
-  useCodeSplitting,
-  serverContentBase,
-  indexHtmlTemplatePath
+  useCodeSplitting
 }) {
   const envIsTesting = util.envIsTesting(env);
   const devMode = process.env.NODE_ENV !== "production";
@@ -63,7 +66,7 @@ module.exports = function({
     },
     devServer: {
       hot: useHot,
-      contentBase: serverContentBase,
+      contentBase: [outputDir, paths.static(nameSpaceId)],
       overlay: true
     },
     // Adds mocks for some common node modules to the browser env
@@ -77,11 +80,25 @@ module.exports = function({
   };
 
   if (useWorkBox) {
+    const distFiles = shell.ls('-RA', outputDir);
+
     let workBoxOptions = {
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
-      skipWaiting: true
+      skipWaiting: true,
+      globDirectory: outputDir,
+      globPatterns: [
+        "externals.js",
+        "wbc/**/*",
+        "*.wbc.*"
+      ].filter((globPattern) => {
+        // Filter the globPatterns because non matching patterns result in an error:
+        // https://github.com/GoogleChrome/workbox/blob/912080a1bf3255c61151ca3d0ebd0895aaf377e2/packages/workbox-build/src/lib/get-file-details.js#L45
+        // https://github.com/GoogleChrome/workbox/issues/1353
+        const matches = micromatch.match(distFiles, globPattern)
+        return matches.length > 0
+      })
     };
     config.plugins.workBox = new WorkboxPlugin.GenerateSW(workBoxOptions);
   }
@@ -110,7 +127,7 @@ module.exports = function({
 
   if (!envIsTesting) {
     let htmlWebpackPluginOptions = {
-      template: indexHtmlTemplatePath
+      template: paths.lib(`${nameSpaceId}/assets/index.html`)
     };
     if (!devMode) {
       htmlWebpackPluginOptions.minify = {
