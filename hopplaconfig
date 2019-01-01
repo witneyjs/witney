@@ -9,7 +9,7 @@
         '.vscode',
         'lib/tpl-lib',
         '**/.DS_Store',
-        'CNAME
+        'docs/public/CNAME'
     ],
     finalize: return hoppla.require('lib/tpl-lib/finalize.js')(hoppla)
 }

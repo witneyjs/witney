@@ -6,5 +6,5 @@ const pino = require("pino")({ prettyPrint: { forceColor: true } });
 
 shell.exec(`npx mallery ${paths.config("mallery.config.js")}`);
 pino.info(
-  'Manual docs action: Commit and run: "git subtree push --prefix static/docs origin gh-pages"'
+  'Manual docs action: Commit and run: "node ./scripts/docs-subtree.js"'
 );
