@@ -14,6 +14,7 @@ module.exports = {
   toc: [
     { title: pkg.name, path: "README.md" },
     { path: "getting_started", children: [{ path: "installation.md" }] },
+    { title: "Changelog", path: "CHANGELOG.md" },
     { title: "Repository", href: pkg.repository.url }
   ]
 };
