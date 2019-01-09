@@ -47,3 +47,9 @@ npx hoppla -t templates/namespace/ -i "{ id: 'front' }"
 ```bash
 npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"
 ```
+
+#### Frontend & Backend
+```bash
+npx hoppla -t templates/namespace/ -i "{ id: 'front', backId: 'back' }"
+npx hoppla -t templates/namespace/ -i "{ id: 'back', frontId: 'front', isNode: true }"
+```
