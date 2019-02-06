@@ -13,5 +13,7 @@ let directories = [
 
 directories.forEach(directory => {
   pino.info(directory);
-  shell.exec(`npx prettier --write "${directory}/**/*(*.js|*.jsx|*.ts|*.tsx)"`);
+  shell.exec(
+    `npx prettier --write "${directory}/**/*(*.js|*.jsx|*.ts|*.tsx|*.css|*.scss|*.pcss)"`
+  );
 });

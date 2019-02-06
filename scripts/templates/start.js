@@ -2,6 +2,7 @@ const shell = require("shelljs");
 const { paths } = require("common");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
+const waitOn = require("wait-on");
 
 const start = function({ nameSpaceId }) {
   const argv = yargs.options({
@@ -29,8 +30,13 @@ const start = function({ nameSpaceId }) {
     ? `npx nodemon --watch ${scriptPath} ${scriptPath} ${options} ${endOfOptions}`
     : `node ${scriptPath} ${options} ${endOfOptions}`;
 
-  pino.info(command);
-  shell.exec(command);
+  // If the server is started at the same time as the build task we have to wait for the script
+  waitOn({
+    resources: [scriptPath]
+  }).then(() => {
+    pino.info(command);
+    shell.exec(command);
+  });
 };
 
 module.exports = start;

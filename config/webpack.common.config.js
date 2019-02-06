@@ -136,8 +136,7 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
     "@babel/proposal-object-rest-spread",
     "lodash",
     emotionPlugin,
-    "macros",
-    "idx"
+    "macros"
   ];
 
   const babelPresetEnv = [

@@ -20,4 +20,8 @@
     "include": [
         "**/*"
     ],
+    "exclude": [
+        "./tmp",
+        "./typings"
+    ]
 }
