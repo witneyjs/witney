@@ -107,7 +107,13 @@ const createCssRule = ({
   return cssRule;
 };
 
-module.exports = function({ env, argv, isNode = false, outputDir }) {
+module.exports = function({
+  env,
+  argv,
+  isNode = false,
+  outputDir,
+  nameSpaceId
+}) {
   const envIsTesting = util.envIsTesting(env);
   const envIsProd = process.env.NODE_ENV === "production";
 
@@ -178,7 +184,7 @@ module.exports = function({ env, argv, isNode = false, outputDir }) {
     },
     plugins: {
       banner: util.getBannerPlugin({ isNode, env }),
-      define: util.getDefinePlugin({ isNode, env })
+      define: util.getDefinePlugin({ isNode, env, nameSpaceId })
     },
     optimization: {
       minimizer: {

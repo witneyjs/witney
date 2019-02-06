@@ -106,13 +106,14 @@ ${bannerText}`;
   });
 };
 
-const getDefinePlugin = ({ isNode, env }) => {
+const getDefinePlugin = ({ isNode, env, nameSpaceId }) => {
   const webpack = require("webpack");
   const isTesting = envIsTesting(env);
 
   let variables = {
     ENV: {
       // Add custom variables here
+      NAMESPACE_ID: JSON.stringify(nameSpaceId),
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       TEST: JSON.stringify(isTesting),
       IS_NODE: JSON.stringify(isNode),

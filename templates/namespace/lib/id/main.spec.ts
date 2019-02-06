@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { add } from "./math";
+import { add } from "./util/math";
 
 describe("math", function() {
   describe("add", function() {

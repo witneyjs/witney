@@ -2,23 +2,24 @@
   fileName: 'build-<%= input.id %>.js'
 } hopplaconfig###
 #!/usr/bin/env node
-
 <% if (!input.isNode) { -%>
-const { paths } = require("common");
-<% } -%>
 
+const { paths } = require("common");
+
+<% } -%>
 require("./templates/build")({
-  nameSpaceId: "<%= input.id %>"<% if (!input.isNode) { -%>,
+  nameSpaceId: "<%= input.id %>"<% if (!input.isNode) { %>,
   useDevServer: true,
   useBundleAnalyzer: true,
   rawJsBundles: {
     "externals.js": {
       files: [
         {
-          jsPath: paths.project('node_modules/faye/client/faye-browser.js')
+          jsPath: paths.project("node_modules/faye/client/faye-browser.js")
         }
       ]
     }
   }
+<% } else { %>
 <% } -%>
 });

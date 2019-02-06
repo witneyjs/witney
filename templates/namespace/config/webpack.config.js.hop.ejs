@@ -6,6 +6,7 @@ const common = require("common");
 const webpackUtil = common.webpack;
 const paths = common.paths;
 const _ = require("lodash");
+const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 
 module.exports = function(env, argv) {
   const isNode = <%= input.isNode ? 'true': 'false' %>;
@@ -32,7 +33,8 @@ module.exports = function(env, argv) {
     env,
     argv,
     isNode,
-    outputDir
+    outputDir,
+    nameSpaceId
   });
   const envConfig = isNode
     ? require("./webpack.common-back.config.js")({ env, argv })
@@ -64,20 +66,33 @@ module.exports = function(env, argv) {
 
   if (!isNode) {
     // TODO: Add port config by backId
-    <% if (input.isNode && !input.backId) { %>
+    <%_ if (input.isNode && !input.backId) { -%>
     // Example websocket proxy
     /*
-    <% } -%>
+    <%_ } -%>
     config.devServer.proxy = {
       "/faye": {
         target: "ws://localhost:20000/faye",
         ws: true
       }
-    }
-    <% if (input.isNode && !input.backId) { %>
+    };
+
+    config.output.publicPath = "/";
+
+    config.devServer = {
+      ...config.devServer,
+      historyApiFallback: true
+      // Add this if you use multiple domains for development / proxies
+      // headers: { 'Access-Control-Allow-Origin': '*' }
+    };
+    <%_ if (input.isNode && !input.backId) { -%>
     */
-    <% } -%>
+    <%_ } -%>
   }
+
+  config.plugins.filterWarnings = new FilterWarningsPlugin({
+    exclude: /You're using the following Workbox configuration options:/
+  });
 
   config = webpackUtil.normalizeConfig(config);
   return config;

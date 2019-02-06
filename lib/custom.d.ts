@@ -29,7 +29,10 @@ declare module "*.worker.ts" {
 }
 
 declare const ENV: {
+  NAMESPACE_ID: string;
+  NODE_ENV: string;
   TEST: boolean;
   IS_NODE: boolean;
+  IS_DEV: boolean;
   IS_PROD: boolean;
 };

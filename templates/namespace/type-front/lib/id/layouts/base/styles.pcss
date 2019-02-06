@@ -1,0 +1,28 @@
+.app__background {
+  background-image: url("/peter-osmenda-1224249-unsplash.wbc.jpg");
+  background-size: cover;
+  filter: blur(3px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  transform: scale(1.1);
+}
+
+.app__navigation {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  & a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: white;
+    &:hover,
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}
