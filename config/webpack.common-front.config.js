@@ -103,6 +103,8 @@ module.exports = function({
   if (useWorkBox) {
     const distFiles = shell.ls("-RA", outputDir);
 
+    let dynamicGlobPatterns = [];
+    if (!envIsTesting) dynamicGlobPatterns.push("app-shell.html");
     let workBoxOptions = {
       exclude: [/index\.html/, /\.map$/],
       // these options encourage the ServiceWorkers to get in there fast
@@ -119,7 +121,7 @@ module.exports = function({
           const matches = micromatch.match(distFiles, globPattern);
           return matches.length > 0;
         }),
-        "app-shell.html"
+        ...dynamicGlobPatterns
       ],
       runtimeCaching: [
         {
