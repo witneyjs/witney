@@ -126,7 +126,7 @@ module.exports = function({
       runtimeCaching: [
         {
           urlPattern: /.*/,
-          handler: "networkFirst",
+          handler: "NetworkFirst",
           options: {
             cacheName: "runtime-cache",
             plugins: [
