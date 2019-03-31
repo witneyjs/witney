@@ -6,3 +6,4 @@ coverage
 .vscode
 dist/*
 !dist/.gitkeep
+.npmrc
