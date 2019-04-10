@@ -6,7 +6,7 @@ const micromatch = require('micromatch')
 const getSummary = function() {
     const scriptsDir = paths.scripts();
     const scripts = fs.readdirSync(scriptsDir);
-    const coverageScripts = micromatch.match(scripts, 'coverage-*');
+    const coverageScripts = micromatch(scripts, 'coverage-*');
     coverageScripts.forEach((script) => {
         shell.exec(`node ${paths.scripts(script)} --reporter json-summary`);
     })

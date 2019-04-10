@@ -118,7 +118,7 @@ module.exports = function({
           // https://github.com/GoogleChrome/workbox/blob/912080a1bf3255c61151ca3d0ebd0895aaf377e2/packages/workbox-build/src/lib/get-file-details.js#L45
           // https://github.com/GoogleChrome/workbox/issues/1353
           // https://github.com/GoogleChrome/workbox/issues/1809
-          const matches = micromatch.match(distFiles, globPattern);
+          const matches = micromatch(distFiles, globPattern);
           return matches.length > 0;
         }),
         ...dynamicGlobPatterns
