@@ -1,4 +1,4 @@
-import { paths } from "common";
+import { paths } from "../../../../packages/common";
 import { RequestHandler } from "express";
 
 export const frontNameSpaceId = "front";
