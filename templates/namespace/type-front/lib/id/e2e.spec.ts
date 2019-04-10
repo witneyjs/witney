@@ -21,6 +21,6 @@ describe("Title namespace", async function() {
     assert.equal(elements.length, 1);
 
     const title = await elements[0].getText()
-    assert.equal(title.toLowerCase(), ENV.NAMESPACE_ID);
+    assert.equal(title.toLowerCase(), BUILD.NAMESPACE_ID);
   });
 });

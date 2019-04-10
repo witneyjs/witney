@@ -28,7 +28,7 @@ declare module "*.worker.ts" {
   export default content;
 }
 
-declare const ENV: {
+declare const BUILD: {
   NAMESPACE_ID: string;
   NODE_ENV: string;
   TEST: boolean;

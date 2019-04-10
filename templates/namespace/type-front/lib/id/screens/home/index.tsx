@@ -27,11 +27,11 @@ export const Home = function(props: { ctx: GlobalContext; data; count }) {
           </div>
           <h1>
             <span className="app__home-title-namespace-text">
-              {ENV.NAMESPACE_ID}
+              {BUILD.NAMESPACE_ID}
             </span>{" "}
             namespace
             <small>
-              Node Environment: {ENV.NODE_ENV}
+              Node Environment: {BUILD.NODE_ENV}
               {props.data ? (
                 <>
                   <br />

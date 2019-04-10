@@ -43,7 +43,7 @@ app.get(
   })
 );
 
-if (ENV.IS_PROD) {
+if (BUILD.IS_PROD) {
   app.use(express.static(frontDistDir));
   app.use(express.static(frontStaticDir));
 

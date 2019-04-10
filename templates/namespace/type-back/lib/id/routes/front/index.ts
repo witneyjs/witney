@@ -37,7 +37,7 @@ export type CreateRouteParams = {
 export type CreateEnvRouteFunc = (options: CreateRouteParams) => RequestHandler;
 
 export const createRoute = function(options: CreateRouteParams) {
-  if (ENV.IS_PROD) {
+  if (BUILD.IS_PROD) {
     return require("./prodHandler").createHandler(options);
   } else {
     return require("./devHandler").createHandler(options);

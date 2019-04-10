@@ -111,7 +111,7 @@ const getDefinePlugin = ({ isNode, env, nameSpaceId }) => {
   const isTesting = envIsTesting(env);
 
   let variables = {
-    ENV: {
+    BUILD: {
       // Add custom variables here
       NAMESPACE_ID: JSON.stringify(nameSpaceId),
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),

@@ -4,7 +4,7 @@ export const createUpdate = function() {
   let pageMetaCache;
 
   return function(pageMeta: SsrData["result"]["pageMeta"]) {
-    if (ENV.IS_NODE) {
+    if (BUILD.IS_NODE) {
       return;
     }
 
