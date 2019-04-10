@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { paths } = require("common");
+const { paths } = require("../packages/common");
 
 const nodeModulesPath = paths.project("node_modules");
 const licenses = fs

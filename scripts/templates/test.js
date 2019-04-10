@@ -1,5 +1,5 @@
 const shell = require("shelljs");
-const { paths } = require("common");
+const { paths } = require("../../packages/common");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 const fs = require("fs");
@@ -9,8 +9,8 @@ const test = function({ nameSpaceId }) {
     build: { type: "boolean", default: true },
     "no-build": { type: "boolean" },
     w: { alias: "watch", type: "boolean" },
-    s: { alias: "slow", type: 'boolean' },
-    b: { alias: 'bail', type: 'boolean' }
+    s: { alias: "slow", type: "boolean" },
+    b: { alias: "bail", type: "boolean" }
   }).argv;
   const endOfOptions = argv._.join(" ");
 
@@ -44,13 +44,13 @@ const test = function({ nameSpaceId }) {
   command += " --colors";
   command += " --growl";
 
-  command += ' --grep "@slow"'
+  command += ' --grep "@slow"';
   if (!argv.slow) {
-    command += ' --invert'
+    command += " --invert";
   }
 
   if (argv.bail) {
-    command += ' --bail'
+    command += " --bail";
   }
 
   command += ` ${testFiles.join(" ")}`;

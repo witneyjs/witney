@@ -4,8 +4,8 @@ const Terser = require("terser");
 const path = require("path");
 const fs = require("fs");
 
-const paths = require("common").paths;
-const getJsLicenseBanner = require("common").webpack.getJsLicenseBanner;
+const paths = require("./paths");
+const getJsLicenseBanner = require("./webpack").getJsLicenseBanner;
 
 const concatJs = function({
   bannerText = true,

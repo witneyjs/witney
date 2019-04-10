@@ -1,4 +1,4 @@
-const { paths } = require("common");
+const { paths } = require("../../../packages/common");
 const fs = require('fs');
 
 const finalize = function(hoppla) {

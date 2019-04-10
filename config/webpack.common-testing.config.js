@@ -1,4 +1,4 @@
-const util = require("common").webpack;
+const util = require("../packages/common").webpack;
 
 module.exports = function({ env, argv }) {
   const istanbulRule = {

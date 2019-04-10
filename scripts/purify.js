@@ -15,7 +15,7 @@
 
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const path = require("path");
-const { paths } = require("common");
+const { paths } = require("../packages/common");
 const fs = require("fs");
 
 const nodeModulesDir = paths.project("node_modules");

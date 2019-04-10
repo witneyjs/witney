@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const fs = require('fs');
-const { paths } = require("common");
+const { paths } = require("../../../packages/common");
 const micromatch = require('micromatch')
 
 const getSummary = function() {

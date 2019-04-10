@@ -1,4 +1,4 @@
-const common = require("common");
+const common = require("../packages/common");
 const paths = common.paths;
 const util = common.webpack;
 

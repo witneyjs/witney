@@ -1,4 +1,4 @@
-const paths = require("common").paths;
+const paths = require("../packages/common").paths;
 const pkg = require(paths.project("package.json"));
 
 module.exports = {

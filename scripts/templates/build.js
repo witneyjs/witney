@@ -3,8 +3,8 @@ const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 const fs = require("fs");
 
-const { paths, mergeDirectories } = require("common");
-const concat = require("common/lib/concatJs");
+const { paths, mergeDirectories } = require("../../packages/common");
+const concat = require("../../packages/common/lib/concatJs");
 
 const checkStaticTypes = function({ nameSpaceId }) {
   const result = require("./type")({

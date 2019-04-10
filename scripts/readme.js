@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const shell = require("shelljs");
-const { paths } = require("common");
+const { paths } = require("../packages/common");
 const yargs = require("yargs");
 
 const argv = yargs.options({

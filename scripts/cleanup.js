@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const paths = require("common").paths;
+const { paths } = require("../packages/common");
 const shell = require("shelljs");
 
 shell.rm("-rf", paths.tmp("*"));

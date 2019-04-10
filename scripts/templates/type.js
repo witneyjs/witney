@@ -1,5 +1,5 @@
 const shell = require("shelljs");
-const { paths } = require("common");
+const { paths } = require("../../packages/common");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 const fs = require("fs");

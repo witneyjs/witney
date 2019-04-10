@@ -130,7 +130,6 @@
     "url": "https://github.com/witneyjs/witney.git"
   },
   "dependencies": {
-    "common": "file:./packages/common",
     "express": "^4.16.4",
     "faye": "^1.2.4",
     "lodash": "^4.17.11",

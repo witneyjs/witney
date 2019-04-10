@@ -1,5 +1,5 @@
 const shell = require('shelljs');
-const { paths } = require("common");
+const { paths } = require("../../../packages/common");
 const package = require(paths.project('package.json'));
 const tests = require('./tests');
 const badge = require('./badge');
