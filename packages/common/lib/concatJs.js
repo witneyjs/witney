@@ -1,4 +1,4 @@
-const Concat = require("concat-with-sourcemaps");
+const Concat = require("@lufrai/concat-with-sourcemaps");
 const Terser = require("terser");
 
 const path = require("path");
