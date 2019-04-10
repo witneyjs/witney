@@ -1,6 +1,9 @@
 packages/concat-with-sourcemaps/* linguist-vendored
 
 docs/* linguist-documentation
+templates/* linguist-detectable=false
+config/* linguist-detectable=false
+scripts/* linguist-detectable=false
 
 dist/* linguist-generated=true
 static/docs/* linguist-generated=true
