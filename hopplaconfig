@@ -9,6 +9,9 @@
         '.vscode',
         'lib/tpl-lib',
         '**/.DS_Store',
+        'dist/!(.gitkeep)*',
+        'coverage/!(.gitkeep)*',
+        'tmp/!(.gitkeep)*',
         'docs/public/CNAME'
     ],
     finalize: return hoppla.require('lib/tpl-lib/finalize.js')(hoppla)
