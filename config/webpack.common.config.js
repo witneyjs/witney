@@ -1,4 +1,4 @@
-const common = require("../packages/common");
+const common = require("../lib/node");
 const util = common.webpack;
 const paths = common.paths;
 const TerserPlugin = require("terser-webpack-plugin");

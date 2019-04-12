@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const shell = require("shelljs");
-const { paths } = require("../packages/common");
+const { paths } = require("../lib/node");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 
 const reformatCommand = `node ${paths.scripts("reformat.js")}`;

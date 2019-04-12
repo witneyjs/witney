@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require("./templates/runScripts")("build");
+require("../lib/node/scripts").runConfiguredScripts({ scriptType: "build" });

@@ -1,4 +1,4 @@
-const common = require("../../packages/common");
+const common = require("../../lib/node");
 const paths = common.paths;
 const svgstore = require("svgstore");
 const fs = require("fs");

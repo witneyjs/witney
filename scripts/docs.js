@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const shell = require("shelljs");
-const { paths } = require("../packages/common");
+const { paths } = require("../lib/node");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 
 shell.exec(`npx mallery ${paths.config("mallery.config.js")}`);

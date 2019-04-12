@@ -1,21 +1,25 @@
-const { paths } = require("../../../packages/common");
-const fs = require('fs');
+const { paths, writeJsonFile } = require("../../../lib/node");
 
 const finalize = function(hoppla) {
-    const pkgFilePath = paths.project('package.json')
-    const pkg = require(pkgFilePath);
+    const namespacesConfigPath = paths.config('namespaces.json');
+    const namespacesConfig = require(namespacesConfigPath);
+    if (namespacesConfig.ids.indexOf(hoppla.input.id) < 0) {
+        namespacesConfig.ids.push(hoppla.input.id);
+        writeJsonFile(namespacesConfigPath, namespacesConfig);
+    }
 
+    const scriptsConfigPath = paths.config('scripts.json');
+    const scriptsConfig = require(scriptsConfigPath);
     [
-        pkg.common.scripts.build.nameSpaces,
-        pkg.common.scripts.coverage.nameSpaces,
-        pkg.common.scripts.test.nameSpaces
+        scriptsConfig.build.nameSpaces,
+        scriptsConfig.coverage.nameSpaces,
+        scriptsConfig.test.nameSpaces
     ].forEach((registeredNameSpaces) => {
         if (registeredNameSpaces.indexOf(hoppla.input.id) < 0) {
             registeredNameSpaces.push(hoppla.input.id)
         }
     })
-
-    fs.writeFileSync(pkgFilePath, JSON.stringify(pkg, null, '  ') + "\n");
+    writeJsonFile(scriptsConfigPath, scriptsConfig);
 }
 
 module.exports = finalize;

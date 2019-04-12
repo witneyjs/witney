@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require("./templates/runScripts")("coverage");
+require("../lib/node/scripts").runConfiguredScripts({ scriptType: "coverage" });

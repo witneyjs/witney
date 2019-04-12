@@ -103,27 +103,7 @@
     "licenseUrl": "https://opensource.org/licenses/MIT",
     "repoStaticUrl": "https://raw.github.com/witneyjs/witney/${branch}/",
     "readmeSvgUrlSuffix": "?sanitize=true",
-    "bannerCopyright": "Copyright(c) {year} {name} {surname}",
-    "scripts": {
-      "build": {
-        "nameSpaces": [
-          "front",
-          "back"
-        ]
-      },
-      "coverage": {
-        "nameSpaces": [
-          "front",
-          "back"
-        ]
-      },
-      "test": {
-        "nameSpaces": [
-          "front",
-          "back"
-        ]
-      }
-    }
+    "bannerCopyright": "Copyright(c) {year} {name} {surname}"
   },
   "repository": {
     "type": "git",

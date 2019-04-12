@@ -1,15 +1,12 @@
-###hopplaconfig {
-  fileName: 'svg-<%= input.id %>.js'
-} hopplaconfig###
 #!/usr/bin/env node
 
-const { paths } = require("../packages/common");
+const { paths } = require("../../lib/node");
 const path = require("path");
 
 const nameSpaceId = "<%= input.id %>";
 const featherDir = paths.project("node_modules/feathericon/build/svg");
 
-require("./templates/svg")({
+require("../templates/svg")({
   name: "svgs",
   nameSpaceId,
   svgs: {

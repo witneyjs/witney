@@ -1,13 +1,10 @@
-###hopplaconfig {
-  fileName: 'build-<%= input.id %>.js'
-} hopplaconfig###
 #!/usr/bin/env node
 <% if (!input.isNode) { -%>
 
-const { paths } = require("../packages/common");
+const { paths } = require("../../lib/node");
 
 <% } -%>
-require("./templates/build")({
+require("../templates/build")({
   nameSpaceId: "<%= input.id %>"<% if (!input.isNode) { %>,
   useDevServer: true,
   useBundleAnalyzer: true,

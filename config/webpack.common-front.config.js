@@ -1,6 +1,6 @@
 const _ = require("lodash");
 
-const common = require("../packages/common");
+const common = require("../lib/node");
 const util = common.webpack;
 const paths = common.paths;
 const HtmlWebpackPlugin = require("html-webpack-plugin");

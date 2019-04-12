@@ -1,0 +1,11 @@
+{
+  "build": {
+    "nameSpaces": []
+  },
+  "coverage": {
+    "nameSpaces": []
+  },
+  "test": {
+    "nameSpaces": []
+  }
+}

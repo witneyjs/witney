@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { paths } = require("../../../packages/common");
+const { paths } = require("../../../lib/node");
 const package = require(paths.project('package.json'));
 
 const staticDir = paths.static('readme/gen-badges');

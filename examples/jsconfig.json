@@ -5,7 +5,6 @@
     "include": [
         "lib/**/*",
         "scripts/**/*",
-        ".config/**/*",
-        "packages/**/*"
+        ".config/**/*"
     ]
 }
