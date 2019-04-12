@@ -6,9 +6,6 @@ const yargs = require("yargs");
 const fs = require("fs");
 const path = require("path");
 
-// TODO: Remove namespace from configs (scripts) kinda done, test this further, also remove webpack configs ;)
-// TODO: Move namespace scripts to scripts/namespace/xyz done too (not all scripts tested yet)
-
 const argv = yargs.options({
   n: {
     alias: "namespace",
