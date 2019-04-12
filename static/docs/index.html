@@ -40,6 +40,9 @@ cd newProj;
 <pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front' }"</span></code></pre>
 <h4 id="backend"><a href="#backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Backend</h4>
 <pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', isNode: true }"</span></code></pre>
+<h4 id="frontend--backend"><a href="#frontend--backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Frontend &#x26; Backend</h4>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front', backId: 'back' }"</span>
+npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', frontId: 'front', isNode: true }"</span></code></pre>
 
       </main>
     </div>
@@ -133,7 +136,8 @@ cd newProj;
        "hash": "create-a-new-namespace-in-the-project",
        "children": [
         7,
-        8
+        8,
+        9
        ],
        "id": 6
       },
@@ -150,6 +154,13 @@ cd newProj;
        "hash": "backend",
        "children": [],
        "id": 8
+      },
+      {
+       "level": "4",
+       "heading": "Frontend &#x26; Backend",
+       "hash": "frontend--backend",
+       "children": [],
+       "id": 9
       }
      ]
     },
