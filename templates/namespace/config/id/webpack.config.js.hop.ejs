@@ -3,12 +3,14 @@ const webpackUtil = common.webpack;
 const paths = common.paths;
 const _ = require("lodash");
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
+const pkg = require(paths.project('package.json'));
 
 module.exports = function(env, argv) {
   const isNode = <%= input.isNode ? 'true': 'false' %>;
+  const isLibrary = <%= input.isLibrary ? 'true': 'false' %>;
   const nameSpaceId = "<%= input.id %>";
-  const libraryName = null;
-  const useWorkBox = true;
+  const useWorkBox = !isNode && !isLibrary;
+  const useHtmlCreation = !isNode && !isLibrary;
   let useHot = true;
   let useCodeSplitting = true;
 
@@ -33,7 +35,7 @@ module.exports = function(env, argv) {
     nameSpaceId
   });
   const envConfig = isNode
-    ? require("../webpack.common-back.config.js")({ env, argv })
+    ? require("../webpack.common-back.config.js")({ env, argv, isLibrary })
     : require("../webpack.common-front.config.js")({
         env,
         argv,
@@ -41,7 +43,9 @@ module.exports = function(env, argv) {
         useWorkBox,
         useCodeSplitting,
         useHot,
-        outputDir
+        outputDir,
+        isLibrary,
+        useHtmlCreation
       });
 
   let config = commonConfig;
@@ -56,8 +60,9 @@ module.exports = function(env, argv) {
     config = _.merge(config, testingConfig);
   }
 
-  if (libraryName) {
-    config.output.library = libraryName;
+  if (isLibrary) {
+    // Add your custom library build settings here
+    config.output.library = pkg.name;
   }
 
   if (!isNode) {

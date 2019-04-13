@@ -1,5 +1,6 @@
-module.exports = function({ env, argv }) {
-  const config = {
+module.exports = function({ env, argv, isLibrary }) {
+  let config = {
+    output: {},
     target: "node",
     node: {
       // https://github.com/webpack/webpack/issues/1599
@@ -8,6 +9,10 @@ module.exports = function({ env, argv }) {
       __dirname: false
     }
   };
+
+  if (isLibrary) {
+    config.output.libraryTarget = "commonjs2";
+  }
 
   return config;
 };
