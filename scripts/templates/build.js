@@ -77,7 +77,7 @@ const runWebpack = function({
     command += " --colors";
   }
 
-  command += ` --config ${paths.config(`webpack.${nameSpaceId}.config.js`)}`;
+  command += ` --config ${paths.config(`${nameSpaceId}/webpack.config.js`)}`;
   command += ` ${endOfOptions}`;
 
   pino.info(command);

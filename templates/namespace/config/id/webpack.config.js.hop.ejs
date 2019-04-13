@@ -1,8 +1,4 @@
-###hopplaconfig {
-  fileName: 'webpack.<%= input.id %>.config.js'
-} hopplaconfig###
-
-const common = require("../lib/node");
+const common = require("../../lib/node");
 const webpackUtil = common.webpack;
 const paths = common.paths;
 const _ = require("lodash");
@@ -22,14 +18,14 @@ module.exports = function(env, argv) {
   useHot = useHot && !envIsProd && !isNode && !envIsTesting;
   useCodeSplitting = useCodeSplitting && !envIsTesting && !isNode && !useHot;
 
-  let nameSpaceConfig = require("./webpack.common-namespace.config")({
+  let nameSpaceConfig = require("../webpack.common-namespace.config")({
     env,
     argv,
     nameSpaceId,
     useCodeSplitting
   });
   let outputDir = nameSpaceConfig.output.path;
-  let commonConfig = require("./webpack.common.config")({
+  let commonConfig = require("../webpack.common.config")({
     env,
     argv,
     isNode,
@@ -37,8 +33,8 @@ module.exports = function(env, argv) {
     nameSpaceId
   });
   const envConfig = isNode
-    ? require("./webpack.common-back.config.js")({ env, argv })
-    : require("./webpack.common-front.config.js")({
+    ? require("../webpack.common-back.config.js")({ env, argv })
+    : require("../webpack.common-front.config.js")({
         env,
         argv,
         nameSpaceId,
@@ -53,7 +49,7 @@ module.exports = function(env, argv) {
   config = _.merge(config, nameSpaceConfig);
 
   if (envIsTesting) {
-    const testingConfig = require("./webpack.common-testing.config.js")({
+    const testingConfig = require("../webpack.common-testing.config.js")({
       env,
       argv
     });
