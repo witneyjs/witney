@@ -182,8 +182,8 @@ module.exports = function({
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       alias: {
-        '@lib': paths.lib(),
-        '@project': paths.project()
+        "@lib": paths.lib(),
+        "@project": paths.project()
       }
     },
     plugins: {
