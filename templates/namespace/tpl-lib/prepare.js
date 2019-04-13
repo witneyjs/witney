@@ -4,7 +4,7 @@ const prepare = function(hoppla) {
     process.exit();
   }
 
-  if (hoppla.input.id === 'templates') {
+  if (['node', 'templates'].indexOf(hoppla.input.id) >= 0) {
     console.warn('"templates" is reserved and cannot be used as namespace id');
     process.exit();
   }

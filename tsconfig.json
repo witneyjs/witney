@@ -15,7 +15,15 @@
         "esModuleInterop": true,
         "baseUrl": "./lib",
         "strict": false,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "paths": {
+            "@lib/*": [
+                "*"
+            ],
+            "@project/*": [
+                "../*"
+            ]
+        }
     },
     "include": [
         "**/*"

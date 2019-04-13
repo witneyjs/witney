@@ -1,4 +1,4 @@
-import paths from "../../../../lib/node/paths";
+import paths from "@lib/node/paths";
 import { RequestHandler } from "express";
 
 export const frontNameSpaceId = "front";

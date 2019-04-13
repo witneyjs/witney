@@ -31,9 +31,6 @@ module.exports = function({
     output: {
       filename: outputFileName,
       path: nameSpaceOutputDir
-    },
-    resolve: {
-      modules: [paths.lib(), "node_modules"]
     }
   };
 

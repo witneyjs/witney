@@ -7,7 +7,7 @@ import { frontDistDir, RouteContext } from ".";
 import { SsrData } from "common/types";
 import _ from "lodash";
 const { frontNameSpaceId } = require("./index");
-const FrontApp = require(`../../../${frontNameSpaceId}/containers/app`).App;
+const FrontApp = require(`@lib/${frontNameSpaceId}/containers/app`).App;
 
 export const ssr = function(url, routeContext: RouteContext) {
   let indexHtmlTemplate = fs.readFileSync(

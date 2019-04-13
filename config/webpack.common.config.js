@@ -180,7 +180,11 @@ module.exports = function({
     },
     externals: [],
     resolve: {
-      extensions: [".js", ".jsx", ".ts", ".tsx"]
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
+      alias: {
+        '@lib': paths.lib(),
+        '@project': paths.project()
+      }
     },
     plugins: {
       banner: util.getBannerPlugin({ isNode, env }),
