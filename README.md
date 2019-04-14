@@ -43,6 +43,11 @@ cd newProj;
 npx hoppla -t templates/namespace/ -i "{ id: 'front' }"
 ```
 
+##### Library
+```bash
+npx hoppla -t templates/namespace/ -i "{ id: 'front', isLibrary: true }"
+```
+
 #### Backend
 ```bash
 npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"
