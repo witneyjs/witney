@@ -5,6 +5,7 @@ const { paths, writeJsonFile } = require("../lib/node");
 const yargs = require("yargs");
 const fs = require("fs");
 const path = require("path");
+const { yesNoQuestion } = require("../lib/node/readline");
 
 const argv = yargs.options({
   n: {
@@ -17,6 +18,11 @@ const argv = yargs.options({
 }).argv;
 
 const nameSpaceId = argv.namespace;
+
+if (!nameSpaceId) {
+  console.warn("Namespace option cannot be empty");
+  process.exit();
+}
 
 const filesToDelete = [
   paths.lib(nameSpaceId),
@@ -41,21 +47,13 @@ const deleteConfirmation = function() {
   });
   console.log(JSON.stringify(filesToDeleteRelative, null, "  "));
 
-  const readline = require("readline").createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  return new Promise(res => {
-    readline.question(
-      `Do you want to delete the namespace "${nameSpaceId}" and all of its files? (y/j/n) `,
-      answer => {
-        res(answer);
-        readline.close();
-      }
-    );
+  return yesNoQuestion({
+    question: `Do you want to delete the namespace "${nameSpaceId}" and all of its files? (y/j/n) `
   }).then(answer => {
-    return ["y", "j"].indexOf(answer) >= 0;
+    if (!answer) {
+      console.log("D:");
+      process.exit();
+    }
   });
 };
 
@@ -107,22 +105,21 @@ Promise.resolve()
       return;
     }
 
+    let promise = Promise.resolve();
+
     if (!argv.force) {
-      return deleteConfirmation()
-        .then(userHasConfirmed => {
-          if (!userHasConfirmed) {
-            console.log("D:");
-            process.exit();
-          }
-        })
-        .then(() => {
-          console.log("Deleting files/folders");
-          filesToDelete.forEach(file => {
-            console.log(path.relative(projectPath, file));
-            shell.rm("-rf", file);
-          });
-        });
+      promise = promise.then(() => {
+        return deleteConfirmation();
+      });
     }
+
+    return promise.then(() => {
+      console.log("Deleting files/folders");
+      filesToDelete.forEach(file => {
+        console.log(path.relative(projectPath, file));
+        shell.rm("-rf", file);
+      });
+    });
   })
   .then(() => {
     console.log("Removing namespace from configs");

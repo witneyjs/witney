@@ -2,19 +2,38 @@
 const shell = require("shelljs");
 const { paths } = require("../lib/node");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
+const { yesNoQuestion } = require("../lib/node/readline");
 
-const reformatCommand = `node ${paths.scripts("reformat.js")}`;
-pino.info(reformatCommand);
-shell.exec(reformatCommand);
+const askForSlowTests = true;
 
-const buildCommand = `node ${paths.scripts("build.js")}`;
-pino.info(buildCommand);
-shell.exec(buildCommand);
+Promise.resolve()
+  .then(() => {
+    if (!askForSlowTests) {
+      return;
+    }
 
-const readmeCommand = `node ${paths.scripts("readme.js")}`;
-pino.info(readmeCommand);
-shell.exec(readmeCommand);
+    return yesNoQuestion({
+      question: "Did you run the slow tests (e2e/integration)?"
+    }).then(answer => {
+      if (!answer) {
+        process.exit();
+      }
+    });
+  })
+  .then(() => {
+    const reformatCommand = `node ${paths.scripts("reformat.js")}`;
+    pino.info(reformatCommand);
+    shell.exec(reformatCommand);
 
-const docsCommand = `node ${paths.scripts("docs.js")}`;
-pino.info(docsCommand);
-shell.exec(docsCommand);
+    const buildCommand = `node ${paths.scripts("build.js")}`;
+    pino.info(buildCommand);
+    shell.exec(buildCommand);
+
+    const readmeCommand = `node ${paths.scripts("readme.js")}`;
+    pino.info(readmeCommand);
+    shell.exec(readmeCommand);
+
+    const docsCommand = `node ${paths.scripts("docs.js")}`;
+    pino.info(docsCommand);
+    shell.exec(docsCommand);
+  });

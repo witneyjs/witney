@@ -10,3 +10,7 @@
  */
 var context = require.context("..", true, /\.spec\./);
 context.keys().forEach(context);
+
+// Alternative approach, always loading all files into the coverage report
+// var context = require.context("..", true, /^\.\/(?!main\/).*\.(js|jsx|ts|tsx)$/);
+// context.keys().forEach(context);
