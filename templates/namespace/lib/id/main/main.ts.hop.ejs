@@ -1,3 +1,6 @@
 console.log("<%= input.id %> namespace started");
+<%_ if (!input.isLibrary) { -%>
 
-import "./../app";
+import { App } from "./../app";
+new App().init();
+<%_ } -%>

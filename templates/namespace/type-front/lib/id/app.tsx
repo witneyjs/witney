@@ -1,31 +1,38 @@
 import React from "react";
 import { render as _render } from "react-dom";
-import { App } from "./containers/app";
+import { App as AppContainer } from "./containers/app";
 
-const registerWorkBox = function() {
-  if (!("serviceWorker" in navigator)) {
-    return;
+export class App {
+  init() {
+    this.registerWorkBox();
+
+    if (module.hot) {
+      module.hot.accept("./containers/app", () => {
+        this.render();
+      });
+    }
+
+    this.render();
   }
 
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(registration => {
-        console.log("SW registered: ", registration);
-      })
-      .catch(registrationError => {
-        console.log("SW registration failed: ", registrationError);
-      });
-  });
-};
+  registerWorkBox() {
+    if (!("serviceWorker" in navigator)) {
+      return;
+    }
 
-const render = function() {
-  _render(<App />, document.querySelector("#app"));
-};
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("SW registered: ", registration);
+        })
+        .catch(registrationError => {
+          console.log("SW registration failed: ", registrationError);
+        });
+    });
+  }
 
-registerWorkBox();
-render();
-
-if (module.hot) {
-  module.hot.accept("./containers/app", render);
+  render() {
+    _render(<AppContainer />, document.querySelector("#app"));
+  }
 }

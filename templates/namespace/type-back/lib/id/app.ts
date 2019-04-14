@@ -7,64 +7,68 @@ import {
   createRoute as createFrontRoute
 } from "./routes/front";
 
-const app = express();
-const server = http.createServer(app);
+export class App {
+  init() {
+    const app = express();
+    const server = http.createServer(app);
 
-const bayeux = new faye.NodeAdapter({ mount: "/faye" });
-bayeux.attach(server);
+    const bayeux = new faye.NodeAdapter({ mount: "/faye" });
+    bayeux.attach(server);
 
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.send(500);
-});
+    app.use(function(err, req, res, next) {
+      console.error(err.stack);
+      res.send(500);
+    });
 
-app.all(
-  "/",
-  createFrontRoute({
-    beforeResData: (req, res, ctx) => {
-      ctx.frontData = {
-        items: [1, 2, 3]
-      };
+    app.all(
+      "/",
+      createFrontRoute({
+        beforeResData: (req, res, ctx) => {
+          ctx.frontData = {
+            items: [1, 2, 3]
+          };
 
-      return ctx;
+          return ctx;
+        }
+      })
+    );
+    app.get(
+      "/user/:id",
+      createFrontRoute({
+        beforeResData: (req, res, ctx) => {
+          ctx.frontData = {
+            userId: req.params.id
+          };
+
+          return ctx;
+        }
+      })
+    );
+
+    if (BUILD.IS_PROD) {
+      app.use(express.static(frontDistDir));
+      app.use(express.static(frontStaticDir));
+
+      app.use("/", createFrontRoute({}));
+    } else {
+      app.use("/", createFrontRoute({}));
+
+      app.use(express.static(frontDistDir));
+      app.use(express.static(frontStaticDir));
     }
-  })
-);
-app.get(
-  "/user/:id",
-  createFrontRoute({
-    beforeResData: (req, res, ctx) => {
-      ctx.frontData = {
-        userId: req.params.id
-      };
 
-      return ctx;
-    }
-  })
-);
+    server.listen(20000);
 
-if (BUILD.IS_PROD) {
-  app.use(express.static(frontDistDir));
-  app.use(express.static(frontStaticDir));
+    const client = bayeux.getClient();
 
-  app.use("/", createFrontRoute({}));
-} else {
-  app.use("/", createFrontRoute({}));
+    let count = 0;
+    setInterval(() => {
+      client.publish("/count", count);
+      count++;
+    }, 1000);
 
-  app.use(express.static(frontDistDir));
-  app.use(express.static(frontStaticDir));
+    setTimeout(() => {
+      client.publish("/reload", true);
+    }, 6000);
+  }
 }
-
-server.listen(20000);
-
-const client = bayeux.getClient();
-
-let count = 0;
-setInterval(() => {
-  client.publish("/count", count);
-  count++;
-}, 1000);
-
-setTimeout(() => {
-  client.publish("/reload", true);
-}, 6000);
