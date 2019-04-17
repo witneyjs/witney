@@ -12,7 +12,7 @@ module.exports = function(env, argv) {
   const useWorkBox = !isNode && !isLibrary;
   const useHtmlCreation = !isNode && !isLibrary;
   let useHot = true;
-  let useCodeSplitting = true;
+  let useCodeSplitting = !isLibrary;
 
   const envIsTesting = webpackUtil.envIsTesting(env);
   const envIsProd = process.env.NODE_ENV === "production";
