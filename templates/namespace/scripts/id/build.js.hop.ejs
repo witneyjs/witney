@@ -7,7 +7,7 @@ const { paths } = require("../../lib/node");
 require("../templates/build")({
   nameSpaceId: "<%= input.id %>"<% if (!input.isNode) { %>,
   useDevServer: true,
-  useBundleAnalyzer: true,
+  useBundleAnalyzer: true<% if (!input.isLibrary) { %>,
   rawJsBundles: {
     "externals.js": {
       files: [
@@ -16,7 +16,5 @@ require("../templates/build")({
         }
       ]
     }
-  }
-<% } else { %>
-<% } -%>
+  }<% } %><% } %>
 });
