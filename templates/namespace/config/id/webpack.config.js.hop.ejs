@@ -86,7 +86,7 @@ module.exports = function(env, argv) {
       // Add this if you use multiple domains for development / proxies
       // headers: { 'Access-Control-Allow-Origin': '*' }
     };
-    <%_ if (input.isNode && !input.backId) { -%>
+    <%_ if (input.isNode || !input.backId) { -%>
     */
     <%_ } -%>
   }
