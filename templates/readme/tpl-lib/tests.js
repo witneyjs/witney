@@ -14,7 +14,6 @@ const getSummary = function() {
   let failedTestsCount = 0;
 
   const coverageNameSpaceIds = getScriptNameSpaces({ scriptType: "coverage" });
-  console.log(coverageNameSpaceIds);
   const coverageDir = paths.project("coverage");
   const coverageSubDirs = fs.readdirSync(coverageDir).filter(nameSpaceDir => {
     const fileStat = fs.lstatSync(paths.project(`coverage/${nameSpaceDir}`));
