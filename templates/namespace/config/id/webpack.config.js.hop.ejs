@@ -67,7 +67,7 @@ module.exports = function(env, argv) {
 
   if (!isNode) {
     // TODO: Add port config by backId
-    <%_ if (input.isNode && !input.backId) { -%>
+    <%_ if (input.isNode || !input.backId) { -%>
     // Example websocket proxy
     /*
     <%_ } -%>
