@@ -22,41 +22,41 @@ const getSummary = function() {
       coverageNameSpaceIds.indexOf(nameSpaceDir) >= 0 && fileStat.isDirectory()
     );
   });
-  const coverage =
-    coverageSubDirs
+  let coverage = coverageSubDirs
+    .map(nameSpaceDir => {
+      const jsonSummary = require(paths.project(
+        `coverage/${nameSpaceDir}/coverage-summary.json`
+      ));
+      try {
+        const aFailedTestsCount = getFailedCount(nameSpaceDir);
+        failedTestsCount += aFailedTestsCount;
+      } catch (err) {}
 
-      .map(nameSpaceDir => {
-        const jsonSummary = require(paths.project(
-          `coverage/${nameSpaceDir}/coverage-summary.json`
-        ));
-        try {
-          const aFailedTestsCount = getFailedCount(nameSpaceDir);
-          failedTestsCount += aFailedTestsCount;
-        } catch (err) {}
+      return jsonSummary;
+    })
+    .map(jsonSummary => {
+      const types = Object.keys(jsonSummary.total);
+      const pctSum =
+        types.reduce((acc, type) => {
+          acc += jsonSummary.total[type].pct;
 
-        return jsonSummary;
-      })
-      .map(jsonSummary => {
-        const types = Object.keys(jsonSummary.total);
-        const pctSum =
-          types.reduce((acc, type) => {
-            acc += jsonSummary.total[type].pct;
+          return acc;
+        }, 0) / types.length;
 
-            return acc;
-          }, 0) / types.length;
+      if (isNaN(pctSum)) {
+        console.log("No valid coverage found", jsonSummary.total);
+        return 0;
+      }
 
-        if (isNaN(pctSum)) {
-          console.log("No valid coverage found", jsonSummary.total);
-          return 0;
-        }
+      return pctSum;
+    })
+    .reduce((acc, pct) => {
+      acc += pct;
 
-        return pctSum;
-      })
-      .reduce((acc, pct) => {
-        acc += pct;
+      return acc;
+    }, 0);
 
-        return acc;
-      }, 0) / coverageSubDirs.length;
+  coverage = coverageSubDirs.length ? coverage / coverageSubDirs.length : 100;
 
   return { coverage, failedTestsCount };
 };
