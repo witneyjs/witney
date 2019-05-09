@@ -63,6 +63,8 @@ module.exports = function(env, argv) {
   if (isLibrary) {
     // Add your custom library build settings here
     config.output.library = pkg.name;
+    // Alternative which adds the entry name to the library global (libraryName.entryName.entryExport1) 
+    // config.output.library = [pkg.name, "[name]"];
   }
 
   if (!isNode) {
