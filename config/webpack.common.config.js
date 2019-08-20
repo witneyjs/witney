@@ -116,55 +116,6 @@ module.exports = function({
   const envIsTesting = util.envIsTesting(env);
   const envIsProd = process.env.NODE_ENV === "production";
 
-  const transformReactJsxPlugin = [
-    "@babel/transform-react-jsx",
-    {
-      throwIfNamespace: false
-    }
-  ];
-
-  let emotionPlugin = ["emotion", { sourceMap: true, autoLabel: true }];
-  if (envIsProd) {
-    emotionPlugin[1].sourceMap = false;
-    emotionPlugin[1].autoLabel = false;
-    // Increases performance by using a values-cache
-    emotionPlugin[1].hoist = true;
-  }
-
-  const commonBabelPlugins = [
-    "@babel/plugin-transform-runtime",
-    // only transpile our source code
-    // Doesnt currently work: https://github.com/rollup/rollup-plugin-babel/issues/183
-    // "@babel/plugin-external-helpers",
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread",
-    "lodash",
-    emotionPlugin,
-    "macros"
-  ];
-
-  const babelPresetEnv = [
-    "@babel/preset-env",
-    {
-      modules: false
-    }
-  ];
-
-  // Define custom target platforms for babel
-  if (isNode) {
-    babelPresetEnv[0][1].targets = {
-      node: "8"
-    };
-  }
-
-  const babelPresetTypeScript = [
-    "@babel/preset-typescript",
-    {
-      modules: false
-    }
-  ];
-
   const config = {
     context: paths.project(),
     devtool: "source-map",
@@ -282,65 +233,15 @@ module.exports = function({
           ]
         },
         babel: {
-          test: /\.js$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           exclude: /(node_modules|bower_components)/,
           use: [
             {
               loader: "babel-loader",
               options: {
-                presets: [babelPresetEnv],
-                // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
-                compact: false,
-                plugins: commonBabelPlugins,
                 cacheDirectory: true,
-                cacheCompression: envIsProd
-              }
-            }
-          ]
-        },
-        babelJsx: {
-          test: /\.jsx$/,
-          exclude: /(node_modules|bower_components)/,
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                presets: [babelPresetEnv],
-                // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
-                compact: false,
-                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins),
-                cacheDirectory: true,
-                cacheCompression: envIsProd
-              }
-            }
-          ]
-        },
-        babelTypescript: {
-          test: /\.ts$/,
-          exclude: /(node_modules|bower_components)/,
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                presets: [babelPresetEnv, babelPresetTypeScript],
-                plugins: commonBabelPlugins,
-                cacheDirectory: true,
-                cacheCompression: envIsProd
-              }
-            }
-          ]
-        },
-        babelTypescriptX: {
-          test: /\.tsx$/,
-          exclude: /(node_modules|bower_components)/,
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                presets: [babelPresetEnv, babelPresetTypeScript],
-                plugins: [transformReactJsxPlugin].concat(commonBabelPlugins),
-                cacheDirectory: true,
-                cacheCompression: envIsProd
+                cacheCompression: envIsProd,
+                ...require("./babel.config")({ isNode })
               }
             }
           ]

@@ -62,6 +62,8 @@ const runWebpack = function({
   }
 
   if (argv.watch) {
+    command += " WATCH=1";
+
     if (!testing && useDevServer) {
       command += " npx webpack-dev-server";
       // To access the server from other devices

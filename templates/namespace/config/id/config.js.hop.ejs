@@ -1,0 +1,14 @@
+module.exports = function() {
+  let config = {
+    isNode: <%= input.isNode ? 'true': 'false' %>,
+    isLibrary: <%= input.isLibrary ? 'true': 'false' %>,
+    id: "<%= input.id %>",
+    useHot: true
+  };
+
+  config.useWorkBox = !config.isLibrary;
+  config.useHtmlCreation = !config.isLibrary;
+  config.useCodeSplitting = !config.isLibrary;
+
+  return config;
+};
