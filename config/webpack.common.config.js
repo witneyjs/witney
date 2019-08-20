@@ -21,8 +21,7 @@ const createCssRule = ({
   };
   if (!envIsTesting) {
     let styleLoader = {
-      loader: !envIsProd ? "style-loader" : MiniCssExtractPlugin.loader,
-      options: { sourceMap: useSourceMap }
+      loader: !envIsProd ? "style-loader" : MiniCssExtractPlugin.loader
     };
     let cssLoader = {
       loader: "css-loader",
