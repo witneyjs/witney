@@ -18,6 +18,9 @@ const coverage = function({ nameSpaceId }) {
   command += ` --reporter ${argv.reporter}`;
   command += ` --report-dir ${reportDir}`;
   command += ` --temp-dir ${paths.tmp(`.nyc_output_${nameSpaceId}`)}`;
+  ["ts", "tsx", "js", "jsx"].forEach(
+    extension => (command += ` --extension .${extension}`)
+  );
   command += ` ${endOfOptions}`;
 
   pino.info(command);
