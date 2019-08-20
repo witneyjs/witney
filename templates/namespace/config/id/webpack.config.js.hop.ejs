@@ -14,10 +14,11 @@ module.exports = function(env, argv) {
   let useHot = true;
   let useCodeSplitting = !isLibrary;
 
-  const envIsTesting = webpackUtil.envIsTesting(env);
+  const envIsWatching = webpackUtil.envIsWatching();
+  const envIsTesting = webpackUtil.envIsTesting();
   const envIsProd = process.env.NODE_ENV === "production";
 
-  useHot = useHot && !envIsProd && !isNode && !envIsTesting;
+  useHot = useHot && envIsWatching && !envIsProd && !isNode && !envIsTesting;
   useCodeSplitting = useCodeSplitting && !envIsTesting && !isNode && !useHot;
 
   let nameSpaceConfig = require("../webpack.common-namespace.config")({
