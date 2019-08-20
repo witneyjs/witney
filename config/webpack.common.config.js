@@ -111,6 +111,7 @@ module.exports = function({
   argv,
   isNode = false,
   outputDir,
+  isLibrary = false,
   nameSpaceId
 }) {
   const envIsTesting = util.envIsTesting(env);
@@ -138,9 +139,11 @@ module.exports = function({
     },
     plugins: {
       banner: util.getBannerPlugin({ isNode, env }),
-      define: util.getDefinePlugin({ isNode, env, nameSpaceId })
+      define: util.getDefinePlugin({ isNode, env, nameSpaceId, isLibrary })
     },
     optimization: {
+      // We use a custom logic in getDefinePlugin
+      nodeEnv: false,
       minimizer: {
         terser: new TerserPlugin({
           cache: true,

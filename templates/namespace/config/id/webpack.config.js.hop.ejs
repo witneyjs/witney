@@ -37,7 +37,8 @@ module.exports = function(env, argv) {
     argv,
     isNode: nameSpace.isNode,
     outputDir,
-    nameSpaceId
+    nameSpaceId,
+    isLibrary
   });
   const envConfig = nameSpace.isNode
     ? require("../webpack.common-back.config.js")({ env, argv, isLibrary })
