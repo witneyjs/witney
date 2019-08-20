@@ -64,7 +64,7 @@ module.exports = function({ isNode } = { isNode: false }) {
     compact: false,
     overrides: [
       {
-        test: paths.lib("**/*.jsx"),
+        test: [paths.lib("**/*.jsx"), paths.lib("**/*.tsx")],
         plugins: [transformReactJsxPlugin]
       },
       {
