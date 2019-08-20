@@ -110,6 +110,7 @@
     "type": "git",
     "url": "https://github.com/witneyjs/witney.git"
   },
+  "sideEffects": false,
   "dependencies": {
     "express": "^4.17.1",
     "faye": "^1.2.4",

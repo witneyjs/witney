@@ -161,6 +161,9 @@ module.exports = function({
 
   if (isLibrary) {
     config.output.libraryTarget = "umd";
+    // Makes sure that the bundle is also usable by node
+    // https://medium.com/@JakeXiao/window-is-undefined-in-umd-library-output-for-webpack4-858af1b881df
+    config.output.globalObject = "typeof self !== 'undefined' ? self : this";
   }
 
   if (useCodeSplitting) {
@@ -170,7 +173,7 @@ module.exports = function({
       chunks: "all",
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/](node_modules|dist)[\\/]/,
           name: "vendors",
           chunks: "all"
         }

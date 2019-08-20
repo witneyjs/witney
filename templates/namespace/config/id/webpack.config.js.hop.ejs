@@ -68,8 +68,8 @@ module.exports = function(env, argv) {
 
   if (isLibrary) {
     // Add your custom library build settings here
-    // config.output.library = [pkg.name, "[name]"];
-    config.output.library = pkg.name;
+    config.output.library = [pkg.name, "[name]"];
+    // config.output.library = pkg.name;
   }
 
   if (!nameSpace.isNode) {

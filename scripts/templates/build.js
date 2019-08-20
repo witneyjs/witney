@@ -2,10 +2,38 @@ const shell = require("shelljs");
 const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 const fs = require("fs");
+const path = require("path");
 
 const { paths, mergeDirectories } = require("../../lib/node");
 const concat = require("../../lib/node/concatJs");
 const { runScript } = require("../../lib/node/scripts");
+
+const copyTypesToDist = function({ nameSpaceId }) {
+  const typesSrcPath = paths.project(`typings/${nameSpaceId}`);
+  const typesExist = fs.existsSync(typesSrcPath);
+  if (!typesExist) {
+    return;
+  }
+
+  const typesOutPath = paths.dist(`${nameSpaceId}/types`);
+  if (!fs.existsSync(typesOutPath)) {
+    return;
+  }
+  shell.cp("-r", typesSrcPath, typesOutPath);
+
+  const mainFiles = fs.readdirSync(path.join(typesOutPath, "main"));
+  mainFiles.forEach(fileName => {
+    if (!fileName.endsWith("ts")) {
+      return;
+    }
+
+    const typeProxyCode = `export * from "./types/main/${fileName.replace(
+      ".d.ts",
+      ""
+    )}"`;
+    fs.writeFileSync(paths.dist(`${nameSpaceId}/${fileName}`), typeProxyCode);
+  });
+};
 
 const checkStaticTypes = function({ nameSpaceId }) {
   const result = require("./type")({
@@ -162,6 +190,10 @@ const build = function({
     useDevServer,
     endOfOptions
   });
+
+  if (!testing && !argv.watch) {
+    copyTypesToDist({ nameSpaceId });
+  }
 };
 
 module.exports = build;

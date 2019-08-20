@@ -54,6 +54,7 @@ module.exports = function({ isNode } = { isNode: false }) {
 
   return {
     ignore: [
+      paths.dist("**"),
       paths.project("node_modules/**"),
       paths.project("bower_components/**")
     ],
