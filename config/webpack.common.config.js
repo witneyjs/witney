@@ -253,6 +253,11 @@ module.exports = function({
     }
   };
 
+  if (!isLibrary) {
+    // Makes sure that sideeffects of apps are included in the final build
+    config.optimization.sideEffects = false;
+  }
+
   if (envIsTesting || isNode) {
     const nodeExternals = require("webpack-node-externals");
     config.externals.push(
