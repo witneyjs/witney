@@ -15,10 +15,12 @@ const copyTypesToDist = function({ nameSpaceId }) {
     return;
   }
 
-  const typesOutPath = paths.dist(`${nameSpaceId}/types`);
-  if (!fs.existsSync(typesOutPath)) {
+  const mainTypeFilesSrcPath = path.join(typesSrcPath, "main");
+  if (!fs.existsSync(mainTypeFilesSrcPath)) {
     return;
   }
+
+  const typesOutPath = paths.dist(`${nameSpaceId}/types`);
   shell.cp("-r", typesSrcPath, typesOutPath);
 
   const mainFiles = fs.readdirSync(path.join(typesOutPath, "main"));
