@@ -175,7 +175,9 @@ const build = function({
     } catch (err) {}
   }
 
-  if (!testing && !argv.watch) {
+  const nameSpaceConfig = require(paths.config(`${nameSpaceId}/config.js`))();
+
+  if (!testing && !argv.watch && !nameSpaceConfig.isNode) {
     const staticDir = paths.static(nameSpaceId);
     if (fs.existsSync(staticDir)) {
       mergeDirectories({
