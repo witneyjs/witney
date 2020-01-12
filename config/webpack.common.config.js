@@ -29,12 +29,12 @@ const createCssRule = ({
     };
 
     if (useModules) {
-      cssLoader.options.modules = true;
-      cssLoader.options.localIdentName = !envIsProd
+      cssLoader.options.modules = { mode: "local" };
+      cssLoader.options.modules.localIdentName = !envIsProd
         ? "[path]_[name]_[local]"
         : "[hash:base64:3]";
       if (isNode) {
-        cssLoader.options.exportOnlyLocals = true;
+        cssLoader.options.onlyLocals = true;
       }
     }
 
@@ -134,7 +134,12 @@ module.exports = function({
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       alias: {
         "@lib": paths.lib(),
-        "@project": paths.project()
+        "@project": paths.project(),
+        "@react-router5": paths.lib("common/vendor/react-router5.js"),
+        "@react-helmet-async": paths.lib("common/vendor/react-helmet-async.js"),
+        react: "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat"
       }
     },
     plugins: {
@@ -263,7 +268,11 @@ module.exports = function({
     config.externals.push(
       nodeExternals({
         // https://www.npmjs.com/package/webpack-node-externals#how-can-i-bundle-required-assets-ie-css-files-from-node_modules
-        whitelist: [/\.(?!(?:jsx?|json|tsx?)$).{1,5}$/i]
+        whitelist: [
+          /\.(?!(?:jsx?|json|tsx?)$).{1,5}$/i,
+          /react-router5/,
+          /react-helmet-async/
+        ]
       })
     );
   }

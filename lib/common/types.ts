@@ -1,14 +1,10 @@
-export type SsrData = {
-  routeData;
-  routerCallBack?;
-  url: string;
-  result: {
-    appendToBody: string[];
-    pageFound: boolean;
-    pageMeta: {
-      title: string;
-      description: string;
-      keywords: string;
-    };
-  };
+import { Router, Route } from "router5";
+import { Component } from "preact";
+
+export type Globals = {
+  data: any;
+  router: Router;
+  route: Route;
+  view: Component;
+  helmetContext: any;
 };

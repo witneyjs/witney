@@ -27,7 +27,7 @@ const start = function({ nameSpaceId }) {
 
   const scriptPath = paths.dist(`${nameSpaceId}/main.js`);
   const command = argv.watch
-    ? `npx nodemon --watch ${scriptPath} ${scriptPath} ${options} ${endOfOptions}`
+    ? `npx nodemon --delay 2 --watch ${scriptPath} ${scriptPath} ${options} ${endOfOptions}`
     : `node ${scriptPath} ${options} ${endOfOptions}`;
 
   // If the server is started at the same time as the build task we have to wait for the script

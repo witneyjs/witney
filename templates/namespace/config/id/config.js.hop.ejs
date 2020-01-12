@@ -3,7 +3,8 @@ module.exports = function() {
     isNode: <%= input.isNode ? 'true': 'false' %>,
     isLibrary: <%= input.isLibrary ? 'true': 'false' %>,
     id: "<%= input.id %>",
-    useHot: true
+    useHot: true,
+    devServerPort: <%= input.devServerPort %>
   };
 
   config.useWorkBox = !config.isLibrary;

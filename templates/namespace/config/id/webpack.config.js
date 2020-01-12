@@ -94,6 +94,10 @@ module.exports = function(env, argv) {
     */
   }
 
+  if (config.devServer) {
+    config.devServer.port = nameSpaceConfig.devServerPort;
+  }
+
   config.plugins.filterWarnings = new FilterWarningsPlugin({
     exclude: /You're using the following Workbox configuration options:/
   });

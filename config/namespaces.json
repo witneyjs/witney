@@ -1,3 +1,4 @@
 {
-  "ids": []
+  "ids": [],
+  "nextDevServerPort": 8080
 }

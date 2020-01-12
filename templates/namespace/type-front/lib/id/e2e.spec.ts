@@ -17,10 +17,12 @@ describe("Title namespace", async function() {
 
   it("equals current namespace id @slow", async function() {
     await driver.get("http://0.0.0.0:8080");
-    const elements = await driver.findElements(By.className("app__home-title-namespace-text"));
+    const elements = await driver.findElements(
+      By.className("app__home-title-namespace-text")
+    );
     assert.equal(elements.length, 1);
 
-    const title = await elements[0].getText()
+    const title = await elements[0].getText();
     assert.equal(title.toLowerCase(), BUILD.NAMESPACE_ID);
   });
 });
