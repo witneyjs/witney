@@ -1,4 +1,4 @@
-<img src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
+<img width="400px" style="max-width: 100%;" src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
 
 -------
 
@@ -24,16 +24,9 @@ npm install -g hoppla;
 
 ### Start a new project from your local witney copy
 
-#### Empty project
+#### Initialize new project
 ```bash
-hoppla -t witney -d newProj;
-cd newProj;
-npm install;
-```
-
-#### Demo project
-```
-hoppla -t witney -d newProj -i "{ type: 'demo' }";
+hoppla -t witney -d newProj -i "{ install: true }";
 cd newProj;
 ```
 
@@ -53,8 +46,23 @@ npx hoppla -t templates/namespace/ -i "{ id: 'front', isLibrary: true }"
 npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"
 ```
 
-#### Frontend & Backend
+#### Fullstack
 ```bash
-npx hoppla -t templates/namespace/ -i "{ id: 'front', backId: 'back' }"
-npx hoppla -t templates/namespace/ -i "{ id: 'back', frontId: 'front', isNode: true }"
+npx hoppla -t templates/fullstack/ -f
+```
+
+##### Starting dev
+
+```bash
+# Tab 1:
+./scripts/front/build.js -w -d
+# Tab 2:
+./scripts/back/build.js -w -d
+# Tab 3:
+./scripts/back/start.js -w
+```
+
+##### Building and starting prod
+```bash
+./scripts/build.js && ./scripts/back/start.js
 ```

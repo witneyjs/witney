@@ -1,4 +1,4 @@
-<img src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
+<img width="400px" style="max-width: 100%;" src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
 <hr>
 <p>Witney is a template for javascript/typescript front- and backend projects with multiple entry points.</p>
 <h1 id="some-pkg-·-a-hrefhttpsopensourceorglicensesmitimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge0svgsanitizetrue-altlicensea-a-hrefhttpswwwnpmjscompackagesome-pkgimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge1svgsanitizetrue-altnpma-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge2svgsanitizetrue-alttests-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge3svgsanitizetrue-altcoverage-a-hrefhttpsprettierioimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge4svgsanitizetrue-altcode-stylea-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge5svgsanitizetrue-altprs"><a href="#some-pkg-%C2%B7-a-hrefhttpsopensourceorglicensesmitimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge0svgsanitizetrue-altlicensea-a-hrefhttpswwwnpmjscompackagesome-pkgimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge1svgsanitizetrue-altnpma-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge2svgsanitizetrue-alttests-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge3svgsanitizetrue-altcoverage-a-hrefhttpsprettierioimg-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge4svgsanitizetrue-altcode-stylea-img-srchttpsrawgithubcomwitneyjswitneymasterstaticreadmegen-badgesbadge5svgsanitizetrue-altprs" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a><a href="https://github.com/witneyjs/witney" target="_blank">some-pkg</a> · <a href="https://opensource.org/licenses/MIT"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.0.svg?sanitize=true" alt="license"></a> <a href="https://www.npmjs.com/package/some-pkg"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.1.svg?sanitize=true" alt="npm"></a> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.2.svg?sanitize=true" alt="Tests"> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.3.svg?sanitize=true" alt="coverage"> <a href="https://prettier.io/"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.4.svg?sanitize=true" alt="code style"></a> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.5.svg?sanitize=true" alt="PRs"></h1>
@@ -10,14 +10,9 @@
 <pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> git@github.com:witneyjs/witney.git;
 npm install -g hoppla;</code></pre>
 <h3 id="start-a-new-project-from-your-local-witney-copy"><a href="#start-a-new-project-from-your-local-witney-copy" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Start a new project from your local witney copy</h3>
-<h4 id="empty-project"><a href="#empty-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Empty project</h4>
-<pre><code class="hljs language-bash">hoppla -t witney -d newProj;
-<span class="hljs-built_in">cd</span> newProj;
-npm install;</code></pre>
-<h4 id="demo-project"><a href="#demo-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Demo project</h4>
-<pre><code>hoppla -t witney -d newProj -i "{ type: 'demo' }";
-cd newProj;
-</code></pre>
+<h4 id="initialize-new-project"><a href="#initialize-new-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Initialize new project</h4>
+<pre><code class="hljs language-bash">hoppla -t witney -d newProj -i <span class="hljs-string">"{ install: true }"</span>;
+<span class="hljs-built_in">cd</span> newProj;</code></pre>
 <h3 id="create-a-new-namespace-in-the-project"><a href="#create-a-new-namespace-in-the-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Create a new namespace in the project</h3>
 <h4 id="frontend"><a href="#frontend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Frontend</h4>
 <pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front' }"</span></code></pre>
@@ -25,6 +20,14 @@ cd newProj;
 <pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front', isLibrary: true }"</span></code></pre>
 <h4 id="backend"><a href="#backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Backend</h4>
 <pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', isNode: true }"</span></code></pre>
-<h4 id="frontend--backend"><a href="#frontend--backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Frontend &#x26; Backend</h4>
-<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front', backId: 'back' }"</span>
-npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', frontId: 'front', isNode: true }"</span></code></pre>
+<h4 id="fullstack"><a href="#fullstack" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Fullstack</h4>
+<pre><code class="hljs language-bash">npx hoppla -t templates/fullstack/ -f</code></pre>
+<h5 id="starting-dev"><a href="#starting-dev" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Starting dev</h5>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Tab 1:</span>
+./scripts/front/build.js -w -d
+<span class="hljs-comment"># Tab 2:</span>
+./scripts/back/build.js -w -d
+<span class="hljs-comment"># Tab 3:</span>
+./scripts/back/start.js -w</code></pre>
+<h5 id="building-and-starting-prod"><a href="#building-and-starting-prod" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Building and starting prod</h5>
+<pre><code class="hljs language-bash">./scripts/build.js &#x26;&#x26; ./scripts/back/start.js</code></pre>
