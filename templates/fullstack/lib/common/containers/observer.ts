@@ -9,20 +9,20 @@ import {
   observe,
   ObserveFn
 } from "alo";
-import { h, Component, FunctionalComponent, FunctionComponent } from "preact";
+import { createElement, Component, FunctionComponent } from "react";
 
 export const observerHOC = function<P = {}>({
   view,
   createState
 }: {
-  view: FunctionalComponent<P>;
+  view: FunctionComponent<P>;
   createState?;
 }): FunctionComponent<P> {
   return function(props) {
     props["view"] = view;
     props["createState"] = createState;
 
-    return h(Observer as any, props);
+    return createElement(Observer as any, props);
   };
 };
 
@@ -69,7 +69,7 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.mapPropsToOps();
     if (this.props["createState"] != null) {
       this.createState = this.props["createState"];

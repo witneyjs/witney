@@ -6,9 +6,7 @@ module.exports = function({ isNode } = { isNode: false }) {
   const transformReactJsxPlugin = [
     "@babel/transform-react-jsx",
     {
-      throwIfNamespace: false,
-      pragma: "h",
-      pragmaFrag: "Fragment"
+      throwIfNamespace: false
     }
   ];
 
@@ -50,7 +48,6 @@ module.exports = function({ isNode } = { isNode: false }) {
   const babelPresetTypeScript = [
     "@babel/preset-typescript",
     {
-      jsxPragma: "h",
       modules: false
     }
   ];

@@ -1,7 +1,7 @@
-import { h, Fragment } from "preact";
+import React from "react";
 import { css, cx } from "emotion";
-import { Link } from "@react-router5";
-import { Helmet } from "@react-helmet-async";
+import { Link } from "react-router5";
+import { Helmet } from "react-helmet-async";
 
 import { NOT_HOME_ROUTE } from "@lib/common/routes/notHome";
 import { REDIRECT_ROUTE } from "@lib/common/routes/redirect";
@@ -11,10 +11,10 @@ const Svg = svgSprite(svg);
 
 const Home = function({ data, router }) {
   return (
-    <Fragment>
+    <>
       <Helmet>
         <html data-id="some id" />
-        <body class="app app--home" />
+        <body className="app app--home" />
         <title>{data.label}</title>
 
         <meta name="description" content={"the color is " + data.color} />
@@ -23,14 +23,14 @@ const Home = function({ data, router }) {
       </Helmet>
       <Svg />
       <div
-        class={css`
+        className={css`
           width: 200px;
         `}
       >
         <SvgIcon icon="rocket" />
       </div>
       <h1
-        class={css`
+        className={css`
           color: ${data.color};
         `}
       >
@@ -45,7 +45,7 @@ const Home = function({ data, router }) {
       </button>
       <br />
       <Link routeName={REDIRECT_ROUTE}>Go to Search</Link>
-    </Fragment>
+    </>
   );
 };
 

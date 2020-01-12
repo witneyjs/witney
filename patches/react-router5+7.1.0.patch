@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-router5/types/BaseLink.d.ts b/node_modules/react-router5/types/BaseLink.d.ts
+index 75eecd1..615fede 100644
+--- a/node_modules/react-router5/types/BaseLink.d.ts
++++ b/node_modules/react-router5/types/BaseLink.d.ts
+@@ -54,7 +54,7 @@ declare class BaseLink extends Component<BaseLinkProps, BaseLinkState> {
+             style?: React.CSSProperties
+             tabIndex?: number
+             title?: string
+-            inputMode?: string
++            inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
+             is?: string
+             radioGroup?: string
+             role?: string

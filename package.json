@@ -7,6 +7,9 @@
   "types": "typings/package/main/main.d.ts",
   "author": "{author}",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-external-helpers": "^7.2.0",
@@ -27,6 +30,8 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.2",
     "@types/pino": "^5.8.12",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
     "@types/selenium-webdriver": "^4.0.5",
     "@types/webpack-env": "^1.14.1",
     "alo": "^4.0.0-alpha.13",
@@ -70,11 +75,12 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
-    "preact": "^10.0.1",
-    "preact-render-to-string": "^5.1.0",
     "prettier": "^1.18.2",
     "preval.macro": "^3.0.0",
     "raw-loader": "^3.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
     "react-helmet-async": "^1.0.4",
     "react-router5": "^7.1.0",
     "resolve-url-loader": "^3.1.0",
@@ -121,6 +127,7 @@
     "express": "^4.17.1",
     "faye": "^1.2.4",
     "lodash": "^4.17.15",
+    "patch-package": "^6.2.0",
     "source-map-support": "^0.5.13"
   }
 }

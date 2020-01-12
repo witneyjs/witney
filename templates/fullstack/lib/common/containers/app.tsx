@@ -1,8 +1,8 @@
-import { h } from "preact";
-import { Observer } from "../../front/containers/observer";
+import React from "react";
+import { Observer } from "./observer";
 import { Globals } from "./globals";
-import { RouterProvider } from "@react-router5";
-import { HelmetProvider } from "@react-helmet-async";
+import { RouterProvider } from "react-router5";
+import { HelmetProvider } from "react-helmet-async";
 
 export class App extends Observer<{ globals }> {
   view(props) {
