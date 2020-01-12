@@ -61,7 +61,7 @@
     "ky": "^0.15.0",
     "ky-universal": "^0.3.0",
     "lost": "^8.3.1",
-    "mallery": "0.0.3",
+    "mallery": "1.0.0-alpha.3",
     "micromatch": "^4.0.2",
     "mini-css-extract-plugin": "^0.8.0",
     "mocha": "^6.2.2",

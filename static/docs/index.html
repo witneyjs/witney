@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>some-pkg</title>
+    <title>1.0.0-alpha.3</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="./app.min.css?v=0.0.3">
-    <script src="./app.min.js?v=0.0.3"></script>
+    <link rel="stylesheet" href="./main.css?v=1.0.0-alpha.3">
+    <script src="./main.js?v=1.0.0-alpha.3"></script>
     <link class="favicon" rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <!--<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">-->
   </head>
@@ -54,7 +54,7 @@ npm install -g hoppla;</code></pre>
 
     <script>
       var $ = document.querySelectorAll.bind(document)
-      new mallery($('#app')[0], {
+      new mallery.App($('#app')[0], {
  "config": {
   "colors": {
    "accent": "#222"
@@ -69,15 +69,12 @@ npm install -g hoppla;</code></pre>
    {
     "ext": ".md",
     "isDir": false,
-    "absolutePath": "/home/katja/Projects/witney/docs/README.md",
     "path": "index.html",
     "name": "README.md",
     "title": "some-pkg",
     "level": 0,
     "id": 0,
     "htmlPath": "raw/index.html",
-    "absoluteHtmlOutputPath": "/home/katja/Projects/witney/static/docs/raw/index.html",
-    "absoluteOutputPath": "/home/katja/Projects/witney/static/docs/index.html",
     "baseUrl": "./",
     "chapters": {
      "root": [
@@ -192,7 +189,6 @@ npm install -g hoppla;</code></pre>
    {
     "ext": "",
     "isDir": true,
-    "absolutePath": "/home/katja/Projects/witney/docs/getting_started",
     "path": "getting_started",
     "name": "getting_started",
     "children": [
@@ -201,22 +197,17 @@ npm install -g hoppla;</code></pre>
     "level": 0,
     "id": 1,
     "htmlPath": "raw/getting_started",
-    "absoluteHtmlOutputPath": "/home/katja/Projects/witney/static/docs/raw/getting_started",
-    "absoluteOutputPath": "/home/katja/Projects/witney/static/docs/getting_started",
     "baseUrl": "./",
     "title": "Getting Started"
    },
    {
     "ext": ".md",
     "isDir": false,
-    "absolutePath": "/home/katja/Projects/witney/docs/getting_started/installation.md",
     "path": "getting_started/installation.html",
     "name": "installation.md",
     "level": 1,
     "id": 2,
     "htmlPath": "raw/getting_started/installation.html",
-    "absoluteHtmlOutputPath": "/home/katja/Projects/witney/static/docs/raw/getting_started/installation.html",
-    "absoluteOutputPath": "/home/katja/Projects/witney/static/docs/getting_started/installation.html",
     "baseUrl": "../",
     "title": "Installation",
     "chapters": {
@@ -247,15 +238,12 @@ npm install -g hoppla;</code></pre>
    {
     "ext": ".md",
     "isDir": false,
-    "absolutePath": "/home/katja/Projects/witney/docs/CHANGELOG.md",
     "path": "CHANGELOG.html",
     "name": "CHANGELOG.md",
     "title": "Changelog",
     "level": 0,
     "id": 3,
     "htmlPath": "raw/CHANGELOG.html",
-    "absoluteHtmlOutputPath": "/home/katja/Projects/witney/static/docs/raw/CHANGELOG.html",
-    "absoluteOutputPath": "/home/katja/Projects/witney/static/docs/CHANGELOG.html",
     "baseUrl": "./",
     "chapters": {
      "root": [
