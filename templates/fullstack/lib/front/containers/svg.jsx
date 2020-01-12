@@ -1,12 +1,11 @@
-import React from "react";
+import { memo } from "preact/compat";
+import { h } from "preact";
 
 export const svgSprite = function(svg) {
   const innerHtml = { __html: svg };
 
-  return React.memo(function() {
-    return (
-      <div style={{ display: "none" }} dangerouslySetInnerHTML={innerHtml} />
-    );
+  return memo(function() {
+    return <div style="display: none;" dangerouslySetInnerHTML={innerHtml} />;
   });
 };
 

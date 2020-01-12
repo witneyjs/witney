@@ -33,6 +33,9 @@ declare module "*.worker.ts" {
   export default content;
 }
 
+declare module "@react-router5";
+declare module "@react-helmet-async";
+
 declare const BUILD: {
   NAMESPACE_ID: string;
   NODE_ENV: string;

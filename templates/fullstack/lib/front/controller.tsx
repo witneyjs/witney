@@ -1,5 +1,4 @@
-import React from "react";
-import { render } from "react-dom";
+import { h, render } from "preact";
 import { constants } from "router5";
 import ky from "ky-universal";
 

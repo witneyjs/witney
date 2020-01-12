@@ -134,7 +134,12 @@ module.exports = function({
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       alias: {
         "@lib": paths.lib(),
-        "@project": paths.project()
+        "@project": paths.project(),
+        "@react-router5": paths.lib("common/vendor/react-router5.js"),
+        "@react-helmet-async": paths.lib("common/vendor/react-helmet-async.js"),
+        react: "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat"
       }
     },
     plugins: {

@@ -1,8 +1,8 @@
 import { createRouter, cloneRouter, constants } from "router5";
 import { renderStylesToString } from "emotion-server";
-import { renderToString } from "react-dom/server";
+import { render } from "preact-render-to-string";
 import got from "got";
-import React from "react";
+import { h } from "preact";
 import _ from "lodash";
 import fs from "fs";
 import { promisify } from "util";
@@ -101,7 +101,7 @@ export const createControllerMiddleware = async function({
       globals.view = routePart.view;
 
       const viewResult = renderStylesToString(
-        renderToString(<App globals={globals} />)
+        render(<App globals={globals} />)
       );
 
       let indexHtml = await getIndexHtml({ frontDevUrl, frontNameSpaceId });

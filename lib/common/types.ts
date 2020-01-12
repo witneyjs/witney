@@ -1,5 +1,5 @@
 import { Router, Route } from "router5";
-import { Component } from "react";
+import { Component } from "preact";
 
 export type Globals = {
   data: any;

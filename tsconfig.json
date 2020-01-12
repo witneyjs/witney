@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "jsx": "react",
+        "jsxFactory": "h",
         "noEmit": true,
         "lib": [
             "dom",
@@ -22,7 +23,9 @@
             ],
             "@project/*": [
                 "../*"
-            ]
+            ],
+            "react": ["../node_modules/preact/compat"],
+            "react-dom": ["../node_modules/preact/compat"]
         }
     },
     "include": [
