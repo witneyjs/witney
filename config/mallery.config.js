@@ -8,9 +8,6 @@ module.exports = {
     output: "../static/docs",
     public: "../docs/public"
   },
-  colors: {
-    accent: "#222"
-  },
   toc: [
     { title: pkg.name, path: "README.md" },
     { path: "getting_started", children: [{ path: "installation.md" }] },
