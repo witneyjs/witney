@@ -5,10 +5,12 @@
 Witney is a template for javascript/typescript front- and backend projects with multiple entry points.
 
 <% if (input.pkg.homepage) { %>
-# [<%= input.pkg.name %>](<%= input.pkg.homepage %>) &middot; <%- include('/tpl-lib/badges') -%>
+# [<%= input.pkg.name %>](<%= input.pkg.homepage %>)
 <% } else { %>
-# <%= input.pkg.name %> &middot; <%- include('/tpl-lib/badges') -%>
+# <%= input.pkg.name %>
 <% } %>
+
+<%- include('/tpl-lib/badges') %>
 
 <%= input.pkg.description %>
 
