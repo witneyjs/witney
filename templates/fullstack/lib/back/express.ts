@@ -18,7 +18,11 @@ export const createExpress = async function({
 
   const frontNameSpaceConfig = __non_webpack_require__(
     paths.config(`${frontNameSpaceId}/config.js`)
-  )();
+  )({
+    envIsWatch: BUILD.IS_WATCH,
+    envIsTest: BUILD.IS_TEST,
+    envIsProd: BUILD.IS_PROD
+  });
   const frontDevUrl = `http://localhost:${frontNameSpaceConfig.devServerPort}`;
 
   if (BUILD.IS_WATCH) {

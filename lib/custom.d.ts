@@ -36,7 +36,7 @@ declare module "*.worker.ts" {
 declare const BUILD: {
   NAMESPACE_ID: string;
   NODE_ENV: string;
-  TEST: boolean;
+  IS_TEST: boolean;
   IS_NODE: boolean;
   IS_DEV: boolean;
   IS_PROD: boolean;

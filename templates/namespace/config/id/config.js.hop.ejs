@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function({ envIsTest }) {
   let config = {
     isNode: <%= input.isNode ? 'true': 'false' %>,
     isLibrary: <%= input.isLibrary ? 'true': 'false' %>,
@@ -10,6 +10,7 @@ module.exports = function() {
   config.useWorkBox = !config.isLibrary;
   config.useHtmlCreation = !config.isLibrary;
   config.useCodeSplitting = !config.isLibrary;
+  config.excludeExternals = envIsTest || config.isNode;
 
   return config;
 };

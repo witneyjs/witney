@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { paths, mergeDirectories } = require("../../lib/node");
+const { loadConfig } = require("../../lib/node/namespace");
 const concat = require("../../lib/node/concatJs");
 const { runScript } = require("../../lib/node/scripts");
 
@@ -175,7 +176,7 @@ const build = function({
     } catch (err) {}
   }
 
-  const nameSpaceConfig = require(paths.config(`${nameSpaceId}/config.js`))();
+  const nameSpaceConfig = loadConfig(nameSpaceId);
 
   if (!testing && !argv.watch && !nameSpaceConfig.isNode) {
     const staticDir = paths.static(nameSpaceId);

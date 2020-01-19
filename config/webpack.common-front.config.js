@@ -46,7 +46,7 @@ module.exports = function({
   isLibrary,
   useHtmlCreation
 }) {
-  const envIsTesting = util.envIsTesting(env);
+  const envIsTest = util.envIsTest(env);
   const devMode = process.env.NODE_ENV !== "production";
 
   const config = {
@@ -106,7 +106,7 @@ module.exports = function({
     const distFiles = shell.ls("-RA", outputDir);
 
     let dynamicGlobPatterns = [];
-    if (!envIsTesting && useHtmlCreation)
+    if (!envIsTest && useHtmlCreation)
       dynamicGlobPatterns.push("app-shell.html");
     let workBoxOptions = {
       exclude: [/index\.html/, /\.map$/],
@@ -182,7 +182,7 @@ module.exports = function({
       (config.optimization.runtimeChunk = "single");
   }
 
-  if (!envIsTesting && useHtmlCreation) {
+  if (!envIsTest && useHtmlCreation) {
     let htmlWebpackPluginOptions = {
       template: paths.lib(`${nameSpaceId}/assets/index.html`)
     };

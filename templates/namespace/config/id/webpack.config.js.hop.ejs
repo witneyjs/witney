@@ -1,4 +1,5 @@
 const common = require("../../lib/node");
+const { loadConfig } = require("../../lib/node/namespace");
 const webpackUtil = common.webpack;
 const paths = common.paths;
 const _ = require("lodash");
@@ -6,23 +7,23 @@ const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const pkg = require(paths.project("package.json"));
 
 module.exports = function(env, argv) {
-  const nameSpace = require("./config")();
+  const envIsWatch = webpackUtil.envIsWatch();
+  const envIsTest = webpackUtil.envIsTest();
+  const envIsProd = webpackUtil.envIsProd();
 
-  const envIsWatching = webpackUtil.envIsWatching();
-  const envIsTesting = webpackUtil.envIsTesting();
-  const envIsProd = process.env.NODE_ENV === "production";
+  const nameSpace = loadConfig("<%= input.id %>")
 
   const nameSpaceId = nameSpace.id;
   const isLibrary = nameSpace.isLibrary;
   const useWorkBox = nameSpace.useWorkBox && !nameSpace.isNode;
   const useHot =
     nameSpace.useHot &&
-    envIsWatching &&
+    envIsWatch &&
     !envIsProd &&
     !nameSpace.isNode &&
-    !envIsTesting;
+    !envIsTest;
   const useCodeSplitting =
-    nameSpace.useCodeSplitting && !envIsTesting && !nameSpace.isNode && !useHot;
+    nameSpace.useCodeSplitting && !envIsTest && !nameSpace.isNode && !useHot;
   const useHtmlCreation = nameSpace.useHtmlCreation && !nameSpace.isNode;
 
   let nameSpaceConfig = require("../webpack.common-namespace.config")({
@@ -35,6 +36,7 @@ module.exports = function(env, argv) {
   let commonConfig = require("../webpack.common.config")({
     env,
     argv,
+    nameSpace,
     isNode: nameSpace.isNode,
     outputDir,
     nameSpaceId,
@@ -58,7 +60,7 @@ module.exports = function(env, argv) {
   config = _.merge(config, envConfig);
   config = _.merge(config, nameSpaceConfig);
 
-  if (envIsTesting) {
+  if (envIsTest) {
     const testingConfig = require("../webpack.common-testing.config.js")({
       env,
       argv

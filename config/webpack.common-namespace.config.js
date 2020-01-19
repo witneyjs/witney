@@ -12,19 +12,19 @@ module.exports = function({
 }) {
   const nameSpaceLibMainDir = paths.lib(`${nameSpaceId}/${MAIN_DIR_NAME}`);
 
-  const envIsTesting = util.envIsTesting(env);
-  const nameSpaceOutputDir = envIsTesting
+  const envIsTest = util.envIsTest(env);
+  const nameSpaceOutputDir = envIsTest
     ? paths.testDist(nameSpaceId)
     : paths.dist(nameSpaceId);
 
-  const outputFileNamePrefix = envIsTesting ? `${nameSpaceId}.` : "";
+  const outputFileNamePrefix = envIsTest ? `${nameSpaceId}.` : "";
   const chunkFilename = `${outputFileNamePrefix}[name].[chunkhash].js`;
   // https://github.com/webpack/webpack/issues/6598#issuecomment-399647268
   const outputFileName = useCodeSplitting
     ? chunkFilename
     : `${outputFileNamePrefix}[name].js`;
 
-  const entries = util.getEntriesFromDir(nameSpaceLibMainDir, envIsTesting);
+  const entries = util.getEntriesFromDir(nameSpaceLibMainDir, envIsTest);
 
   let config = {
     entry: entries,

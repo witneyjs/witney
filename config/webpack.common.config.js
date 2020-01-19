@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const createCssRule = ({
   test,
   useModules = true,
-  envIsTesting,
+  envIsTest,
   envIsProd,
   useSass = false,
   usePostCss = false,
@@ -19,7 +19,7 @@ const createCssRule = ({
     test: test,
     use: []
   };
-  if (!envIsTesting) {
+  if (!envIsTest) {
     let styleLoader = {
       loader: !envIsProd ? "style-loader" : MiniCssExtractPlugin.loader
     };
@@ -112,9 +112,10 @@ module.exports = function({
   isNode = false,
   outputDir,
   isLibrary = false,
-  nameSpaceId
+  nameSpaceId,
+  nameSpace
 }) {
-  const envIsTesting = util.envIsTesting(env);
+  const envIsTest = util.envIsTest(env);
   const envIsProd = process.env.NODE_ENV === "production";
 
   const config = {
@@ -186,14 +187,14 @@ module.exports = function({
         },
         pcssModule: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /\.module\.pcss$/,
           usePostCss: true,
           isNode
         }),
         pcss: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /^(?!.*\.module).*\.pcss$/,
           usePostCss: true,
           useModules: false,
@@ -201,14 +202,14 @@ module.exports = function({
         }),
         sassModule: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /\.module\.scss$/,
           useSass: true,
           isNode
         }),
         sass: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /^(?!.*\.module).*\.scss$/,
           useSass: true,
           useModules: false,
@@ -216,13 +217,13 @@ module.exports = function({
         }),
         cssModule: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /\.module\.css$/,
           isNode
         }),
         css: createCssRule({
           envIsProd,
-          envIsTesting,
+          envIsTest,
           test: /^(?!.*\.module).*\.css$/,
           useModules: false,
           isNode
@@ -258,7 +259,7 @@ module.exports = function({
     config.optimization.sideEffects = false;
   }
 
-  if (envIsTesting || isNode) {
+  if (nameSpace.excludeExternals) {
     const nodeExternals = require("webpack-node-externals");
     config.externals.push(
       nodeExternals({
