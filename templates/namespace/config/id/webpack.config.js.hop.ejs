@@ -11,7 +11,7 @@ module.exports = function(env, argv) {
   const envIsTest = webpackUtil.envIsTest();
   const envIsProd = webpackUtil.envIsProd();
 
-  const nameSpace = loadConfig("<%= input.id %>")
+  const nameSpace = loadConfig("<%= input.id %>");
 
   const nameSpaceId = nameSpace.id;
   const isLibrary = nameSpace.isLibrary;

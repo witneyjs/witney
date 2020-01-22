@@ -259,18 +259,21 @@ module.exports = function({
     config.optimization.sideEffects = false;
   }
 
-  if (nameSpace.excludeExternals) {
+  if (envIsTest) {
     const nodeExternals = require("webpack-node-externals");
     config.externals.push(
       nodeExternals({
         // https://www.npmjs.com/package/webpack-node-externals#how-can-i-bundle-required-assets-ie-css-files-from-node_modules
-        whitelist: [
-          /\.(?!(?:jsx?|json|tsx?)$).{1,5}$/i,
-          /react-router5/,
-          /react-helmet-async/
-        ]
+        whitelist: [/\.(?!(?:jsx?|json|tsx?)$).{1,5}$/i]
       })
     );
+  } else {
+    if (nameSpace.isNode) {
+      config.externals.push({
+        express: 'require("express")',
+        got: 'require("got")'
+      });
+    }
   }
 
   return config;
