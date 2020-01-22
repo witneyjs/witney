@@ -10,7 +10,7 @@ const createCssRule = ({
   envIsTest,
   envIsProd,
   useSass = false,
-  usePostCss = false,
+  usePostCss = true,
   isNode
 }) => {
   const useSourceMap = true;
@@ -189,14 +189,12 @@ module.exports = function({
           envIsProd,
           envIsTest,
           test: /\.module\.pcss$/,
-          usePostCss: true,
           isNode
         }),
         pcss: createCssRule({
           envIsProd,
           envIsTest,
           test: /^(?!.*\.module).*\.pcss$/,
-          usePostCss: true,
           useModules: false,
           isNode
         }),
