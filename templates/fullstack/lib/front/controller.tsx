@@ -3,11 +3,46 @@ import { render } from "react-dom";
 import { constants } from "router5";
 import ky from "ky-universal";
 
-import { App } from "@lib/common/containers/app";
 import { createFrontActionResult } from "@lib/common/controllers";
 import { batchEnd, batchStart } from "alo";
 
-export const createController = function({ config, globals }) {
+const loadActionResult = async function(globals, route) {
+  let actionResultResponse: Response | null = null;
+  let actionResult: ReturnType<typeof createFrontActionResult> | undefined;
+
+  let error = null;
+
+  try {
+    actionResultResponse = await ky(route.path, {
+      retry: 5,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+  } catch (err) {
+    error = err;
+  }
+
+  if (actionResultResponse && actionResultResponse.ok) {
+    actionResult = await actionResultResponse.json();
+  }
+
+  if (actionResult && actionResult.redirect) {
+    location.replace(actionResult.redirect.url);
+  }
+
+  batchStart();
+  if (actionResult) {
+    globals.data = actionResult.data;
+    globals.loadError = null;
+  } else {
+    globals.loadError = error || "Request json invalid";
+  }
+  globals.loading = false;
+  batchEnd();
+};
+
+export const createController = function({ config, globals, App }) {
   let initialUpdate = true;
 
   return async function(route) {
@@ -16,35 +51,17 @@ export const createController = function({ config, globals }) {
         ? config.notFoundRoute
         : route.name;
 
-    const nextViewPromise = config.routes[routeName].view();
-
-    let actionResultResponse: Response;
-    let actionResult: ReturnType<typeof createFrontActionResult> | undefined;
-    if (!initialUpdate) {
-      actionResultResponse = await ky(route.path, {
-        headers: {
-          Accept: "application/json"
-        }
-      });
-      if (actionResultResponse.ok) {
-        actionResult = await actionResultResponse.json();
-      } else {
-        console.error("Something went wrong");
-      }
-    }
-
-    if (actionResult && actionResult.redirect) {
-      location.replace(actionResult.redirect.url);
-    }
-
-    const nextView = await nextViewPromise;
-
     batchStart();
-    globals.view = nextView;
-    if (!initialUpdate && actionResult) {
-      globals.data = actionResult.data;
+    globals.view = config.routes[routeName].view;
+    if (!initialUpdate) {
+      globals.loading = true;
+      globals.loadError = null;
     }
     batchEnd();
+
+    if (!initialUpdate) {
+      loadActionResult(globals, route);
+    }
 
     if (initialUpdate) {
       render(<App globals={globals} />, document.querySelector(".root")!);

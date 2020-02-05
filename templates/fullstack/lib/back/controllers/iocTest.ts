@@ -1,12 +1,15 @@
 import { createBlueprint } from "wald";
+import { createActionResult } from ".";
 
 export default createBlueprint({
   create: () => ({
     index() {
-      return {
-        label: "ioc success",
-        color: "pink"
-      };
+      return createActionResult({
+        data: {
+          label: "ioc success",
+          color: "pink"
+        }
+      });
     }
   })
 });

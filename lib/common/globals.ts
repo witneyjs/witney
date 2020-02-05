@@ -8,6 +8,8 @@ export const createGlobals = function(): Globals {
       router: null as any,
       route: null as any,
       view: null as any,
+      loading: false as boolean,
+      loadError: null as any,
       helmetContext: {} as any
     },
     false

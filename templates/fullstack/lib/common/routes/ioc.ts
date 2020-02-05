@@ -9,7 +9,7 @@ export default function(routes) {
       BUILD.IS_NODE &&
       curryImport(() => import("@lib/back/controllers/iocTest"), "default"),
     action: "index",
-    view: curryImport(() => import("@lib/front/screens/home"), "default")
+    view: "home"
   });
 
   return routes;

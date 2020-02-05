@@ -23,7 +23,7 @@ export const loadRouteParts = async function({
     routeParts[routeName] = {
       controller,
       controllerIsFunction: typeof controller === "function",
-      view: await route.view()
+      view: route.view
     };
   }
 

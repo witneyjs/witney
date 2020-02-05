@@ -31,8 +31,10 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
   S
 > {
   updating = false;
-  stopComputation;
+  computation;
   renderedVnode;
+  id;
+  computing = false;
 
   observers: ReturnType<typeof observe>[] = [];
   observeFunctions: ObserveFn[] = [];
@@ -58,9 +60,16 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
   }
 
   startComputation() {
+    this.computing = true;
     const [computed, stopComputation] = computation(this.createComputation());
     this.$computed = computed;
-    this.stopComputation = stopComputation;
+    this.computation = stopComputation;
+  }
+
+  stopComputation() {
+    this.computing = false;
+    this.computation();
+    this.computation = null;
   }
 
   createComputation() {
@@ -83,7 +92,6 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
 
     this.startComputation();
     this.stopComputation();
-    this.stopComputation = null;
   }
 
   mapPropsToOps() {
@@ -102,6 +110,8 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
   }
 
   viewObserver = $computed => {
+    if (!this.computing) return this.renderedVnode;
+
     if (this.$props["view"]) {
       this.view = this.$props["view"];
     }
@@ -121,7 +131,7 @@ export class Observer<P = { createState?; view? }, S = {}> extends Component<
     this.startComputation();
   }
 
-  componentwillUnmount() {
+  componentWillUnmount() {
     this.stopComputation();
     this.stopObservers();
   }

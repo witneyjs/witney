@@ -5,6 +5,8 @@ export type Globals = {
   data: any;
   router: Router;
   route: Route;
-  view: Component;
+  view: string;
+  loadError: any;
+  loading: boolean;
   helmetContext: any;
 };

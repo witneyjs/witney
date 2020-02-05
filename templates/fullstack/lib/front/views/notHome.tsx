@@ -8,7 +8,7 @@ const NotHome = function({ data, router }) {
       <button
         className={styles.button}
         onClick={() => {
-          router.navigate(HOME_ROUTE);
+          router.navigate(HOME_ROUTE, { reload: true });
         }}
       >
         Go to home

@@ -3,6 +3,6 @@ export type NewRoute = {
   path: string;
   controller: Function | boolean;
   action?: string;
-  view: Function;
+  view: string;
 };
 export type Route = NewRoute & { action: string };

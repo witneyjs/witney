@@ -6,6 +6,7 @@ import { createRouter } from "./router";
 import { config } from "../common/config";
 import { createController } from "./controller";
 import { createGlobals } from "@lib/common/globals";
+import { App } from "../common/containers/app";
 
 const globals = createGlobals();
 
@@ -15,8 +16,8 @@ if (window["ACTION_RESULT"]) {
 
 let router: Router;
 let unsubscribe;
-const init = function() {
-  let controller = createController({ config, globals });
+const init = function(App) {
+  let controller = createController({ config, globals, App });
 
   if (router) {
     unsubscribe();
@@ -26,6 +27,7 @@ const init = function() {
   batchStart();
 
   router = createRouter({ config });
+  globals.router = router;
   unsubscribe = router.subscribe(function({ route }) {
     globals.route = route;
     if (!route) {
@@ -34,17 +36,20 @@ const init = function() {
     controller(route);
   });
   router.start();
-  globals.router = router;
 
   batchEnd();
 };
 
-init();
+init(App);
 
 if (module.hot) {
-  module.hot.accept("../common/config", function() {
-    init();
-  });
+  module.hot.accept(
+    ["../common/config", "../common/containers/app.tsx"],
+    function() {
+      const App = require("../common/containers/app").App;
+      init(App);
+    }
+  );
   let reloadInterval;
   module.hot.addStatusHandler(function(status) {
     // TODO: Check if webpack 5 might bring a better solution

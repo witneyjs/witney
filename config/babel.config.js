@@ -26,6 +26,7 @@ module.exports = function({ isNode } = { isNode: false }) {
     "@babel/plugin-syntax-dynamic-import",
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",
+    "universal-import",
     "lodash",
     emotionPlugin,
     "macros"

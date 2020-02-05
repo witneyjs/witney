@@ -38,7 +38,7 @@ const Home = function({ data, router }) {
       </h1>
       <button
         onClick={() => {
-          router.navigate(NOT_HOME_ROUTE);
+          router.navigate(NOT_HOME_ROUTE, { reload: true });
         }}
       >
         Go to notHome

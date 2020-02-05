@@ -6,7 +6,6 @@ const paths = common.paths;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const webpack = require("webpack");
@@ -52,12 +51,7 @@ module.exports = function({
   const config = {
     output: {},
     target: "web",
-    plugins: {
-      miniCssExtract: new MiniCssExtractPlugin({
-        filename: devMode ? "[name].css" : "[name].[hash].css",
-        chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
-      })
-    },
+    plugins: {},
     module: {
       rules: {
         images: {
@@ -82,11 +76,6 @@ module.exports = function({
         }
       }
     },
-    optimization: {
-      minimizer: {
-        optimizeCSSAssets: new OptimizeCSSAssetsPlugin({})
-      }
-    },
     devServer: {
       hot: useHot,
       contentBase: [outputDir, paths.static(nameSpaceId)],
@@ -101,6 +90,14 @@ module.exports = function({
       child_process: "empty"
     }
   };
+
+  if (!devMode) {
+    config.optimization = {
+      minimizer: {
+        optimizeCSSAssets: new OptimizeCSSAssetsPlugin({})
+      }
+    };
+  }
 
   if (useWorkBox) {
     const distFiles = shell.ls("-RA", outputDir);
@@ -166,8 +163,7 @@ module.exports = function({
     config.output.globalObject = "typeof self !== 'undefined' ? self : this";
   }
 
-  if (useCodeSplitting) {
-    config.plugins.hashedModuleIds = new webpack.HashedModuleIdsPlugin();
+  if (useCodeSplitting && !devMode) {
     config.optimization = config.optimization || {};
     (config.optimization.splitChunks = {
       chunks: "all",

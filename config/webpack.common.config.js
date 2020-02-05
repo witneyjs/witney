@@ -2,7 +2,9 @@ const common = require("../lib/node");
 const util = common.webpack;
 const paths = common.paths;
 const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
+const StatsPlugin = require("stats-webpack-plugin");
+const webpack = require("webpack");
 
 const createCssRule = ({
   test,
@@ -21,7 +23,10 @@ const createCssRule = ({
   };
   if (!envIsTest) {
     let styleLoader = {
-      loader: !envIsProd ? "style-loader" : MiniCssExtractPlugin.loader
+      loader: ExtractCssChunks.loader,
+      options: {
+        hmr: util.envIsWatch()
+      }
     };
     let cssLoader = {
       loader: "css-loader",
@@ -257,6 +262,8 @@ module.exports = function({
     config.optimization.sideEffects = false;
   }
 
+  config.plugins.stats = new StatsPlugin("stats.json");
+
   if (envIsTest) {
     const nodeExternals = require("webpack-node-externals");
     config.externals.push(
@@ -272,6 +279,17 @@ module.exports = function({
         got: 'require("got")'
       });
     }
+  }
+
+  if (envIsProd) {
+    config.plugins.hashedModuleIds = new webpack.HashedModuleIdsPlugin();
+  }
+
+  if (!isNode) {
+    config.plugins.extractCssChunks = new ExtractCssChunks({
+      filename: !envIsProd ? "[name].css" : "[name].[hash].css",
+      chunkFilename: !envIsProd ? "[id].css" : "[id].[hash].css"
+    });
   }
 
   return config;

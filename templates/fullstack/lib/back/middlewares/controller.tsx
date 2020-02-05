@@ -7,6 +7,8 @@ import _ from "lodash";
 import fs from "fs";
 import { promisify } from "util";
 const readFile = promisify(fs.readFile);
+import { flushChunkNames } from "react-universal-component/server";
+import flushChunks from "webpack-flush-chunks";
 
 import { IocInterface } from "wald";
 import paths from "@lib/node/paths";
@@ -104,6 +106,24 @@ export const createControllerMiddleware = async function({
         renderToString(<App globals={globals} />)
       );
 
+      let stats;
+      if (!BUILD.IS_WATCH) {
+        stats = __non_webpack_require__(paths.dist("front/stats.json"));
+      } else {
+        // Could be improved with write-file-webpack-plugin
+        // But there is currently an issue: https://github.com/gajus/write-file-webpack-plugin/issues/74
+        stats = await got(`${frontDevUrl}/stats.json`).json();
+      }
+
+      let styleChunks = "";
+      let jsChunks = "";
+      if (stats) {
+        const chunkNames = flushChunkNames();
+        const { js, styles } = flushChunks(stats, { chunkNames });
+        styleChunks = styles.toString();
+        jsChunks = js.toString();
+      }
+
       let indexHtml = await getIndexHtml({ frontDevUrl, frontNameSpaceId });
 
       indexHtml = indexHtml.replace("<!-- SSR_YIELD_APP -->", viewResult);
@@ -111,8 +131,18 @@ export const createControllerMiddleware = async function({
         "<!-- SSR_ACTION_RESULT -->",
         `<script>var ACTION_RESULT = ${JSON.stringify(
           frontActionResult
-        )}</script>`
+        )}</script>
+        ${styleChunks}
+        `
       );
+
+      if (jsChunks) {
+        indexHtml = indexHtml.replace(
+          /<!-- SSR_BODY_END -->[\s\S]*<\/body>/,
+          `
+        ${jsChunks}</body>`
+        );
+      }
 
       const helmet = globals.helmetContext.helmet;
       indexHtml = indexHtml.replace(
