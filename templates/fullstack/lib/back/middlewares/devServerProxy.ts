@@ -19,10 +19,7 @@ export const createDevServerProxyMiddleware = function({ frontDevUrl }) {
           .on("end", function() {
             resolve();
           });
-        readStream.pipe(
-          res,
-          { end: false }
-        );
+        readStream.pipe(res, { end: false });
       });
     } catch (err) {
       if (err.response.statusCode !== 404) {

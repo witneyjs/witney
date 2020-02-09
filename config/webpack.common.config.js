@@ -90,15 +90,11 @@ const createCssRule = ({
             implementation: require("sass"),
             // Always has to be enabled for resolve-url-loader
             sourceMap: true,
-            sourceMapContents: false
+            sassOptions: {
+              sourceMapContents: false
+            }
           }
         };
-
-        // Add Fiber if it is installed
-        try {
-          const Fiber = require("fibers");
-          sassLoader.options.fiber = Fiber;
-        } catch (err) {}
 
         cssRule.use.push(sassLoader);
       }
@@ -154,7 +150,10 @@ module.exports = function({
         terser: new TerserPlugin({
           cache: true,
           parallel: true,
-          sourceMap: true
+          sourceMap: true,
+          // Mostly has to be disabled because it adds its banner text in front of our own banner (getBannerPlugin)
+          // Our own banner adds #!/usr/bin/env node to files which would only be on the second line after the terser banner
+          extractComments: false
         })
       }
     },

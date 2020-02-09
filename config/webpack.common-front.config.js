@@ -99,7 +99,8 @@ module.exports = function({
     };
   }
 
-  if (useWorkBox) {
+  // TODO: Has to be upgraded for workbox 5
+  if (false && useWorkBox) {
     const distFiles = shell.ls("-RA", outputDir);
 
     let dynamicGlobPatterns = [];
