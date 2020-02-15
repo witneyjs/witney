@@ -3,8 +3,9 @@ const pino = require("pino")({ prettyPrint: { forceColor: true } });
 const yargs = require("yargs");
 const fs = require("fs");
 const path = require("path");
+const { copyRecursive } = require("hoppla");
 
-const { paths, mergeDirectories } = require("../../lib/node");
+const { paths } = require("../../lib/node");
 const { loadConfig } = require("../../lib/node/namespace");
 const concat = require("../../lib/node/concatJs");
 const { runScript } = require("../../lib/node/scripts");
@@ -181,9 +182,12 @@ const build = function({
   if (!testing && !argv.watch && !nameSpaceConfig.isNode) {
     const staticDir = paths.static(nameSpaceId);
     if (fs.existsSync(staticDir)) {
-      mergeDirectories({
-        sourceDir: staticDir,
-        destinationDir: outputPath
+      copyRecursive({
+        source: staticDir,
+        destination: outputPath,
+        baseDir: paths.project(),
+        force: true,
+        exclude: [".gitkeep"]
       });
     }
   }
