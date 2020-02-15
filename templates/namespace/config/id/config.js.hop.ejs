@@ -10,6 +10,7 @@ module.exports = function({ envIsTest }) {
   config.useWorkBox = !config.isLibrary;
   config.useHtmlCreation = !config.isLibrary;
   config.useCodeSplitting = !config.isLibrary;
+  config.useStats = !config.isLibrary;
 
   return config;
 };

@@ -258,7 +258,9 @@ module.exports = function({
     config.optimization.sideEffects = false;
   }
 
-  config.plugins.stats = new StatsPlugin("stats.json");
+  if (nameSpace.useStats) {
+    config.plugins.stats = new StatsPlugin("stats.json");
+  }
 
   if (envIsTest) {
     const nodeExternals = require("webpack-node-externals");
