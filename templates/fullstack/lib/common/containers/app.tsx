@@ -1,8 +1,8 @@
 import React from "react";
 import { RouterProvider } from "react-router5";
 import { HelmetProvider } from "react-helmet-async";
+import { Observer } from "react-alo";
 
-import { Observer } from "./observer";
 import { Globals } from "./globals";
 import { UniversalView } from "./universalView";
 
