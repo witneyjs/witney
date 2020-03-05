@@ -14,5 +14,6 @@
         'tmp/!(.gitkeep)*',
         'docs/public/CNAME'
     ],
+    prepare: return hoppla.require('lib/tpl-lib/prepare.js')(hoppla)
     finalize: return hoppla.require('lib/tpl-lib/finalize.js')(hoppla)
 }
