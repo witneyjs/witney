@@ -1,11 +1,13 @@
 {
-  "name": "some-pkg",
+  "name": "witney",
   "version": "0.0.1",
-  "description": "Some project description",
+  "description": "Template for javascript/typescript front- and backend projects",
   "main": "index.js",
   "homepage": "https://github.com/witneyjs/witney",
   "types": "typings/package/main/main.d.ts",
-  "author": "{author}",
+  "authors": [
+    "Katja Lutz <opensource@katjalutz.ch>"
+  ],
   "license": "MIT",
   "scripts": {
     "postinstall": "patch-package"
@@ -64,7 +66,7 @@
     "ky-universal": "^0.5.0",
     "lodash": "^4.17.15",
     "lost": "^8.3.1",
-    "mallery": "1.0.0-alpha.3",
+    "mallery": "1.0.0-alpha.4",
     "micromatch": "^4.0.2",
     "mocha": "^7.1.0",
     "nodemon": "^2.0.2",
@@ -97,6 +99,7 @@
     "sass-loader": "^8.0.2",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "shelljs": "^0.8.3",
+    "standard-version": "^7.1.0",
     "stats-webpack-plugin": "^0.7.0",
     "style-loader": "^1.1.3",
     "svgo": "^1.3.2",
@@ -123,7 +126,12 @@
     "licenseUrl": "https://opensource.org/licenses/MIT",
     "repoStaticUrl": "https://raw.github.com/witneyjs/witney/${branch}/",
     "readmeSvgUrlSuffix": "?sanitize=true",
-    "bannerCopyright": "Copyright(c) {year} {name} {surname}"
+    "bannerCopyright": "Copyright(c) 2019-present Katja Lutz"
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "node scripts/readme.js -q && node scripts/docs.js && git add docs README.md static/docs static/readme"
+    }
   },
   "repository": {
     "type": "git",

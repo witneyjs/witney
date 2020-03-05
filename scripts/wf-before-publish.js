@@ -29,11 +29,9 @@ Promise.resolve()
     pino.info(buildCommand);
     shell.exec(buildCommand);
 
-    const readmeCommand = `node ${paths.scripts("readme.js")}`;
-    pino.info(readmeCommand);
-    shell.exec(readmeCommand);
+    const testCommand = `node ${paths.scripts("test.js")}`;
+    pino.info(testCommand);
+    shell.exec(testCommand);
 
-    const docsCommand = `node ${paths.scripts("docs.js")}`;
-    pino.info(docsCommand);
-    shell.exec(docsCommand);
+    pino.info("Manual action: `npx standard-version -a -r major|minor|patch`");
   });
