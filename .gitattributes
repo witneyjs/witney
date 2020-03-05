@@ -1,5 +1,3 @@
-packages/concat-with-sourcemaps/* linguist-vendored
-
 docs/* linguist-documentation
 templates/* linguist-detectable=false
 config/* linguist-detectable=false
