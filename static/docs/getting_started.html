@@ -15,13 +15,33 @@
   <body>
     <div id="app">
       <main>
-        <img width="400px" style="max-width: 100%;" src="https://raw.github.com/witneyjs/witney/master/static/readme/logo.png" alt="logo"/>
-<hr>
-<h1 id="witney"><a href="#witney" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a><a href="https://github.com/witneyjs/witney" target="_blank">witney</a></h1>
-<p><a href="https://opensource.org/licenses/MIT"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.0.svg?sanitize=true" alt="license"></a> <a href="https://www.npmjs.com/package/witney"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.1.svg?sanitize=true" alt="npm"></a> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.2.svg?sanitize=true" alt="Tests"> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.3.svg?sanitize=true" alt="coverage"> <a href="https://prettier.io/"><img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.4.svg?sanitize=true" alt="code style"></a> <img src="https://raw.github.com/witneyjs/witney/master/static/readme/gen-badges/badge.5.svg?sanitize=true" alt="PRs"> </p>
-<p>Template for javascript/typescript front- and backend projects</p>
-<hr>
-<p>Read docs/getting_started.md to learn how to start using Witney for your next projects.</p>
+        <h1 id="getting-started"><a href="#getting-started" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Getting started</h1>
+<h2 id="clone-the-witney-repository"><a href="#clone-the-witney-repository" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Clone the witney repository</h2>
+<p>Witney is the raw project template. You can remove the original git origin and add changes to the template. Afterwards create new projects with <code>cp</code> or with <code>hoppla</code>.</p>
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> git@github.com:witneyjs/witney.git;
+npm install -g hoppla;</code></pre>
+<h2 id="start-a-new-project-from-your-local-witney-copy"><a href="#start-a-new-project-from-your-local-witney-copy" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Start a new project from your local witney copy</h2>
+<h3 id="initialize-new-project"><a href="#initialize-new-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Initialize new project</h3>
+<pre><code class="hljs language-bash">hoppla -t witney -d newProj -i <span class="hljs-string">"{ install: true }"</span>;
+<span class="hljs-built_in">cd</span> newProj;</code></pre>
+<h2 id="create-a-new-namespace-in-the-project"><a href="#create-a-new-namespace-in-the-project" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Create a new namespace in the project</h2>
+<h3 id="frontend"><a href="#frontend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Frontend</h3>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front' }"</span></code></pre>
+<h4 id="library"><a href="#library" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Library</h4>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'front', isLibrary: true }"</span></code></pre>
+<h3 id="backend"><a href="#backend" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Backend</h3>
+<pre><code class="hljs language-bash">npx hoppla -t templates/namespace/ -i <span class="hljs-string">"{ id: 'back', isNode: true }"</span></code></pre>
+<h3 id="fullstack"><a href="#fullstack" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Fullstack</h3>
+<pre><code class="hljs language-bash">npx hoppla -t templates/fullstack/</code></pre>
+<h4 id="starting-dev"><a href="#starting-dev" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Starting dev</h4>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Tab 1:</span>
+./scripts/front/build.js -w -d
+<span class="hljs-comment"># Tab 2:</span>
+./scripts/back/build.js -w -d
+<span class="hljs-comment"># Tab 3:</span>
+./scripts/back/start.js -w</code></pre>
+<h4 id="building-and-starting-prod"><a href="#building-and-starting-prod" aria-hidden="true"><span class="toc-link"><span class="icono-chain"></span></span></a>Building and starting prod</h4>
+<pre><code class="hljs language-bash">./scripts/build.js &#x26;&#x26; ./scripts/back/start.js</code></pre>
 
       </main>
     </div>
@@ -251,7 +271,7 @@
    2,
    3
   ],
-  "activeItemId": 0
+  "activeItemId": 1
  }
 });
     </script>
