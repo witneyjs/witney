@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/witneyjs/witney/compare/v0.1.0...v0.2.0) (2020-03-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* set babel node target at the correct config place (#54)
+
+### Bug Fixes
+
+* set babel node target at the correct config place ([#54](https://github.com/witneyjs/witney/issues/54)) ([6f46d9b](https://github.com/witneyjs/witney/commit/6f46d9bd3550d15cdf290fce39c7f54a8a8c83fa))
+
 ## 0.1.0 (2020-03-05)
 
 

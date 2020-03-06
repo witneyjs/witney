@@ -12,4 +12,4 @@ Template for javascript/typescript front- and backend projects
 
 -------
 
-Read docs/getting_started.md to learn how to start using Witney for your next projects.
+Read [Getting started](http://www.witneyjs.com/getting_started.html) to learn how to start using Witney for your next projects.
