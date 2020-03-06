@@ -29,7 +29,6 @@ const test = function({ nameSpaceId }) {
   let command = `npx nyc`;
   command += " --instrument false";
   command += " --source-map false";
-  command += " --extension .ts";
   // TODO: the all parameter currently doesnt work as expected and reduces the performance a lot
   // command += ' --all'
   command += ` --include lib/${nameSpaceId}`;
