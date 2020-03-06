@@ -41,8 +41,8 @@ module.exports = function({ isNode } = { isNode: false }) {
 
   // Define custom target platforms for babel
   if (isNode) {
-    babelPresetEnv[0][1].targets = {
-      node: "8"
+    babelPresetEnv[1].targets = {
+      node: 12
     };
   }
 
