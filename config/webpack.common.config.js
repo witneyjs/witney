@@ -116,8 +116,8 @@ module.exports = function({
   nameSpaceId,
   nameSpace
 }) {
-  const envIsTest = util.envIsTest(env);
-  const envIsProd = process.env.NODE_ENV === "production";
+  const envIsTest = util.envIsTest();
+  const envIsProd = util.envIsProd();
 
   const config = {
     context: paths.project(),

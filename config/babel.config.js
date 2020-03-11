@@ -1,7 +1,7 @@
 const paths = require("../lib/node/paths");
 
 module.exports = function({ isNode } = { isNode: false }) {
-  const envIsProd = process.env.NODE_ENV === "production";
+  const envIsProd = util.envIsProd();
 
   const transformReactJsxPlugin = [
     "@babel/transform-react-jsx",

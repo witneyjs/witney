@@ -12,7 +12,7 @@ module.exports = function({
 }) {
   const nameSpaceLibMainDir = paths.lib(`${nameSpaceId}/${MAIN_DIR_NAME}`);
 
-  const envIsTest = util.envIsTest(env);
+  const envIsTest = util.envIsTest();
   const nameSpaceOutputDir = envIsTest
     ? paths.testDist(nameSpaceId)
     : paths.dist(nameSpaceId);
