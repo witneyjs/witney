@@ -1,55 +1,29 @@
 # Getting started
 
-## Clone the witney repository
+## Download and prepare
 
-Witney is the raw project template. You can remove the original git origin and add changes to the template. Afterwards create new projects with `cp` or with `hoppla`.
+You can add changes to the template to prepare it for your use cases. Afterwards create new projects from it with `cp` or with [hoppla](https://github.com/hopplajs/hoppla).
 
 ```bash
 git clone git@github.com:witneyjs/witney.git;
-npm install -g hoppla;
+# Optionally customize the cloned template
 ```
 
 ## Start a new project from your local witney copy
 
-### Initialize new project
 ```bash
-hoppla -t witney -d newProj -i "{ install: true }";
+npx hoppla -t witney -d newProj -i "{ install: true }";
 cd newProj;
 ```
 
-## Create a new namespace in the project
-### Frontend
+## Building dev
+
 ```bash
-npx hoppla -t templates/namespace/ -i "{ id: 'front' }"
+./scripts/build.js -w
 ```
 
-#### Library
-```bash
-npx hoppla -t templates/namespace/ -i "{ id: 'front', isLibrary: true }"
-```
-
-### Backend
-```bash
-npx hoppla -t templates/namespace/ -i "{ id: 'back', isNode: true }"
-```
-
-### Fullstack
-```bash
-npx hoppla -t templates/fullstack/
-```
-
-#### Starting dev
+## Starting a server
 
 ```bash
-# Tab 1:
-./scripts/front/build.js -w -d
-# Tab 2:
-./scripts/back/build.js -w -d
-# Tab 3:
-./scripts/back/start.js -w
-```
-
-#### Building and starting prod
-```bash
-./scripts/build.js && ./scripts/back/start.js
+./scripts/start.js
 ```

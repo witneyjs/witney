@@ -1,148 +1,69 @@
 {
   "name": "witney",
   "version": "0.2.1",
-  "description": "Template for javascript/typescript front- and backend projects",
-  "main": "index.js",
-  "homepage": "https://github.com/witneyjs/witney",
-  "types": "typings/package/main/main.d.ts",
+  "description": "Don't wait to start with your javascript and typescript projects",
+  "source": "lib/main.ts",
+  "main": "dist/main.js",
+  "module": "dist/main.m.js",
+  "esmodule": "dist/main.modern.js",
+  "types": "dist/main.d.ts",
+  "unpkg": "dist/main.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "authors": [
     "Katja Lutz <opensource@katjalutz.ch>"
   ],
-  "license": "MIT",
-  "scripts": {
-    "postinstall": "patch-package"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/plugin-external-helpers": "^7.8.3",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-react-jsx": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.6",
-    "@babel/preset-typescript": "^7.8.3",
-    "@babel/runtime": "^7.8.4",
-    "@lufrai/concat-with-sourcemaps": "^1.1.0",
-    "@types/chai": "^4.2.9",
-    "@types/express": "^4.17.2",
-    "@types/express-http-proxy": "^1.5.12",
-    "@types/lodash": "^4.14.144",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.7",
-    "@types/pino": "^5.15.5",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
-    "@types/react-transition-group": "^4.2.4",
-    "@types/selenium-webdriver": "^4.0.8",
-    "@types/webpack-env": "^1.15.1",
-    "alo": "^4.0.0-alpha.13",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-emotion": "^10.0.29",
-    "babel-plugin-lodash": "^3.3.4",
-    "babel-plugin-macros": "^2.8.0",
-    "babel-plugin-universal-import": "^4.0.0",
-    "body-parser": "^1.19.0",
-    "chai": "^4.2.0",
-    "chalk": "^3.0.0",
-    "chromedriver": "^80.0.1",
-    "codegen.macro": "^3.0.0",
-    "cross-env": "^7.0.0",
-    "css-loader": "^3.4.2",
-    "emotion": "^10.0.17",
-    "emotion-server": "^10.0.17",
-    "express-http-proxy": "^1.6.0",
-    "extract-css-chunks-webpack-plugin": "^4.7.4",
-    "feathericon": "^1.0.2",
-    "file-loader": "^5.1.0",
-    "hoppla": "^0.14.1",
-    "html-webpack-plugin": "^4.0.0-beta.11",
-    "idx.macro": "^4.0.0",
-    "istanbul-instrumenter-loader": "^3.0.1",
-    "jsdom": "^16.2.0",
-    "jsdom-global": "^3.0.2",
-    "ky": "^0.18.0",
-    "ky-universal": "^0.5.0",
-    "lodash": "^4.17.15",
-    "lost": "^8.3.1",
-    "mallery": "1.0.0-alpha.4",
-    "micromatch": "^4.0.2",
-    "mocha": "^7.1.0",
-    "nodemon": "^2.0.2",
-    "null-loader": "^3.0.0",
-    "nyc": "^15.0.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "param.macro": "^3.2.1",
-    "pino": "^5.17.0",
-    "pino-pretty": "^3.6.0",
-    "postcss-flexbugs-fixes": "^4.2.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.7.0",
-    "prettier": "^1.19.1",
-    "preval.macro": "^4.0.0",
-    "raw-loader": "^4.0.0",
-    "react": "^16.13.0",
-    "react-alo": "^4.0.0-alpha.16",
-    "react-dom": "^16.13.0",
-    "react-helmet": "^5.2.1",
-    "react-helmet-async": "^1.0.4",
-    "react-router5": "^8.0.0",
-    "react-transition-group": "^4.3.0",
-    "react-universal-component": "^4.0.1",
-    "resolve-url-loader": "^3.1.1",
-    "router5": "^8.0.0",
-    "router5-plugin-browser": "^8.0.0",
-    "rucksack-css": "^1.0.2",
-    "sanitize.css": "^11.0.0",
-    "sass": "^1.26.2",
-    "sass-loader": "^8.0.2",
-    "selenium-webdriver": "^4.0.0-alpha.5",
-    "shelljs": "^0.8.3",
-    "standard-version": "^7.1.0",
-    "stats-webpack-plugin": "^0.7.0",
-    "style-loader": "^1.1.3",
-    "svgo": "^1.3.2",
-    "svgstore": "^3.0.0-2",
-    "terser-webpack-plugin": "^2.3.5",
-    "typescript": "^3.8.3",
-    "wait-on": "^4.0.1",
-    "wald": "^0.2.1",
-    "webpack": "^4.42.0",
-    "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "webpack-filter-warnings-plugin": "^1.2.1",
-    "webpack-flush-chunks": "^2.0.3",
-    "webpack-node-externals": "^1.7.2",
-    "workbox-webpack-plugin": "^5.0.0",
-    "worker-loader": "^2.0.0",
-    "yargs": "^15.1.0"
-  },
-  "optionalDependencies": {
-    "fibers": "^4.0.2"
-  },
-  "common": {
-    "licenseUrl": "https://opensource.org/licenses/MIT",
-    "repoStaticUrl": "https://raw.github.com/witneyjs/witney/${branch}/",
-    "readmeSvgUrlSuffix": "?sanitize=true",
-    "bannerCopyright": "Copyright(c) 2019-present Katja Lutz"
-  },
-  "standard-version": {
-    "scripts": {
-      "postchangelog": "node scripts/readme.js -q && node scripts/docs.js && git add docs README.md static/docs static/readme"
-    }
-  },
+  "homepage": "https://github.com/witneyjs/witney",
   "repository": {
     "type": "git",
     "url": "https://github.com/witneyjs/witney.git"
   },
-  "sideEffects": false,
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jest": "^26.0.1",
+    "microbundle": "developit/microbundle#master",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.0.0",
+    "@types/chai": "^4.2.11",
+    "@types/fs-extra": "^9.0.1",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.5",
+    "badgen": "^3.1.0",
+    "fs-extra": "^9.0.0",
+    "mallery": "1.0.0-alpha.4",
+    "standard-version": "^8.0.0"
+  },
   "dependencies": {
-    "express": "^4.17.1",
-    "faye": "^1.2.4",
-    "got": "^10.6.0",
-    "patch-package": "^6.2.1",
-    "source-map-support": "^0.5.16"
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "node scripts/badges.js && node scripts/site.js && git add assets site README.md"
+    }
+  },
+  "jest": {
+    "preset": "ts-jest/presets/js-with-ts",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover",
+      "json-summary"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/lib/tpl-lib/",
+      "/node_modules/"
+    ],
+    "collectCoverageFrom": [
+      "lib/**/*.{ts,tsx,js,jsx}"
+    ]
   }
 }

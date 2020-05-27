@@ -1,9 +1,0 @@
-<%
-var testsSuccessful = input.failedTestsCount === 0;
-var body = (testsSuccessful) ? 'successfull': `${input.failedTestsCount} failed` ;
-var badge = {
-    title: 'Tests', 
-    body: body, 
-    bodyColor: (testsSuccessful) ? '#46C022': '#D35D47'
-}; -%>
-<%- input.renderBadge(badge) -%>

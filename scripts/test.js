@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require("../lib/node/scripts").runConfiguredScripts({
-  scriptType: "test",
-  args: process.argv.slice(2).join(" ")
-});
+const { spawn, args } = require("./lib");
+
+spawn("npx", ["jest", "spec", "--notify", ...args]);

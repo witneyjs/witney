@@ -1,9 +1,0 @@
-/config
-/coverage
-/scripts
-/templates
-/tmp
-/.gitignore
-/jsconfig.example.json
-/tsconfig.json
-/.npmrc
