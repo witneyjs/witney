@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/witneyjs/witney/compare/v0.2.1...v0.3.0) (2020-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplified the project using microbundle
+
+### Features
+
+* simplified the project using microbundle ([3350a96](https://github.com/witneyjs/witney/commit/3350a96fd8f7d23b7d16b4a7b0c52db867fad72e))
+
 ### [0.2.1](https://github.com/witneyjs/witney/compare/v0.2.0...v0.2.1) (2020-03-11)
 
 ## [0.2.0](https://github.com/witneyjs/witney/compare/v0.1.0...v0.2.0) (2020-03-06)
