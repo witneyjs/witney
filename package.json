@@ -8,10 +8,6 @@
   "esmodule": "dist/main.modern.js",
   "types": "dist/main.d.ts",
   "unpkg": "dist/main.umd.js",
-  "scripts": {
-    "build": "microbundle",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "authors": [
     "Katja Lutz <opensource@katjalutz.ch>"
   ],
