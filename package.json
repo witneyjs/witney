@@ -1,13 +1,14 @@
 {
   "name": "witney",
+  "amdName": "witney",
   "version": "0.3.0",
   "description": "Don't wait to start with your javascript and typescript projects",
   "source": "lib/main.ts",
   "main": "dist/main.js",
   "module": "dist/main.m.js",
+  "umd:main": "dist/main.umd.js",
   "esmodule": "dist/main.modern.js",
   "types": "dist/main.d.ts",
-  "unpkg": "dist/main.umd.js",
   "authors": [
     "Katja Lutz <opensource@katjalutz.ch>"
   ],
