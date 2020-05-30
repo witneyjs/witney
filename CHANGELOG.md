@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/witneyjs/witney/compare/v0.3.0...v0.4.0) (2020-05-30)
+
+
+### Features
+
+* set amdName when creating a new project ([9805dd0](https://github.com/witneyjs/witney/commit/9805dd039d43fb328a0bed9e8c261f5e4102c259))
+* split up build script, add spawnScripts helper ([c01ec6f](https://github.com/witneyjs/witney/commit/c01ec6fd5bb24c19fa2ed0fca0fd85592899b3f4))
+
+
+### Bug Fixes
+
+* let prettier ignore CHANGELOG.md ([cfc2172](https://github.com/witneyjs/witney/commit/cfc21724f1d6d3b5c61dd0150940fc387be5458f))
+
 ## [0.3.0](https://github.com/witneyjs/witney/compare/v0.2.1...v0.3.0) (2020-05-27)
 
 
