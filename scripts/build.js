@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const { spawn, args } = require("./lib");
+const { spawnScripts } = require("./lib");
 
-spawn("npx", ["microbundle", "--raw", ...args]);
+spawnScripts("build");

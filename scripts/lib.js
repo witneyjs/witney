@@ -3,6 +3,9 @@ const path = require("path");
 const { promisify } = require("util");
 const fs = require("fs-extra");
 
+exports.extname = path.extname;
+exports.basename = path.basename;
+exports.readDir = promisify(fs.readdir);
 exports.writeFile = promisify(fs.writeFile);
 exports.readFile = promisify(fs.readFile);
 exports.writeJson = fs.writeJson;
@@ -25,4 +28,16 @@ exports.spawnScript = (script, args = [], options) => {
     [exports.scriptsDir(`${script}.js`), ...args],
     options
   );
+};
+exports.spawnScripts = async (prefix, args = [], options) => {
+  const files = await exports.readDir(this.scriptsDir());
+  for (const file of files) {
+    if (!file.startsWith(prefix + "-")) {
+      continue;
+    }
+
+    const fileExtension = exports.extname(file);
+    const script = exports.basename(file, fileExtension);
+    exports.spawnScript(script, args, options);
+  }
 };

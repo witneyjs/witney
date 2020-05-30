@@ -16,10 +16,15 @@ npx hoppla -t witney -d newProj -i "{ install: true }";
 cd newProj;
 ```
 
-## Building dev
-
+## Building prod
 ```bash
-./scripts/build.js -w
+./scripts/build.js
+```
+
+
+## Building dev
+```bash
+./scripts/build-core.js -w
 ```
 
 ## Starting a server
