@@ -2,6 +2,10 @@
   "compilerOptions": {
     "jsx": "react",
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "witney": ["./lib/main.ts"]
+    }
   }
 }

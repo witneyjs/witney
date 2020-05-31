@@ -1,17 +1,22 @@
 const { spawnSync } = require("child_process");
 const path = require("path");
-const { promisify } = require("util");
 const fs = require("fs-extra");
+const pkg = require("../package.json");
 
+exports.upperFirst = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+exports.exists = fs.exists;
+exports.resolve = path.resolve;
 exports.extname = path.extname;
 exports.basename = path.basename;
-exports.readDir = promisify(fs.readdir);
-exports.writeFile = promisify(fs.writeFile);
-exports.readFile = promisify(fs.readFile);
+exports.readDir = fs.readdir;
+exports.mkDir = fs.mkdir;
+exports.writeFile = fs.writeFile;
+exports.readFile = fs.readFile;
 exports.writeJson = fs.writeJson;
-exports.rmDir = promisify(fs.rmdir);
+exports.rmDir = fs.rmdir;
 exports.copy = fs.copy;
-exports.pkgDir = (...suffix) => path.resolve(__dirname, "..", ...suffix);
+exports.chmod = fs.chmod;
+exports.pkgDir = (...suffix) => exports.resolve(__dirname, "..", ...suffix);
 exports.scriptsDir = (...suffix) => exports.pkgDir("scripts", ...suffix);
 exports.assetsDir = (...suffix) => exports.pkgDir("assets", ...suffix);
 exports.args = process.argv.slice(2);
@@ -40,4 +45,12 @@ exports.spawnScripts = async (prefix, args = [], options) => {
     const script = exports.basename(file, fileExtension);
     exports.spawnScript(script, args, options);
   }
+};
+exports.buildArgs = () => {
+  const args = [];
+
+  const externals = [pkg.name];
+  args.push("--external", externals.join(","));
+
+  return args;
 };
