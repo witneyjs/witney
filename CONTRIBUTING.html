@@ -1,15 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>1.0.0-alpha.4</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>1.0.0-alpha.7</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="./main.css?v=1.0.0-alpha.4">
-    <script src="./main.js?v=1.0.0-alpha.4"></script>
-    <link class="favicon" rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./main.css?v=1.0.0-alpha.7" />
+    <script src="./main.umd.js?v=1.0.0-alpha.7"></script>
+    <link
+      class="favicon"
+      rel="shortcut icon"
+      href="./favicon.ico"
+      type="image/x-icon"
+    />
     <!--<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">-->
   </head>
   <body>
@@ -43,7 +48,7 @@ This increases the version in package.json, updates README.md CHANGELOG.md and d
 
     <script>
       var $ = document.querySelectorAll.bind(document)
-      new mallery.App($('#app')[0], {
+      new malleryFront.App($('#app')[0], {
  "config": {
   "colors": {
    "accent": "#00BF63"
@@ -169,19 +174,19 @@ This increases the version in package.json, updates README.md CHANGELOG.md and d
        "hash": "changelog",
        "children": [
         1,
-        4,
-        8,
-        11
+        3,
+        6,
+        10,
+        13
        ],
        "id": 0
       },
       {
        "level": "2",
-       "heading": "0.4.0 (2020-05-30)",
-       "hash": "040-2020-05-30",
+       "heading": "0.5.0 (2020-06-06)",
+       "hash": "050-2020-06-06",
        "children": [
-        2,
-        3
+        2
        ],
        "id": 1
       },
@@ -193,91 +198,108 @@ This increases the version in package.json, updates README.md CHANGELOG.md and d
        "id": 2
       },
       {
-       "level": "3",
-       "heading": "Bug Fixes",
-       "hash": "bug-fixes",
-       "children": [],
-       "id": 3
-      },
-      {
        "level": "2",
-       "heading": "0.3.0 (2020-05-27)",
-       "hash": "030-2020-05-27",
+       "heading": "0.4.0 (2020-05-30)",
+       "hash": "040-2020-05-30",
        "children": [
-        5,
-        6,
-        7
+        4,
+        5
        ],
-       "id": 4
-      },
-      {
-       "level": "3",
-       "heading": "⚠ BREAKING CHANGES",
-       "hash": "-breaking-changes",
-       "children": [],
-       "id": 5
+       "id": 3
       },
       {
        "level": "3",
        "heading": "Features",
        "hash": "features-1",
        "children": [],
-       "id": 6
-      },
-      {
-       "level": "3",
-       "heading": "0.2.1 (2020-03-11)",
-       "hash": "021-2020-03-11",
-       "children": [],
-       "id": 7
-      },
-      {
-       "level": "2",
-       "heading": "0.2.0 (2020-03-06)",
-       "hash": "020-2020-03-06",
-       "children": [
-        9,
-        10
-       ],
-       "id": 8
-      },
-      {
-       "level": "3",
-       "heading": "⚠ BREAKING CHANGES",
-       "hash": "-breaking-changes-1",
-       "children": [],
-       "id": 9
+       "id": 4
       },
       {
        "level": "3",
        "heading": "Bug Fixes",
-       "hash": "bug-fixes-1",
+       "hash": "bug-fixes",
        "children": [],
-       "id": 10
+       "id": 5
       },
       {
        "level": "2",
-       "heading": "0.1.0 (2020-03-05)",
-       "hash": "010-2020-03-05",
+       "heading": "0.3.0 (2020-05-27)",
+       "hash": "030-2020-05-27",
        "children": [
-        12,
-        13
+        7,
+        8,
+        9
        ],
-       "id": 11
+       "id": 6
       },
       {
        "level": "3",
        "heading": "⚠ BREAKING CHANGES",
-       "hash": "-breaking-changes-2",
+       "hash": "-breaking-changes",
        "children": [],
-       "id": 12
+       "id": 7
       },
       {
        "level": "3",
        "heading": "Features",
        "hash": "features-2",
        "children": [],
+       "id": 8
+      },
+      {
+       "level": "3",
+       "heading": "0.2.1 (2020-03-11)",
+       "hash": "021-2020-03-11",
+       "children": [],
+       "id": 9
+      },
+      {
+       "level": "2",
+       "heading": "0.2.0 (2020-03-06)",
+       "hash": "020-2020-03-06",
+       "children": [
+        11,
+        12
+       ],
+       "id": 10
+      },
+      {
+       "level": "3",
+       "heading": "⚠ BREAKING CHANGES",
+       "hash": "-breaking-changes-1",
+       "children": [],
+       "id": 11
+      },
+      {
+       "level": "3",
+       "heading": "Bug Fixes",
+       "hash": "bug-fixes-1",
+       "children": [],
+       "id": 12
+      },
+      {
+       "level": "2",
+       "heading": "0.1.0 (2020-03-05)",
+       "hash": "010-2020-03-05",
+       "children": [
+        14,
+        15
+       ],
        "id": 13
+      },
+      {
+       "level": "3",
+       "heading": "⚠ BREAKING CHANGES",
+       "hash": "-breaking-changes-2",
+       "children": [],
+       "id": 14
+      },
+      {
+       "level": "3",
+       "heading": "Features",
+       "hash": "features-3",
+       "children": [],
+       "id": 15
       }
      ]
     },
