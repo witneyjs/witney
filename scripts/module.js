@@ -56,9 +56,12 @@ const createModuleLib = async function (moduleDir) {
 const createBuildScript = async function (moduleName) {
   const buildScript = `#!/usr/bin/env node
 
-const { spawn, args, buildArgs } = require("./lib");
+const { spawn, args, buildArgs, rmDir, pkgDir } = require("./lib");
 
-spawn("npx", ["microbundle", "--cwd", "${moduleName}", "--raw", ...buildArgs(), ...args]);
+(async () => {
+  await rmDir(pkgDir("${moduleName}", "dist"), { recursive: true });
+  spawn("npx", ["microbundle", "--cwd", "${moduleName}", "--raw", ...buildArgs(), ...args]);
+})();
 `;
 
   const scriptPath = scriptsDir(`build-${moduleName}.js`);
