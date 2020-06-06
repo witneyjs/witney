@@ -30,19 +30,26 @@ fs.writeFileSync(
   })
 );
 
-const coverage = require("./../coverage/coverage-summary");
-let pcts = [];
-for (const [k, v] of Object.entries(coverage.total)) {
-  pcts.push(v.pct);
-}
-const totalPct = pcts.length
-  ? pcts.reduce((acc, pct) => acc + pct, 0) / pcts.length
-  : 0;
+const getCoveragePct = function () {
+  const coverage = require("./../coverage/coverage-summary");
+
+  let pcts = [];
+  for (const v of Object.values(coverage.total)) {
+    if (v.total === 0) {
+      continue;
+    }
+    pcts.push(v.pct);
+  }
+
+  return pcts.length
+    ? pcts.reduce((acc, pct) => acc + pct, 0) / pcts.length
+    : 100;
+};
 
 fs.writeFileSync(
   assetsDir("badge.coverage.svg"),
   badgen({
     label: "coverage",
-    status: Math.round(totalPct) + "%",
+    status: Math.round(getCoveragePct()) + "%",
   })
 );
