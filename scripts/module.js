@@ -24,6 +24,21 @@ const updatePkg = async function (moduleName, pkg) {
   });
 };
 
+const updateTsconfig = async function (moduleName, pkg) {
+  const tsConfig = require("../tsconfig");
+  const pathAlias = `${pkg.name}/${moduleName}`;
+
+  if (tsConfig.compilerOptions.paths[pathAlias]) {
+    return;
+  }
+
+  tsConfig.compilerOptions.paths[pathAlias] = [`../${moduleName}/lib/main.ts`];
+  const tsConfigPath = resolve(pkgDir("tsconfig.json"));
+  await writeJson(tsConfigPath, tsConfig, {
+    spaces: "  ",
+  });
+};
+
 const createModulePkg = async function (moduleDir, moduleName, pkg) {
   const modulePkg = resolve(moduleDir, "package.json");
   await writeJson(
@@ -90,6 +105,7 @@ const { spawn, args, buildArgs, rmDir, pkgDir } = require("./lib");
     const pkg = require("./../package");
 
     await updatePkg(moduleName, pkg);
+    await updateTsconfig(moduleName, pkg);
     await createModulePkg(moduleDir, moduleName, pkg);
     await createModuleLib(moduleDir);
     await createBuildScript(moduleName);
