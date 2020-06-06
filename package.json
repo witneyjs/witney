@@ -56,6 +56,7 @@
       "json-summary"
     ],
     "coveragePathIgnorePatterns": [
+      "main.(?:tsx|ts|jsx|js)",
       "/lib/tpl-lib/",
       "/node_modules/"
     ],
