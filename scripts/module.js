@@ -19,6 +19,9 @@ const updatePkg = async function (moduleName, pkg) {
     `${moduleName}/lib`,
     `${moduleName}/dist`
   );
+
+  pkg.jest.collectCoverageFrom.push(`${moduleName}/lib/**/*.{ts,tsx,js,jsx}`);
+
   await writeJson(pkgDir("package.json"), pkg, {
     spaces: "  ",
   });
