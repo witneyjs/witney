@@ -3,9 +3,11 @@
     "jsx": "react",
     "noEmit": true,
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "./node_modules",
+    "esModuleInterop": true,
+    "target": "es5",
     "paths": {
-      "witney": ["./lib/main.ts"]
+      "witney": ["../lib/main.ts"]
     }
   }
 }
