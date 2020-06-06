@@ -2,4 +2,4 @@
 
 const { spawnScript, args } = require("./lib");
 
-spawnScript("test", ["--coverage", ...args]);
+spawnScript("test", ["--coverage", "--passWithNoTests", ...args]);
