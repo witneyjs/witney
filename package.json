@@ -19,19 +19,19 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "jest": "^26.0.1",
-    "microbundle": "developit/microbundle#master",
-    "prettier": "^2.0.5",
-    "ts-jest": "^26.0.0",
     "@types/chai": "^4.2.11",
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.6",
+    "@types/node": "^14.0.11",
     "badgen": "^3.1.0",
-    "fs-extra": "^9.0.0",
-    "mallery": "1.0.0-alpha.4",
-    "standard-version": "^8.0.0"
+    "chai": "^4.2.0",
+    "fs-extra": "^9.0.1",
+    "jest": "^26.0.1",
+    "mallery": "1.0.0-alpha.7",
+    "microbundle": "github:developit/microbundle#master",
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.0",
+    "ts-jest": "^26.1.0"
   },
   "dependencies": {
     "ts-node": "^8.10.2",
