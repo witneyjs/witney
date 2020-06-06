@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/witneyjs/witney/compare/v0.4.0...v0.5.0) (2020-06-06)
+
+
+### Features
+
+* add modules to jest coverage paths ([14353f8](https://github.com/witneyjs/witney/commit/14353f81925fdc97aa5a063b24dfbd3a061acc8e))
+* clean dist before build ([6306b95](https://github.com/witneyjs/witney/commit/6306b95b3b4c396ecbd773efd45f12c48fbd8aac))
+* ignore empty totals in coverage pct ([7c5c202](https://github.com/witneyjs/witney/commit/7c5c202de1997dc086f7cb2135f2a6bc6aae10c3))
+* ignore main files in coverage by default ([1d1e536](https://github.com/witneyjs/witney/commit/1d1e5369652315edad47fe0aa361b7e84a83adac))
+* implement create-type-proxies script ([f99a363](https://github.com/witneyjs/witney/commit/f99a36340ece05021cb448abdb707888d7b67d98))
+* implement modules and externals ([4ea1f94](https://github.com/witneyjs/witney/commit/4ea1f94ba134d7dd40ef79990d0287bf464481ee))
+* implement ts module aliases ([cf0fad8](https://github.com/witneyjs/witney/commit/cf0fad8ccf9961052825b11f48648901ed244d82))
+* pass coverage script without tests ([649498d](https://github.com/witneyjs/witney/commit/649498de1e6962adc58361efeae953bc8f57beb0))
+
 ## [0.4.0](https://github.com/witneyjs/witney/compare/v0.3.0...v0.4.0) (2020-05-30)
 
 
