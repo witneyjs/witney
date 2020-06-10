@@ -11,7 +11,7 @@ Don't wait to start with your javascript and typescript projects.
 
 Read [Getting started](http://www.witneyjs.com/getting_started.html) to learn how to start using Witney for your next projects.
 
-Features:
+## Features:
 
 - 📦 Bundles with [microbundle](https://github.com/developit/microbundle)
 - 🧹 Formatting with [prettier](https://github.com/prettier/prettier)
