@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/witneyjs/witney/compare/v0.6.0...v0.7.0) (2020-06-19)
+
+
+### Features
+
+* implement pkg exports ([50d0809](https://github.com/witneyjs/witney/commit/50d08091d823515da85ba18874ea8a2a4e7b2e2b))
+* **module-script:** only add unique pkg array values ([a017d9f](https://github.com/witneyjs/witney/commit/a017d9f8653fbf383a3dd03c8a7dd70ec87a4def))
+
 ## [0.6.0](https://github.com/witneyjs/witney/compare/v0.5.0...v0.6.0) (2020-06-14)
 
 
