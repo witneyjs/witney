@@ -28,7 +28,7 @@
     "fs-extra": "^9.0.1",
     "jest": "^26.0.1",
     "mallery": "1.0.0-alpha.7",
-    "microbundle": "github:developit/microbundle#master",
+    "microbundle": "^0.12.1",
     "prettier": "^2.0.5",
     "standard-version": "^8.0.0",
     "ts-jest": "^26.1.0",
