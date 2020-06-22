@@ -9,5 +9,6 @@
     "paths": {
       "witney": ["../lib/main.ts"]
     }
-  }
+  },
+  "exclude": ["node_modules", "**/dist"]
 }
