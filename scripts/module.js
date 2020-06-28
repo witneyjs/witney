@@ -101,7 +101,7 @@ const { spawn, args, buildArgs, rmDir, pkgDir } = require("./lib");
 
 (async () => {
   await rmDir(pkgDir("${moduleName}", "dist"), { recursive: true });
-  spawn("npx", ["microbundle", "--cwd", "${moduleName}", "--raw", ...buildArgs(), ...args]);
+  spawn("npx", ["microbundle", "--cwd", "${moduleName}", ...buildArgs(), ...args]);
 })();
 `;
 
