@@ -5,7 +5,8 @@
     "allowJs": true,
     "baseUrl": "./node_modules",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "ESNext",
+    "module": "commonjs",
     "paths": {
       "witney": ["../lib/main.ts"]
     }
