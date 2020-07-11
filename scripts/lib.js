@@ -49,7 +49,8 @@ exports.spawnScripts = async (prefix, args = [], options) => {
 exports.buildArgs = () => {
   const args = [];
 
-  const externals = [pkg.name];
+  const pkgDeps = Object.keys(pkg.dependencies);
+  const externals = [pkg.name, ...pkgDeps];
   args.push("--external", externals.join(","));
 
   return args;
