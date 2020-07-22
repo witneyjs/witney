@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/witneyjs/witney/compare/v0.7.0...v0.8.0) (2020-07-22)
+
+
+### Features
+
+* add dist exclude in tsconfig.json ([ac0a84a](https://github.com/witneyjs/witney/commit/ac0a84ae90062947196ae528c2ce031665ec3b8d))
+* mark pkg dependencies as microbundle externals ([e9b2c7f](https://github.com/witneyjs/witney/commit/e9b2c7f20baf5af160c812a108b05f1bc06e6275))
+* update tsconfig target to ESNext ([7719990](https://github.com/witneyjs/witney/commit/77199902f48e52265478a14fabc75fadd6839da7))
+
 ## [0.7.0](https://github.com/witneyjs/witney/compare/v0.6.0...v0.7.0) (2020-06-19)
 
 
