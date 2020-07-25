@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/witneyjs/witney/compare/v0.8.0...v0.9.0) (2020-07-25)
+
+
+### Features
+
+* add site folder to the tsconfig excludes ([bffad2d](https://github.com/witneyjs/witney/commit/bffad2dc079cf8cf906224aeeaeb2bcea2b4c837))
+* **scripts:** add generation of proxy for core types ([aca0349](https://github.com/witneyjs/witney/commit/aca034912003d789fd262209859b71481c220385))
+
 ## [0.8.0](https://github.com/witneyjs/witney/compare/v0.7.0...v0.8.0) (2020-07-22)
 
 

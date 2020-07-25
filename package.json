@@ -1,7 +1,7 @@
 {
   "name": "witney",
   "amdName": "witney",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Don't wait to start with your javascript and typescript projects",
   "source": "lib/main.ts",
   "main": "dist/main.js",
