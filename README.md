@@ -15,13 +15,13 @@ Read [Getting started](http://www.witneyjs.com/getting_started.html) to learn ho
 
 - 📦 Bundles with [microbundle](https://github.com/developit/microbundle)
 - 🧹 Formatting with [prettier](https://github.com/prettier/prettier)
-- 👨🏼‍⚖️ Typescript support with [ts-node](https://github.com/TypeStrong/ts-node) and [ts-jest](https://github.com/kulshekhar/ts-jest)
-- 📏 Tests and coverage with [jest](https://github.com/facebook/jest)
+- 📏 Tests and coverage with [jest](https://github.com/facebook/jest) and [ts-jest](https://github.com/kulshekhar/ts-jest)
 - 🧢 Markdown site generation with [mallery](https://github.com/malleryjs/mallery/)
 - 🎰 Versioning with [standard-version](https://github.com/conventional-changelog/standard-version)
 - 🧰 Packed with commonly used dev scripts
   - All written with 🧩 extensibility in mind
   - Scripts for Building, Testing, Coverage, Server starting
   - 🔖 Badges generator
+  - 👨🏼‍⚖️ Typescript d.ts proxies
   - 🧐 Dependency license check
   - 👽 Dependency gyp check
