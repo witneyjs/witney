@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/witneyjs/witney/compare/v0.9.0...v0.10.0) (2020-08-05)
+
+
+### Features
+
+* integrate type proxy creation into build script ([07e2cca](https://github.com/witneyjs/witney/commit/07e2ccacf56ea349ab1711ca290bb4dd52468091))
+
+
+### Bug Fixes
+
+* **buildArgs:** add pkg dependencies fallback object ([ccfbb91](https://github.com/witneyjs/witney/commit/ccfbb91534b885bcbf4d7c557219d552359ec27a))
+
 ## [0.9.0](https://github.com/witneyjs/witney/compare/v0.8.0...v0.9.0) (2020-07-25)
 
 
